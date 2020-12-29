@@ -1,0 +1,29 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        3_1_1_g.sql
+SQL> REM  Description: Write the SQL statement to retrieve those students that have
+SQL> REM               a last name with the lowercase letter 'o' occurring three or
+SQL> REM               more times.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 28, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> 
+SQL> SELECT last_name "Last Name With ooo"
+  2    FROM student
+  3  WHERE length(last_name) - length(replace(last_name, 'o')) > 2;
+
+Last Name With ooo                                                                                                                
+-------------------------                                                                                                         
+Frangopoulos                                                                                                                      
+Chamnonkool                                                                                                                       
+Engongoro                                                                                                                         
+
+SQL> 
+SQL> spool off

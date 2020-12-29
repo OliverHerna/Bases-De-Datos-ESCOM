@@ -1,0 +1,48 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        3_1_2_b.sql
+SQL> REM  Description: Using functions in the SELECT list, WHERE, and ORDER BY clauses, write the SELECT
+SQL> REM               statement that returns course numbers and course descriptions from the COURSE table
+SQL> REM               and looks like the following result set:
+SQL> REM               Description
+SQL> REM               -------------------------------------
+> REM               204.......Intro to SQL
+SQL> REM               130.......Intro to Unix
+SQL> REM               230.......Intro to Internet
+SQL> REM               20........Intro to Computers
+SQL> REM               25........Intro to Programming
+SQL> REM               120.......Intro to Java Programming
+SQL> REM               240.......Intro to the Basic Language
+SQL> REM               7 rows selected.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 28, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> 
+SQL> SELECT CONCAT(
+  2         RPAD(course_no, 10, '.'),
+  3         description) "Description"
+  4  FROM course
+  5  WHERE description LIKE 'Intro%'
+  6  ORDER BY LENGTH(description);
+
+Description                                                                                                                       
+------------------------------------------------------------------------------------------                                        
+204.......Intro to SQL                                                                                                            
+130.......Intro to Unix                                                                                                           
+230.......Intro to Internet                                                                                                       
+20........Intro to Computers                                                                                                      
+25........Intro to Programming                                                                                                    
+120.......Intro to Java Programming                                                                                               
+240.......Intro to the Basic Language                                                                                             
+
+7 filas seleccionadas.
+
+SQL> 
+SQL> spool off

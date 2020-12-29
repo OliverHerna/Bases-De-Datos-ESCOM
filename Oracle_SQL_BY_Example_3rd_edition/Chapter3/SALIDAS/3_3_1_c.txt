@@ -1,0 +1,34 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        3_3_1_c.sql
+SQL> REM  Description: Write the query to accomplish the following output using the NVL2 function in the
+SQL> REM               column 'Get this result'.
+SQL> REM               ID NAME PHONE Get this result
+SQL> REM               ------------------ ------------ -----------------
+> REM               112 Thomas Thomas 201-555-5555 Phone# exists.
+SQL> REM               111 Peggy Noviello No phone# exists.
+SQL> REM               2 rows selected.
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 29, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> 
+SQL> SELECT student_id id, first_name||' '|| last_name name,
+  2         phone,
+  3         NVL2(phone, 'Phone# exists.', 'No phone# exists.')
+  4         "Get this result"
+  5  FROM student
+  6  WHERE student_id IN (111, 112) ;
+
+        ID ||NAME                                                ||PHONE           ||Get this result                              
+---------- ||--------------------------------------------------- ||--------------- ||-----------------                            
+       111 ||Peggy Noviello                                      ||                ||No phone# exists.                            
+       112 ||Thomas Thomas                                       ||201-555-5555    ||Phone# exists.                               
+
+SQL> 
+SQL> spool off

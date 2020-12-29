@@ -1,0 +1,31 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        3_2_1_b.sql
+SQL> REM  Description: Write a SELECT statement that displays distinct course costs.
+SQL> REM               In a separate column, show the COST increased by 75% and round
+SQL> REM               the decimals to the nearest dollar.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 29, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> 
+SQL> SELECT DISTINCT cost "cost",
+  2         cost + (cost * .75),
+  3         ROUND(cost + (cost * .75)) "cost increased"
+  4  FROM course;
+
+      cost ||COST+(COST*.75) ||cost increased                                                                                     
+---------- ||--------------- ||--------------                                                                                     
+      1195 ||        2091.25 ||          2091                                                                                     
+           ||                ||                                                                                                   
+      1095 ||        1916.25 ||          1916                                                                                     
+      1595 ||        2791.25 ||          2791                                                                                     
+
+SQL> 
+SQL> spool off

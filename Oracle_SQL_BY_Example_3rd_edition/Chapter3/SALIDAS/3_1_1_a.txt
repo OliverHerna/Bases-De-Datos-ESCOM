@@ -1,0 +1,7 @@
+
+
+Description                                        ||Initcap Description                                                          
+-------------------------------------------------- ||--------------------------------------------------                           
+Intro to SQL                                       ||Intro To Sql                                                                 
+PL/SQL Programming                                 ||Pl/Sql Programming                                                           
+

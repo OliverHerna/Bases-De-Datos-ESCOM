@@ -1,0 +1,58 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        3_2_1_c.sql
+SQL> REM  Description: Write a SELECT statement that displays distinct numeric grades
+SQL> REM               from the GRADE table and half those values expressed as a
+SQL> REM               whole number in a separate column
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 29, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> 
+SQL> SELECT DISTINCT numeric_grade,
+  2         ROUND(numeric_grade/2)
+  3  FROM grade;
+
+NUMERIC_GRADE ||ROUND(NUMERIC_GRADE/2)                                                                                            
+------------- ||----------------------                                                                                            
+           96 ||                    48                                                                                            
+           90 ||                    45                                                                                            
+           80 ||                    40                                                                                            
+           81 ||                    41                                                                                            
+           91 ||                    46                                                                                            
+           84 ||                    42                                                                                            
+           92 ||                    46                                                                                            
+           74 ||                    37                                                                                            
+           93 ||                    47                                                                                            
+           72 ||                    36                                                                                            
+           98 ||                    49                                                                                            
+           99 ||                    50                                                                                            
+           97 ||                    49                                                                                            
+           78 ||                    39                                                                                            
+           71 ||                    36                                                                                            
+           95 ||                    48                                                                                            
+           70 ||                    35                                                                                            
+           86 ||                    43                                                                                            
+           88 ||                    44                                                                                            
+           75 ||                    38                                                                                            
+           87 ||                    44                                                                                            
+           73 ||                    37                                                                                            
+           83 ||                    42                                                                                            
+           85 ||                    43                                                                                            
+           76 ||                    38                                                                                            
+           89 ||                    45                                                                                            
+           79 ||                    40                                                                                            
+           94 ||                    47                                                                                            
+           82 ||                    41                                                                                            
+           77 ||                    39                                                                                            
+
+30 filas seleccionadas.
+
+SQL> 
+SQL> spool off
