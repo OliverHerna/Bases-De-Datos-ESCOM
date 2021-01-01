@@ -1,0 +1,36 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        4_2_1_b.sql
+SQL> REM  Description: Compute the number of months between September 29, 1999 and
+SQL> REM               August 17, 2003.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 01, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> clear screen
+
+SQL> 
+SQL> ALTER SESSION SET NLS_DATE_LANGUAGE = 'ENGLISH';
+
+Sesión modificada.
+
+SQL> 
+SQL> SELECT ROUND(MONTHS_BETWEEN(
+  2    TO_DATE('17-AUG-2003', 'DD-MON-YYYY'),
+  3    TO_DATE('29-SEP-1999', 'DD-MON-YYYY')
+  4  )) AS "MONTHS BETWEEN"
+  5  FROM dual;
+
+MONTHS BETWEEN                                                                                                                    
+--------------                                                                                                                    
+            47                                                                                                                    
+
+SQL> 
+SQL> 
+SQL> spool off

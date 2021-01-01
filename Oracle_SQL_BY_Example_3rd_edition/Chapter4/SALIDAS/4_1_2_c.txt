@@ -1,0 +1,31 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        4_1_2_c.sql
+SQL> REM  Description: Determine the day of the week for December 31, 1899.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 01, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> clear screen
+
+SQL> 
+SQL> ALTER SESSION SET NLS_DATE_LANGUAGE = 'ENGLISH';
+
+Sesión modificada.
+
+SQL> 
+SQL> SELECT TO_CHAR(TO_DATE('31-DEC-1899', 'DD-MON-YYYY'), 'Day') AS "31-DEC-1899"
+  2    FROM dual;
+
+31-DEC-18                                                                                                                         
+---------                                                                                                                         
+Sunday                                                                                                                            
+
+SQL> 
+SQL> spool off

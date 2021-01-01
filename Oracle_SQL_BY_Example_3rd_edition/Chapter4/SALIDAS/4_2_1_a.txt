@@ -1,0 +1,36 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        4_2_1_a.sql
+SQL> REM  Description: Determine the number of days between February 13, 1964 and
+SQL> REM               the last day of the same month and year.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 01, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' ||'
+SQL> clear screen
+
+SQL> 
+SQL> ALTER SESSION SET NLS_DATE_LANGUAGE = 'ENGLISH';
+
+Sesión modificada.
+
+SQL> 
+SQL> SELECT TO_DATE('13-FEB-1964', 'DD-MON-YYYY') "Date",
+  2         LAST_DAY(TO_DATE('13-FEB-1964', 'DD-MON-YYYY')) "Final",
+  3         LAST_DAY(TO_DATE('13-FEB-1964', 'DD-MON-YYYY'))-TO_DATE('13-FEB-1964', 'DD-MON-YYYY')
+  4         "Days between"
+  5  FROM dual;
+
+Date     ||Final    ||Days between                                                                                                
+-------- ||-------- ||------------                                                                                                
+13/02/64 ||29/02/64 ||          16                                                                                                
+
+SQL> 
+SQL> 
+SQL> spool off
