@@ -1,0 +1,57 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        5_2_1_c.sql
+SQL> REM  Description: Write a SELECT statement that displays the average room
+SQL> REM               capacity for each course. Display the average expressed to the
+SQL> REM               nearest whole number in another column. Use column aliases for
+SQL> REM               each column selected.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT COURSE_NO AS "COURSE",
+  2         ROUND(AVG(CAPACITY)) AS "CAPACIDAD (%)"
+  3  FROM SECTION
+  4  GROUP BY COURSE_NO;
+
+    COURSE || CAPACIDAD (%)                                                                                                       
+---------- || -------------                                                                                                       
+        10 ||            15                                                                                                       
+        20 ||            20                                                                                                       
+        25 ||            23                                                                                                       
+       100 ||            21                                                                                                       
+       120 ||            22                                                                                                       
+       122 ||            21                                                                                                       
+       124 ||            20                                                                                                       
+       125 ||            21                                                                                                       
+       130 ||            20                                                                                                       
+       132 ||            25                                                                                                       
+       134 ||            22                                                                                                       
+       135 ||            20                                                                                                       
+       140 ||            22                                                                                                       
+       142 ||            22                                                                                                       
+       144 ||            15                                                                                                       
+       145 ||            25                                                                                                       
+       146 ||            20                                                                                                       
+       147 ||            25                                                                                                       
+       204 ||            25                                                                                                       
+       210 ||            25                                                                                                       
+       220 ||            25                                                                                                       
+       230 ||            14                                                                                                       
+       240 ||            13                                                                                                       
+       310 ||            25                                                                                                       
+       330 ||            25                                                                                                       
+       350 ||            22                                                                                                       
+       420 ||            25                                                                                                       
+       450 ||            25                                                                                                       
+
+28 filas seleccionadas.
+
+SQL> spool off

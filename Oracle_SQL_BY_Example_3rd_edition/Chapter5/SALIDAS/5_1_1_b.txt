@@ -1,0 +1,26 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        5_1_1_b.sql
+SQL> REM  Description: Write a SELECT statement to determine the total number of
+SQL> REM               students enrolled. Count students only once, no matter how
+SQL> REM               many courses they are enrolled in.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 02, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT COUNT(DISTINCT student_id)
+  2  FROM ENROLLMENT;
+
+COUNT(DISTINCTSTUDENT_ID)                                                                                                         
+-------------------------                                                                                                         
+                      165                                                                                                         
+
+SQL> 
+SQL> spool off

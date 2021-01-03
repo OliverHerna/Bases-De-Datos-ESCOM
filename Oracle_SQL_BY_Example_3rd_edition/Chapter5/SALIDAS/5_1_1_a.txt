@@ -1,0 +1,27 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        5_1_1_a.sql
+SQL> REM  Description: Write a SELECT statement to determine how many courses do
+SQL> REM               not have a prerequisite.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 02, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> 
+SQL> SELECT COUNT(*) "COURSES WITHOUT PREREQUISITE"
+  2  FROM COURSE
+  3  WHERE PREREQUISITE IS null;
+
+COURSES WITHOUT PREREQUISITE                                                                                                      
+----------------------------                                                                                                      
+                           4                                                                                                      
+
+SQL> 
+SQL> spool off

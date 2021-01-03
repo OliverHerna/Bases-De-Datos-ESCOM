@@ -1,0 +1,38 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        5_2_1_b.sql
+SQL> REM  Description: Write a SELECT statement showing student IDs and the number
+SQL>                   of courses they are enrolled in. Show only those enrolled in
+SP2-0734: inicio "of courses..." de comando desconocido - resto de la línea ignorado.
+SQL>                   more than two classes.
+SP2-0734: inicio "more than ..." de comando desconocido - resto de la línea ignorado.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT STUDENT_ID, COUNT(SECTION_ID)
+  2  FROM ENROLLMENT
+  3  GROUP BY STUDENT_ID
+  4  HAVING(COUNT(SECTION_ID) > 2);
+
+STUDENT_ID || COUNT(SECTION_ID)                                                                                                   
+---------- || -----------------                                                                                                   
+       124 ||                 4                                                                                                   
+       184 ||                 3                                                                                                   
+       214 ||                 4                                                                                                   
+       215 ||                 3                                                                                                   
+       232 ||                 3                                                                                                   
+       238 ||                 3                                                                                                   
+       250 ||                 3                                                                                                   
+
+7 filas seleccionadas.
+
+SQL> 
+SQL> spool off
