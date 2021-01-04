@@ -1,0 +1,307 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        6_1_1_b.sql
+SQL> REM  Description: For all students, display last name, city, state, and zip
+SQL>                   code. Show the result ordered by zip code.
+SP2-0734: inicio "code. Show..." de comando desconocido - resto de la línea ignorado.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT s.LAST_NAME,
+  2         z.CITY, z.STATE, zip
+  3  FROM student s JOIN zipcode z
+  4  USING (zip);
+
+LAST_NAME                 || CITY                      || ST || ZIP                                                               
+------------------------- || ------------------------- || -- || -----                                                             
+Crocitto                  || Richmond Hill             || NY || 11419                                                             
+Landry                    || North Bergen              || NJ || 07047                                                             
+Enison                    || Jamaica                   || NY || 11435                                                             
+Moskowitz                 || Ft. Lee                   || NJ || 07024                                                             
+Olvsade                   || Montclair                 || NJ || 07042                                                             
+Mierzwa                   || Astoria                   || NY || 11105                                                             
+Sethi                     || Tufts Univ. Bedford       || MA || 02155                                                             
+Walter                    || Brooklyn                  || NY || 11214                                                             
+Martin                    || Ridgewood Queens          || NY || 11385                                                             
+Noviello                  || Rutherford                || NJ || 07070                                                             
+Thomas                    || Lyndon                    || NJ || 07036                                                             
+Kulina                    || Flushing                  || NY || 11355                                                             
+Laporte                   || Brooklyn                  || NY || 11226                                                             
+Kuehn                     || Woodside                  || NY || 11377                                                             
+Lopez                     || Rowayton                  || CT || 06853                                                             
+Abdou                     || Flushing                  || NY || 11358                                                             
+Alexander                 || Brooklyn                  || NY || 11214                                                             
+Pineda                    || New City                  || NY || 10956                                                             
+Lippen                    || Amherst                   || NY || 11373                                                             
+Radicola                  || Brooklyn                  || NY || 11208                                                             
+Wicelinski                || Bloomfiel                 || NJ || 07003                                                             
+Aung                      || Laurelton                 || NY || 11413                                                             
+Runyan                    || Forest Hills              || NY || 11375                                                             
+Grant                     || Brooklyn                  || NY || 11207                                                             
+Oates                     || Jersey City               || NJ || 07304                                                             
+Reed                      || Hollis                    || NY || 11412                                                             
+Torres                    || Brooklyn                  || NY || 11215                                                             
+Masser                    || Brooklyn                  || NY || 11209                                                             
+Lasseter                  || Corona                    || NY || 11368                                                             
+Miller                    || Corona                    || NY || 11368                                                             
+Smith                     || Brooklyn                  || NY || 11217                                                             
+Garshman                  || Jersey City               || NJ || 07307                                                             
+Baltazar                  || Brooklyn                  || NY || 11236                                                             
+Boyd                      || Corona                    || NY || 11368                                                             
+Waldman                   || Huntington                || NY || 11766                                                             
+Biers                     || Brooklyn                  || NY || 11232                                                             
+Essner                    || Norwalk                   || CT || 06851                                                             
+Lefkowitz                 || New York                  || NY || 10048                                                             
+German                    || North Bergen              || NJ || 07047                                                             
+Cahouet                   || Brooklyn                  || NY || 11219                                                             
+Orent                     || Clifton                   || NJ || 07011                                                             
+Prochaska                 || Short Hills               || NJ || 07078                                                             
+Gates                     || Smithtown                 || NY || 11787                                                             
+Sheppard                  || Long Island City          || NY || 11106                                                             
+Edwards                   || Lyndon                    || NJ || 07036                                                             
+Philpotts                 || Amherst                   || NY || 11373                                                             
+Dennis                    || Greenwich                 || CT || 06830                                                             
+Grant                     || Brooklyn                  || NY || 11224                                                             
+Jameson                   || Carteret                  || NJ || 07008                                                             
+Limate                    || Ft. Lee                   || NJ || 07024                                                             
+Edwards                   || Maplewood                 || NJ || 07040                                                             
+Beitler                   || Secaucus                  || NJ || 07096                                                             
+Grant                     || Brooklyn                  || NY || 11201                                                             
+Andrew                    || Old Greenwich             || CT || 06870                                                             
+Gillen                    || New York                  || NY || 10025                                                             
+Perrin                    || Brooklyn                  || NY || 11215                                                             
+Daly                      || Brooklyn                  || NY || 11235                                                             
+Jodoin                    || Flushing                  || NY || 11366                                                             
+Joas                      || Fresh Meadows             || NY || 11365                                                             
+M. Orent                  || Jackson Heights           || NY || 11372                                                             
+Winnicki                  || Brooklyn                  || NY || 11209                                                             
+Madej                     || Bridgeport                || CT || 06605                                                             
+Valentine                 || Fort Washington           || NY || 11050                                                             
+Saluja                    || Brooklyn                  || NY || 11233                                                             
+Lawson                    || Long Beach                || NY || 11042                                                             
+Dunkon                    || North Bergen              || NJ || 07047                                                             
+Archor                    || Stamford                  || CT || 06905                                                             
+Milano                    || Bayside                   || NY || 11360                                                             
+Guarino                   || Sunnyside                 || NY || 11104                                                             
+Larcia                    || Laurelton                 || NY || 11413                                                             
+Callender                 || Forest Hills              || NY || 11375                                                             
+Galik                     || Jamaica                   || NY || 11420                                                             
+Airall                    || West Hempstead            || NY || 11552                                                             
+Jimenes                   || Queens Village            || NY || 11428                                                             
+Masser                    || Brooklyn                  || NY || 11203                                                             
+Allende                   || Baldwin                   || NY || 11510                                                             
+Velie                     || Laurelton                 || NY || 11422                                                             
+Dermody                   || Brooklyn                  || NY || 11205                                                             
+McHowell                  || Brentwood                 || NJ || 11717                                                             
+Austin                    || Ridgewood Queens          || NY || 11385                                                             
+Eakheit                   || Hewitt                    || NJ || 07421                                                             
+Miller                    || Woodside                  || NY || 11377                                                             
+Smagler                   || Brooklyn                  || NY || 11216                                                             
+Archer                    || Brooklyn                  || NY || 11218                                                             
+Ginestra                  || Ft. Lee                   || NJ || 07024                                                             
+Marten                    || Brooklyn                  || NY || 11225                                                             
+Puetrino                  || Nannet                    || NY || 10954                                                             
+
+LAST_NAME                 || CITY                      || ST || ZIP                                                               
+------------------------- || ------------------------- || -- || -----                                                             
+Padel                     || Georgetown                || WV || 06820                                                             
+Thorton                   || Irvington                 || NY || 07111                                                             
+Tabs                      || Brooklyn                  || NY || 11214                                                             
+Zopf                      || Jackson Heights           || NY || 11372                                                             
+Mwangi                    || Endicott                  || NY || 13760                                                             
+Ward                      || Brooklyn                  || NY || 11225                                                             
+Annina                    || Stamford                  || CT || 06903                                                             
+Jackson                   || Wallington                || NJ || 07057                                                             
+Gallagher                 || Brooklyn                  || NY || 11228                                                             
+Cross                     || Laurelton                 || NY || 11413                                                             
+Towle                     || Rutherford                || NJ || 07070                                                             
+Nyziak                    || Brooklyn                  || NY || 11230                                                             
+Eng                       || Brooklyn                  || NY || 11213                                                             
+Porch                     || Ft. Lee                   || NJ || 07024                                                             
+De Armas                  || Jersey City               || NJ || 07304                                                             
+Schafer                   || Garden City               || NY || 11530                                                             
+Sprouse                   || Plainfield                || NJ || 07060                                                             
+Carey                     || Huntington                || NY || 11743                                                             
+Buckberg                  || Westfield                 || NJ || 07090                                                             
+Daly                      || Brooklyn                  || NY || 11229                                                             
+Miller                    || Westport                  || CT || 06880                                                             
+Mandel                    || Brooklyn                  || NY || 11226                                                             
+Galik                     || Jamaica                   || NY || 11435                                                             
+Shah                      || Hollis                    || NY || 11412                                                             
+Intal                     || Bloomfiel                 || NJ || 07003                                                             
+Ittoop                    || Jersey City               || NJ || 07306                                                             
+Ancean                    || Oxford                    || CT || 06483                                                             
+Vargas                    || Long Beach                || NY || 11561                                                             
+Avia                      || Flushing                  || NY || 11355                                                             
+Galik                     || Massapequa                || NY || 11758                                                             
+Kiraly                    || Georgetown                || WV || 06820                                                             
+Rosenberg                 || Amherst                   || NY || 11373                                                             
+Sentell                   || Ridgewood Queens          || NY || 11385                                                             
+Hagel                     || Brooklyn                  || NY || 11236                                                             
+Leopta                    || Newark                    || NJ || 07112                                                             
+Mastandora                || Brooklyn                  || NY || 11222                                                             
+Smith                     || Brooklyn                  || NY || 11226                                                             
+Cheevens                  || Westport                  || CT || 06880                                                             
+Lin                       || Brooklyn                  || NY || 11233                                                             
+Tucker                    || Cliffside Park            || NJ || 07010                                                             
+Mithane                   || Cliffside Park            || NJ || 07010                                                             
+Anglin                    || Whitestone                || NY || 11357                                                             
+Draquez                   || Brooklyn                  || NY || 11234                                                             
+Yeroushalmi               || Brooklyn                  || NY || 11224                                                             
+Millstein                 || Mahwah                    || NJ || 07430                                                             
+Kasperovich               || Howard Bank               || NY || 11414                                                             
+McNeal                    || Manhasset                 || NY || 11030                                                             
+Gallo                     || Jersey City               || NJ || 07306                                                             
+Padron                    || Whitestone                || NY || 11357                                                             
+Krot                      || Dix Hills                 || NY || 11746                                                             
+Simmons                   || Brooklyn                  || NY || 11235                                                             
+Miroff                    || Plainfield                || NJ || 07060                                                             
+Cowie                     || Cranford                  || NJ || 07016                                                             
+Chirichella               || Flushing                  || NY || 11355                                                             
+Allende                   || Brooklyn                  || NY || 11209                                                             
+MacDonald, Jr.            || Flushing                  || NY || 11354                                                             
+Braun                     || Irvington                 || NY || 07111                                                             
+Bathmanapan               || Brooklyn                  || NY || 11221                                                             
+Leung                     || Passaic                   || NJ || 07055                                                             
+Greenberg                 || Forest Hills              || NY || 11375                                                             
+Torres                    || Flushing                  || NY || 11355                                                             
+Saliternan                || Forest Hills              || NY || 11375                                                             
+Martin                    || Passaic                   || NJ || 07055                                                             
+Wetcel                    || Jamaica                   || NY || 11434                                                             
+Norman                    || North Adams               || MA || 01247                                                             
+Lloyd                     || Forest Hills              || NY || 11375                                                             
+Abdou                     || New York                  || NY || 10025                                                             
+Naso                      || North Bergen              || NJ || 07047                                                             
+McLean                    || Astoria                   || NY || 11102                                                             
+Balterzar                 || Roslyn                    || NY || 11576                                                             
+Brownstein                || Hollis                    || NY || 11412                                                             
+Arias                     || Bellrose                  || NY || 11426                                                             
+McGill                    || Brooklyn                  || NY || 11218                                                             
+Brown                     || Brooklyn                  || NY || 11225                                                             
+Boyce                     || Brooklyn                  || NY || 11212                                                             
+Satterfield               || Brooklyn                  || NY || 11201                                                             
+Kurtz                     || Long Island City          || NY || 11106                                                             
+Ramesh                    || Amherst                   || NY || 11373                                                             
+Torres                    || Brooklyn                  || NY || 11213                                                             
+Bullock                   || Brooklyn                  || NY || 11206                                                             
+Delbrun                   || Ft. Lee                   || NJ || 07024                                                             
+Zuckerberg                || Brooklyn                  || NY || 11204                                                             
+Mehta                     || Jersey City               || NJ || 07302                                                             
+Sheppard                  || Montclair                 || NJ || 07042                                                             
+Garnes                    || Short Hills               || NJ || 07078                                                             
+Gilloon                   || Columbus                  || OH || 43224                                                             
+Reyes                     || Newark                    || NJ || 07107                                                             
+
+LAST_NAME                 || CITY                      || ST || ZIP                                                               
+------------------------- || ------------------------- || -- || -----                                                             
+Affinito                  || Allendale                 || NJ || 07401                                                             
+M. Orent                  || Monbasset                 || NY || 11303                                                             
+Viotty                    || Brooklyn                  || NY || 11230                                                             
+Jamerncy                  || New City                  || NY || 10956                                                             
+Grant                     || Verona                    || NJ || 07044                                                             
+Bose                      || Smithtown                 || NY || 11787                                                             
+Meshaj                    || Greenwich                 || CT || 06830                                                             
+Dalvi                     || Greenwich                 || CT || 06830                                                             
+Allende                   || Norwalk                   || CT || 06850                                                             
+Segall                    || Fresh Meadows             || NY || 11365                                                             
+Bresser, HR Rep.          || Fanwood                   || NJ || 07023                                                             
+Lefbowitz                 || Brooklyn                  || NY || 11236                                                             
+Axch                      || Flushing                  || NY || 11355                                                             
+Cook                      || Harrison                  || NJ || 07029                                                             
+Griffen                   || Corona                    || NY || 11368                                                             
+Hutheesing                || Corona                    || NY || 11368                                                             
+annunziato                || Brooklyn                  || NY || 11205                                                             
+Montanez                  || Montclair                 || NJ || 07042                                                             
+Tucker                    || Ridgefield                || CT || 06877                                                             
+Kellam                    || Jamaica                   || NY || 11433                                                             
+Thares                    || Woodbury                  || CT || 06798                                                             
+Goldsmith                 || Ridgewood                 || NJ || 07450                                                             
+Robichaud                 || Pearl River               || NY || 10965                                                             
+Williams                  || Brooklyn                  || NY || 11209                                                             
+Chatman                   || Corona                    || NY || 11368                                                             
+Dusenberry                || North Bergen              || NJ || 07047                                                             
+Citron                    || Ft. Lee                   || NJ || 07024                                                             
+Da Silva                  || Amherst                   || NY || 11373                                                             
+Segall                    || Stamford                  || CT || 06903                                                             
+Malone                    || Elmhurst                  || NY || 11369                                                             
+Pace                      || New York                  || NY || 10025                                                             
+Diokno                    || Woodside                  || NY || 11377                                                             
+Moffat                    || Montclair                 || NJ || 07042                                                             
+Heedles                   || Plainfield                || NJ || 07060                                                             
+Valentine                 || Jackson Heights           || NY || 11372                                                             
+Lopez                     || Cliffside Park            || NJ || 07010                                                             
+Kocka                     || Dorchester                || MA || 02124                                                             
+Jung                      || Kew Gardens               || NY || 11415                                                             
+Mulroy                    || Cliffside Park            || NJ || 07010                                                             
+Brendler                  || Dix Hills                 || NY || 11746                                                             
+Carcia                    || Brooklyn                  || NY || 11220                                                             
+Tripp                     || Jackson Heights           || NY || 11372                                                             
+Frost                     || Jersey City               || NJ || 07306                                                             
+Snow                      || Ann Arbor                 || MI || 48104                                                             
+Scrittorale               || Georgetown                || WV || 06820                                                             
+Yourish                   || Brooklyn                  || NY || 11238                                                             
+Ordes                     || Clifton                   || NJ || 07011                                                             
+Roberts                   || Jersey City               || NJ || 07306                                                             
+Wilson                    || Brooklyn                  || NY || 11209                                                             
+Dalvi                     || Secaucus                  || NJ || 07094                                                             
+Owens                     || Clifton                   || NJ || 07012                                                             
+Bunnell                   || Stamford                  || CT || 06902                                                             
+Zapulla                   || Ridgewood                 || NJ || 07450                                                             
+Fielding                  || Fresh Meadows             || NY || 11365                                                             
+Frangopoulos              || Astoria                   || NY || 11105                                                             
+Barogh                    || Amherst                   || NY || 11373                                                             
+Boremmann                 || Sandwich                  || MA || 02563                                                             
+Chamnonkool               || Jamaica                   || NY || 11434                                                             
+Velasco                   || Cliffside Park            || NJ || 07010                                                             
+Abid                      || Malverne                  || NY || 11565                                                             
+Velasco                   || Cranford                  || NJ || 07016                                                             
+Merriman                  || Malverne                  || NY || 11565                                                             
+Griffith                  || Rahway                    || NJ || 07065                                                             
+Moon                      || Long Island City          || NY || 11106                                                             
+Walston                   || Ft. Lee                   || NJ || 07024                                                             
+King                      || Long Island City          || NY || 11101                                                             
+Harty                     || Jersey City               || NJ || 07307                                                             
+Rothstein                 || Long Island City          || NY || 11106                                                             
+Page                      || Brooklyn                  || NY || 11215                                                             
+Kwong                     || Ft. Lee                   || NJ || 07024                                                             
+Tangaribuan               || Clifton                   || NJ || 07012                                                             
+Thompson                  || Brooklyn                  || NY || 11220                                                             
+Caro                      || Stamford                  || CT || 06907                                                             
+Benitez                   || Guttenberg                || NJ || 07093                                                             
+Porch                     || Rutherford                || NJ || 07070                                                             
+Naso                      || Ft. Lee                   || NJ || 07024                                                             
+De Simone                 || Richmond Hill             || NY || 11419                                                             
+Ross                      || Malverne                  || NY || 11565                                                             
+Valamas                   || Jamaica                   || NY || 11432                                                             
+Liggons                   || Woodside                  || NY || 11377                                                             
+La Blank                  || Weymouth                  || MA || 02189                                                             
+Korka                     || Dix Hills                 || NY || 11746                                                             
+Engongoro                 || Jackson Heights           || NY || 11372                                                             
+Ocampo                    || Secaucus                  || NJ || 07094                                                             
+Jaele                     || Brooklyn                  || NY || 11226                                                             
+Perkins                   || Great Neck                || NY || 11021                                                             
+Lindeman                  || Brooklyn                  || NY || 11204                                                             
+
+LAST_NAME                 || CITY                      || ST || ZIP                                                               
+------------------------- || ------------------------- || -- || -----                                                             
+Sikinger                  || Newark                    || NJ || 07104                                                             
+Kelly                     || Cliffside Park            || NJ || 07010                                                             
+Ellman                    || Jersey City               || NJ || 07307                                                             
+Murray                    || Brooklyn                  || NY || 11224                                                             
+Robles                    || Long Island City          || NY || 11101                                                             
+Dewitt                    || Montclair                 || NJ || 07042                                                             
+Cadet                     || Pompton Plains            || NJ || 07444                                                             
+
+268 filas seleccionadas.
+
+SQL> 
+SQL> 
+SQL> spool off

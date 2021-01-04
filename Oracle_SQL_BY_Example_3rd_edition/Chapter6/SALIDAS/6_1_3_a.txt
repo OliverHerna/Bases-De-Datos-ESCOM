@@ -1,0 +1,40 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        6_1_3_a.sql
+SQL> REM  Description: Select the first and last names of all enrolled students and
+SQL> REM               order by last name in ascending order.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT s.student_id, i.instructor_id
+  2  FROM student s JOIN instructor i
+  3  USING(zip)
+  4  ORDER BY s.student_id, i.instructor_id;
+
+STUDENT_ID || INSTRUCTOR_ID                                                                                                       
+---------- || -------------                                                                                                       
+       163 ||           102                                                                                                       
+       163 ||           103                                                                                                       
+       163 ||           106                                                                                                       
+       163 ||           108                                                                                                       
+       223 ||           102                                                                                                       
+       223 ||           103                                                                                                       
+       223 ||           106                                                                                                       
+       223 ||           108                                                                                                       
+       399 ||           102                                                                                                       
+       399 ||           103                                                                                                       
+       399 ||           106                                                                                                       
+       399 ||           108                                                                                                       
+
+12 filas seleccionadas.
+
+SQL> 
+SQL> spool off

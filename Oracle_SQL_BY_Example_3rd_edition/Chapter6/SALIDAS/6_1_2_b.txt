@@ -1,0 +1,31 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        6_1_2_b.sql
+SQL> REM  Description: Select the student ID, course number, enrollment date, and
+SQL> REM               section ID for students who enrolled in course number 20 on
+SQL> REM               January 30, 2003
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT e.student_id, s.course_no, e.enroll_date,
+  2         section_id
+  3  FROM enrollment e JOIN section s
+  4  USING (section_id)
+  5  WHERE s.course_no = 20
+  6  AND e.enroll_date >= TO_DATE('30-JAN-2003', 'DD-MON-YYYY')
+  7  AND e.enroll_date < TO_DATE('31-JAN-2003', 'DD-MON-YYYY');
+
+STUDENT_ID ||  COURSE_NO || ENROLL_DA || SECTION_ID                                                                               
+---------- || ---------- || --------- || ----------                                                                               
+       103 ||         20 || 30-JAN-03 ||         81                                                                               
+       104 ||         20 || 30-JAN-03 ||         81                                                                               
+
+SQL> spool off

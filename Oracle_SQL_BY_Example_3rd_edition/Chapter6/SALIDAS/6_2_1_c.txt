@@ -1,0 +1,43 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        6_2_1_c.sql
+SQL> REM  Description: List the student IDs of enrolled students living in
+SQL> REM               Connecticut.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT student_id AS "Alumnos de Connecticut", state
+  2  FROM enrollment JOIN student
+  3  USING (student_id)
+  4   JOIN zipcode
+  5  USING (zip)
+  6  WHERE state = 'CT';
+
+Alumnos de Connecticut || ST                                                                                                      
+---------------------- || --                                                                                                      
+                   118 || CT                                                                                                      
+                   144 || CT                                                                                                      
+                   154 || CT                                                                                                      
+                   162 || CT                                                                                                      
+                   196 || CT                                                                                                      
+                   197 || CT                                                                                                      
+                   198 || CT                                                                                                      
+                   208 || CT                                                                                                      
+                   210 || CT                                                                                                      
+                   220 || CT                                                                                                      
+                   247 || CT                                                                                                      
+                   270 || CT                                                                                                      
+                   270 || CT                                                                                                      
+
+13 filas seleccionadas.
+
+SQL> 
+SQL> spool off

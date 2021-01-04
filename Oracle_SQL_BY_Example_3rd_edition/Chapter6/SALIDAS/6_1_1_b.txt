@@ -1,0 +1,259 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        6_1_1_b.sql
+SQL> REM  Description: Select the first and last names of all enrolled students and
+SQL> REM               order by last name in ascending order.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 03, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT s.first_name, s.last_name
+  2  FROM enrollment JOIN student s
+  3  USING (student_id)
+  4  ORDER BY s.last_name asc;
+
+FIRST_NAME                || LAST_NAME                                                                                            
+------------------------- || -------------------------                                                                            
+Mardig                    || Abdou                                                                                                
+Suzanne M.                || Abid                                                                                                 
+Alan                      || Affinito                                                                                             
+Ralph                     || Alexander                                                                                            
+Edwin                     || Allende                                                                                              
+Genny                     || Andrew                                                                                               
+Freedon                   || annunziato                                                                                           
+Maria                     || Arias                                                                                                
+Gary                      || Aung                                                                                                 
+Gary                      || Aung                                                                                                 
+Mary                      || Axch                                                                                                 
+Derrick                   || Baltazar                                                                                             
+P.                        || Balterzar                                                                                            
+Nana                      || Barogh                                                                                               
+Nana                      || Barogh                                                                                               
+John T.                   || Beitler                                                                                              
+Jose                      || Benitez                                                                                              
+Jose                      || Benitez                                                                                              
+Gerard                    || Biers                                                                                                
+Walter                    || Boremmann                                                                                            
+Regina                    || Bose                                                                                                 
+Debra                     || Boyce                                                                                                
+Robert                    || Boyd                                                                                                 
+Joel                      || Brendler                                                                                             
+Gene                      || Bresser, HR Rep.                                                                                     
+Gene                      || Bresser, HR Rep.                                                                                     
+Michael                   || Brown                                                                                                
+Denise                    || Brownstein                                                                                           
+Anthony                   || Bullock                                                                                              
+Frank                     || Bunnell                                                                                              
+Judy                      || Cahouet                                                                                              
+Judy                      || Cahouet                                                                                              
+Michael                   || Carcia                                                                                               
+Michael                   || Carcia                                                                                               
+Charles                   || Caro                                                                                                 
+Charles                   || Caro                                                                                                 
+Melvina                   || Chamnonkool                                                                                          
+Reynaldo                  || Chatman                                                                                              
+Reynaldo                  || Chatman                                                                                              
+Reynaldo                  || Chatman                                                                                              
+Jeffrey                   || Citron                                                                                               
+Angel                     || Cook                                                                                                 
+Fred                      || Crocitto                                                                                             
+Fred                      || Crocitto                                                                                             
+Eric                      || Da Silva                                                                                             
+J.                        || Dalvi                                                                                                
+Irv                       || Dalvi                                                                                                
+Peter                     || Daly                                                                                                 
+John                      || De Simone                                                                                            
+Jeffrey                   || Delbrun                                                                                              
+Dawn                      || Dennis                                                                                               
+M.                        || Diokno                                                                                               
+Madhav                    || Dusenberry                                                                                           
+Thomas                    || Edwards                                                                                              
+Thomas                    || Edwards                                                                                              
+Bill                      || Engongoro                                                                                            
+Bill                      || Engongoro                                                                                            
+Laetia                    || Enison                                                                                               
+David                     || Essner                                                                                               
+Evan                      || Fielding                                                                                             
+Evan                      || Fielding                                                                                             
+Evan                      || Fielding                                                                                             
+Catherine                 || Frangopoulos                                                                                         
+Catherine                 || Frangopoulos                                                                                         
+Rommel                    || Frost                                                                                                
+Rommel                    || Frost                                                                                                
+O.                        || Garnes                                                                                               
+Angelo                    || Garshman                                                                                             
+Regina                    || Gates                                                                                                
+Joseph                    || German                                                                                               
+Nicole                    || Gillen                                                                                               
+Phil                      || Gilloon                                                                                              
+Jenny                     || Goldsmith                                                                                            
+Jenny                     || Goldsmith                                                                                            
+Scott                     || Grant                                                                                                
+Omaira                    || Grant                                                                                                
+Verona                    || Grant                                                                                                
+Eilene                    || Grant                                                                                                
+Arun                      || Griffen                                                                                              
+Jean                      || Griffith                                                                                             
+Jean                      || Griffith                                                                                             
+Lorraine                  || Harty                                                                                                
+Bessie                    || Heedles                                                                                              
+Bessie                    || Heedles                                                                                              
+Alfred                    || Hutheesing                                                                                           
+Jonathan                  || Jaele                                                                                                
+Jonathan                  || Jaele                                                                                                
+
+FIRST_NAME                || LAST_NAME                                                                                            
+------------------------- || -------------------------                                                                            
+Al                        || Jamerncy                                                                                             
+Shirley                   || Jameson                                                                                              
+Jim                       || Joas                                                                                                 
+May                       || Jodoin                                                                                               
+Janet                     || Jung                                                                                                 
+Janet                     || Jung                                                                                                 
+Janet                     || Jung                                                                                                 
+Lloyd                     || Kellam                                                                                               
+Radharam                  || King                                                                                                 
+George                    || Kocka                                                                                                
+George                    || Korka                                                                                                
+George                    || Korka                                                                                                
+N                         || Kuehn                                                                                                
+N                         || Kuehn                                                                                                
+Anil                      || Kulina                                                                                               
+Anil                      || Kulina                                                                                               
+Ricardo                   || Kurtz                                                                                                
+Ricardo                   || Kurtz                                                                                                
+Julius                    || Kwong                                                                                                
+Julius                    || Kwong                                                                                                
+Thomas E.                 || La Blank                                                                                             
+Thomas E.                 || La Blank                                                                                             
+J.                        || Landry                                                                                               
+Winsome                   || Laporte                                                                                              
+Winsome                   || Laporte                                                                                              
+Hazel                     || Lasseter                                                                                             
+Michael                   || Lefbowitz                                                                                            
+Paul                      || Lefkowitz                                                                                            
+Evelyn                    || Liggons                                                                                              
+Evelyn                    || Liggons                                                                                              
+Roy                       || Limate                                                                                               
+Julita                    || Lippen                                                                                               
+Adrienne                  || Lopez                                                                                                
+Hiedi                     || Lopez                                                                                                
+Steven                    || M. Orent                                                                                             
+Sheradha                  || Malone                                                                                               
+Maria                     || Martin                                                                                               
+Maria                     || Martin                                                                                               
+Michelle                  || Masser                                                                                               
+Oscar                     || McGill                                                                                               
+Oscar                     || McGill                                                                                               
+Frantz                    || McLean                                                                                               
+Dennis                    || Mehta                                                                                                
+George                    || Merriman                                                                                             
+George                    || Merriman                                                                                             
+Victor                    || Meshaj                                                                                               
+Catherine                 || Mierzwa                                                                                              
+James                     || Miller                                                                                               
+Edgar                     || Moffat                                                                                               
+Bernadette                || Montanez                                                                                             
+Vinnie                    || Moon                                                                                                 
+Angel                     || Moskowitz                                                                                            
+Kathleen                  || Mulroy                                                                                               
+Kathleen                  || Mulroy                                                                                               
+Sally                     || Naso                                                                                                 
+Hedy                      || Naso                                                                                                 
+Peggy                     || Noviello                                                                                             
+Peggy                     || Noviello                                                                                             
+Lula                      || Oates                                                                                                
+Lula                      || Oates                                                                                                
+Virginia                  || Ocampo                                                                                               
+Virginia                  || Ocampo                                                                                               
+Judith                    || Olvsade                                                                                              
+Judith                    || Olvsade                                                                                              
+Daniel                    || Ordes                                                                                                
+D.                        || Orent                                                                                                
+Meryl                     || Owens                                                                                                
+Frank                     || Pace                                                                                                 
+Frank                     || Pace                                                                                                 
+Kate                      || Page                                                                                                 
+Benita                    || Perkins                                                                                              
+Benita                    || Perkins                                                                                              
+Sylvia                    || Perrin                                                                                               
+Mrudula                   || Philpotts                                                                                            
+Sean                      || Pineda                                                                                               
+Kevin                     || Porch                                                                                                
+Judith                    || Prochaska                                                                                            
+Pierre                    || Radicola                                                                                             
+Simon                     || Ramesh                                                                                               
+James                     || Reed                                                                                                 
+James                     || Reed                                                                                                 
+Deborah                   || Reyes                                                                                                
+Deborah                   || Reyes                                                                                                
+Bharat                    || Roberts                                                                                              
+Barbara                   || Robichaud                                                                                            
+George                    || Ross                                                                                                 
+Adele                     || Rothstein                                                                                            
+
+FIRST_NAME                || LAST_NAME                                                                                            
+------------------------- || -------------------------                                                                            
+Jeff                      || Runyan                                                                                               
+Beth                      || Satterfield                                                                                          
+Beth                      || Satterfield                                                                                          
+Z.A.                      || Scrittorale                                                                                          
+J.                        || Segall                                                                                               
+Robert                    || Segall                                                                                               
+J.                        || Segall                                                                                               
+Judy                      || Sethi                                                                                                
+Arlyne                    || Sheppard                                                                                             
+Christine                 || Sheppard                                                                                             
+John                      || Smith                                                                                                
+John                      || Smith                                                                                                
+Roger                     || Snow                                                                                                 
+Roger                     || Snow                                                                                                 
+Roger                     || Snow                                                                                                 
+Ronald                    || Tangaribuan                                                                                          
+David                     || Thares                                                                                               
+Thomas                    || Thomas                                                                                               
+Thomas                    || Thomas                                                                                               
+Sharon                    || Thompson                                                                                             
+E.A.                      || Torres                                                                                               
+Angela                    || Torres                                                                                               
+E.A.                      || Torres                                                                                               
+Gerry                     || Tripp                                                                                                
+Gerry                     || Tripp                                                                                                
+A.                        || Tucker                                                                                               
+Florence                  || Valamas                                                                                              
+Florence                  || Valamas                                                                                              
+Mohamed                   || Valentine                                                                                            
+Suzanna                   || Velasco                                                                                              
+Lorrane                   || Velasco                                                                                              
+Lorrane                   || Velasco                                                                                              
+Frank                     || Viotty                                                                                               
+Monica                    || Waldman                                                                                              
+Donna                     || Walston                                                                                              
+Larry                     || Walter                                                                                               
+Larry                     || Walter                                                                                               
+Daniel                    || Wicelinski                                                                                           
+Daniel                    || Wicelinski                                                                                           
+Daniel                    || Wicelinski                                                                                           
+Daniel                    || Wicelinski                                                                                           
+Yvonne                    || Williams                                                                                             
+Yvonne                    || Williams                                                                                             
+Yvonne                    || Williams                                                                                             
+Yvonne                    || Williams                                                                                             
+Sarah                     || Wilson                                                                                               
+Joseph                    || Yourish                                                                                              
+Tamara                    || Zapulla                                                                                              
+Tamara                    || Zapulla                                                                                              
+Salewa                    || Zuckerberg                                                                                           
+Salewa                    || Zuckerberg                                                                                           
+Salewa                    || Zuckerberg                                                                                           
+
+226 filas seleccionadas.
+
+SQL> spool off
