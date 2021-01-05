@@ -1,0 +1,197 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        8_2_2_b.sql
+SQL> REM  Description: Use the INTERSECT set operator to list student IDs for
+SQL> REM               students who are enrolled.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 05, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT student_id
+  2  FROM enrollment
+  3  INTERSECT
+  4  SELECT student_id
+  5  FROM student;
+
+STUDENT_ID                                                                                                                        
+----------                                                                                                                        
+       102                                                                                                                        
+       103                                                                                                                        
+       104                                                                                                                        
+       105                                                                                                                        
+       106                                                                                                                        
+       107                                                                                                                        
+       108                                                                                                                        
+       109                                                                                                                        
+       110                                                                                                                        
+       111                                                                                                                        
+       112                                                                                                                        
+       113                                                                                                                        
+       114                                                                                                                        
+       117                                                                                                                        
+       118                                                                                                                        
+       119                                                                                                                        
+       120                                                                                                                        
+       121                                                                                                                        
+       122                                                                                                                        
+       123                                                                                                                        
+       124                                                                                                                        
+       127                                                                                                                        
+       128                                                                                                                        
+       129                                                                                                                        
+       130                                                                                                                        
+       133                                                                                                                        
+       134                                                                                                                        
+       135                                                                                                                        
+       136                                                                                                                        
+       137                                                                                                                        
+       138                                                                                                                        
+       139                                                                                                                        
+       140                                                                                                                        
+       141                                                                                                                        
+       142                                                                                                                        
+       143                                                                                                                        
+       144                                                                                                                        
+       145                                                                                                                        
+       146                                                                                                                        
+       147                                                                                                                        
+       148                                                                                                                        
+       149                                                                                                                        
+       150                                                                                                                        
+       151                                                                                                                        
+       152                                                                                                                        
+       153                                                                                                                        
+       154                                                                                                                        
+       156                                                                                                                        
+       157                                                                                                                        
+       158                                                                                                                        
+       159                                                                                                                        
+       160                                                                                                                        
+       161                                                                                                                        
+       162                                                                                                                        
+       163                                                                                                                        
+       164                                                                                                                        
+       165                                                                                                                        
+       166                                                                                                                        
+       167                                                                                                                        
+       168                                                                                                                        
+       169                                                                                                                        
+       170                                                                                                                        
+       171                                                                                                                        
+       172                                                                                                                        
+       173                                                                                                                        
+       174                                                                                                                        
+       175                                                                                                                        
+       176                                                                                                                        
+       178                                                                                                                        
+       179                                                                                                                        
+       180                                                                                                                        
+       181                                                                                                                        
+       182                                                                                                                        
+       184                                                                                                                        
+       185                                                                                                                        
+       186                                                                                                                        
+       187                                                                                                                        
+       188                                                                                                                        
+       189                                                                                                                        
+       190                                                                                                                        
+       191                                                                                                                        
+       192                                                                                                                        
+       193                                                                                                                        
+       194                                                                                                                        
+       195                                                                                                                        
+       196                                                                                                                        
+       197                                                                                                                        
+
+STUDENT_ID                                                                                                                        
+----------                                                                                                                        
+       198                                                                                                                        
+       199                                                                                                                        
+       200                                                                                                                        
+       201                                                                                                                        
+       202                                                                                                                        
+       203                                                                                                                        
+       204                                                                                                                        
+       205                                                                                                                        
+       206                                                                                                                        
+       207                                                                                                                        
+       208                                                                                                                        
+       209                                                                                                                        
+       210                                                                                                                        
+       211                                                                                                                        
+       212                                                                                                                        
+       214                                                                                                                        
+       215                                                                                                                        
+       216                                                                                                                        
+       217                                                                                                                        
+       218                                                                                                                        
+       220                                                                                                                        
+       221                                                                                                                        
+       223                                                                                                                        
+       224                                                                                                                        
+       225                                                                                                                        
+       227                                                                                                                        
+       228                                                                                                                        
+       229                                                                                                                        
+       230                                                                                                                        
+       232                                                                                                                        
+       233                                                                                                                        
+       234                                                                                                                        
+       235                                                                                                                        
+       236                                                                                                                        
+       237                                                                                                                        
+       238                                                                                                                        
+       240                                                                                                                        
+       241                                                                                                                        
+       242                                                                                                                        
+       243                                                                                                                        
+       244                                                                                                                        
+       245                                                                                                                        
+       246                                                                                                                        
+       247                                                                                                                        
+       248                                                                                                                        
+       250                                                                                                                        
+       251                                                                                                                        
+       252                                                                                                                        
+       253                                                                                                                        
+       254                                                                                                                        
+       256                                                                                                                        
+       257                                                                                                                        
+       258                                                                                                                        
+       259                                                                                                                        
+       260                                                                                                                        
+       261                                                                                                                        
+       262                                                                                                                        
+       263                                                                                                                        
+       264                                                                                                                        
+       265                                                                                                                        
+       266                                                                                                                        
+       267                                                                                                                        
+       268                                                                                                                        
+       269                                                                                                                        
+       270                                                                                                                        
+       271                                                                                                                        
+       272                                                                                                                        
+       273                                                                                                                        
+       274                                                                                                                        
+       275                                                                                                                        
+       276                                                                                                                        
+       277                                                                                                                        
+       278                                                                                                                        
+       279                                                                                                                        
+       280                                                                                                                        
+       281                                                                                                                        
+       282                                                                                                                        
+       283                                                                                                                        
+
+165 filas seleccionadas.
+
+SQL> 
+SQL> spool off

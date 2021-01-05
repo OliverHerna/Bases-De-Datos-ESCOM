@@ -1,0 +1,317 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        8_1_1_b.sql
+SQL> REM  Description:Write a set operation, using the UNION set operator,
+SQL> REM              to list all the zip codes in the INSTRUCTOR and STUDENT tables
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 05, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT zip, last_name
+  2  FROM student
+  3  UNION
+  4  SELECT zip, last_name
+  5  FROM instructor
+  6  ORDER BY 2;
+
+ZIP   || LAST_NAME                                                                                                                
+----- || -------------------------                                                                                                
+11358 || Abdou                                                                                                                    
+10025 || Abdou                                                                                                                    
+11565 || Abid                                                                                                                     
+07401 || Affinito                                                                                                                 
+11552 || Airall                                                                                                                   
+11214 || Alexander                                                                                                                
+06850 || Allende                                                                                                                  
+11510 || Allende                                                                                                                  
+11209 || Allende                                                                                                                  
+06483 || Ancean                                                                                                                   
+06870 || Andrew                                                                                                                   
+11357 || Anglin                                                                                                                   
+06903 || Annina                                                                                                                   
+11205 || annunziato                                                                                                               
+11218 || Archer                                                                                                                   
+06905 || Archor                                                                                                                   
+11426 || Arias                                                                                                                    
+11413 || Aung                                                                                                                     
+11385 || Austin                                                                                                                   
+11355 || Avia                                                                                                                     
+11355 || Axch                                                                                                                     
+11236 || Baltazar                                                                                                                 
+11576 || Balterzar                                                                                                                
+11373 || Barogh                                                                                                                   
+11221 || Bathmanapan                                                                                                              
+07096 || Beitler                                                                                                                  
+07093 || Benitez                                                                                                                  
+11232 || Biers                                                                                                                    
+02563 || Boremmann                                                                                                                
+11787 || Bose                                                                                                                     
+11212 || Boyce                                                                                                                    
+11368 || Boyd                                                                                                                     
+07111 || Braun                                                                                                                    
+11746 || Brendler                                                                                                                 
+07023 || Bresser, HR Rep.                                                                                                         
+11225 || Brown                                                                                                                    
+11412 || Brownstein                                                                                                               
+07090 || Buckberg                                                                                                                 
+11206 || Bullock                                                                                                                  
+06902 || Bunnell                                                                                                                  
+07444 || Cadet                                                                                                                    
+11219 || Cahouet                                                                                                                  
+11375 || Callender                                                                                                                
+11220 || Carcia                                                                                                                   
+11743 || Carey                                                                                                                    
+06907 || Caro                                                                                                                     
+11434 || Chamnonkool                                                                                                              
+11368 || Chatman                                                                                                                  
+06880 || Cheevens                                                                                                                 
+11355 || Chirichella                                                                                                              
+10015 || Chow                                                                                                                     
+07024 || Citron                                                                                                                   
+07029 || Cook                                                                                                                     
+07016 || Cowie                                                                                                                    
+11419 || Crocitto                                                                                                                 
+11413 || Cross                                                                                                                    
+11373 || Da Silva                                                                                                                 
+06830 || Dalvi                                                                                                                    
+07094 || Dalvi                                                                                                                    
+11235 || Daly                                                                                                                     
+11229 || Daly                                                                                                                     
+07304 || De Armas                                                                                                                 
+11419 || De Simone                                                                                                                
+07024 || Delbrun                                                                                                                  
+06830 || Dennis                                                                                                                   
+11205 || Dermody                                                                                                                  
+07042 || Dewitt                                                                                                                   
+11377 || Diokno                                                                                                                   
+11234 || Draquez                                                                                                                  
+07047 || Dunkon                                                                                                                   
+07047 || Dusenberry                                                                                                               
+07421 || Eakheit                                                                                                                  
+07036 || Edwards                                                                                                                  
+07040 || Edwards                                                                                                                  
+07307 || Ellman                                                                                                                   
+11213 || Eng                                                                                                                      
+11372 || Engongoro                                                                                                                
+11435 || Enison                                                                                                                   
+06851 || Essner                                                                                                                   
+11365 || Fielding                                                                                                                 
+11105 || Frangopoulos                                                                                                             
+10005 || Frantzen                                                                                                                 
+07306 || Frost                                                                                                                    
+11420 || Galik                                                                                                                    
+11435 || Galik                                                                                                                    
+11758 || Galik                                                                                                                    
+11228 || Gallagher                                                                                                                
+
+ZIP   || LAST_NAME                                                                                                                
+----- || -------------------------                                                                                                
+07306 || Gallo                                                                                                                    
+07078 || Garnes                                                                                                                   
+07307 || Garshman                                                                                                                 
+11787 || Gates                                                                                                                    
+07047 || German                                                                                                                   
+10025 || Gillen                                                                                                                   
+43224 || Gilloon                                                                                                                  
+07024 || Ginestra                                                                                                                 
+07450 || Goldsmith                                                                                                                
+11224 || Grant                                                                                                                    
+11207 || Grant                                                                                                                    
+11201 || Grant                                                                                                                    
+07044 || Grant                                                                                                                    
+11375 || Greenberg                                                                                                                
+11368 || Griffen                                                                                                                  
+07065 || Griffith                                                                                                                 
+11104 || Guarino                                                                                                                  
+11236 || Hagel                                                                                                                    
+10015 || Hanks                                                                                                                    
+07307 || Harty                                                                                                                    
+07060 || Heedles                                                                                                                  
+11368 || Hutheesing                                                                                                               
+07003 || Intal                                                                                                                    
+07306 || Ittoop                                                                                                                   
+07057 || Jackson                                                                                                                  
+11226 || Jaele                                                                                                                    
+10956 || Jamerncy                                                                                                                 
+07008 || Jameson                                                                                                                  
+11428 || Jimenes                                                                                                                  
+11365 || Joas                                                                                                                     
+11366 || Jodoin                                                                                                                   
+11415 || Jung                                                                                                                     
+11414 || Kasperovich                                                                                                              
+11433 || Kellam                                                                                                                   
+07010 || Kelly                                                                                                                    
+11101 || King                                                                                                                     
+06820 || Kiraly                                                                                                                   
+02124 || Kocka                                                                                                                    
+11746 || Korka                                                                                                                    
+11746 || Krot                                                                                                                     
+11377 || Kuehn                                                                                                                    
+11355 || Kulina                                                                                                                   
+11106 || Kurtz                                                                                                                    
+07024 || Kwong                                                                                                                    
+02189 || La Blank                                                                                                                 
+07047 || Landry                                                                                                                   
+11226 || Laporte                                                                                                                  
+11413 || Larcia                                                                                                                   
+11368 || Lasseter                                                                                                                 
+11042 || Lawson                                                                                                                   
+11236 || Lefbowitz                                                                                                                
+10048 || Lefkowitz                                                                                                                
+07112 || Leopta                                                                                                                   
+07055 || Leung                                                                                                                    
+11377 || Liggons                                                                                                                  
+07024 || Limate                                                                                                                   
+11233 || Lin                                                                                                                      
+11204 || Lindeman                                                                                                                 
+11373 || Lippen                                                                                                                   
+11375 || Lloyd                                                                                                                    
+06853 || Lopez                                                                                                                    
+07010 || Lopez                                                                                                                    
+10025 || Lowry                                                                                                                    
+11303 || M. Orent                                                                                                                 
+11372 || M. Orent                                                                                                                 
+11354 || MacDonald, Jr.                                                                                                           
+06605 || Madej                                                                                                                    
+11369 || Malone                                                                                                                   
+11226 || Mandel                                                                                                                   
+11225 || Marten                                                                                                                   
+07055 || Martin                                                                                                                   
+11385 || Martin                                                                                                                   
+11203 || Masser                                                                                                                   
+11209 || Masser                                                                                                                   
+11222 || Mastandora                                                                                                               
+11218 || McGill                                                                                                                   
+11717 || McHowell                                                                                                                 
+11102 || McLean                                                                                                                   
+11030 || McNeal                                                                                                                   
+07302 || Mehta                                                                                                                    
+11565 || Merriman                                                                                                                 
+06830 || Meshaj                                                                                                                   
+11105 || Mierzwa                                                                                                                  
+11360 || Milano                                                                                                                   
+06880 || Miller                                                                                                                   
+11377 || Miller                                                                                                                   
+11368 || Miller                                                                                                                   
+
+ZIP   || LAST_NAME                                                                                                                
+----- || -------------------------                                                                                                
+07430 || Millstein                                                                                                                
+07060 || Miroff                                                                                                                   
+07010 || Mithane                                                                                                                  
+07042 || Moffat                                                                                                                   
+07042 || Montanez                                                                                                                 
+11106 || Moon                                                                                                                     
+10015 || Morris                                                                                                                   
+07024 || Moskowitz                                                                                                                
+07010 || Mulroy                                                                                                                   
+11224 || Murray                                                                                                                   
+13760 || Mwangi                                                                                                                   
+07047 || Naso                                                                                                                     
+07024 || Naso                                                                                                                     
+01247 || Norman                                                                                                                   
+07070 || Noviello                                                                                                                 
+11230 || Nyziak                                                                                                                   
+07304 || Oates                                                                                                                    
+07094 || Ocampo                                                                                                                   
+07042 || Olvsade                                                                                                                  
+07011 || Ordes                                                                                                                    
+07011 || Orent                                                                                                                    
+07012 || Owens                                                                                                                    
+10025 || Pace                                                                                                                     
+06820 || Padel                                                                                                                    
+11357 || Padron                                                                                                                   
+11215 || Page                                                                                                                     
+11021 || Perkins                                                                                                                  
+11215 || Perrin                                                                                                                   
+10035 || Pertez                                                                                                                   
+11373 || Philpotts                                                                                                                
+10956 || Pineda                                                                                                                   
+07070 || Porch                                                                                                                    
+07024 || Porch                                                                                                                    
+07078 || Prochaska                                                                                                                
+10954 || Puetrino                                                                                                                 
+11208 || Radicola                                                                                                                 
+11373 || Ramesh                                                                                                                   
+11412 || Reed                                                                                                                     
+07107 || Reyes                                                                                                                    
+07306 || Roberts                                                                                                                  
+10965 || Robichaud                                                                                                                
+11101 || Robles                                                                                                                   
+11373 || Rosenberg                                                                                                                
+11565 || Ross                                                                                                                     
+11106 || Rothstein                                                                                                                
+11375 || Runyan                                                                                                                   
+11375 || Saliternan                                                                                                               
+11233 || Saluja                                                                                                                   
+11201 || Satterfield                                                                                                              
+11530 || Schafer                                                                                                                  
+10025 || Schorin                                                                                                                  
+06820 || Scrittorale                                                                                                              
+11365 || Segall                                                                                                                   
+06903 || Segall                                                                                                                   
+11385 || Sentell                                                                                                                  
+02155 || Sethi                                                                                                                    
+11412 || Shah                                                                                                                     
+11106 || Sheppard                                                                                                                 
+07042 || Sheppard                                                                                                                 
+07104 || Sikinger                                                                                                                 
+11235 || Simmons                                                                                                                  
+11216 || Smagler                                                                                                                  
+11217 || Smith                                                                                                                    
+11226 || Smith                                                                                                                    
+10025 || Smythe                                                                                                                   
+48104 || Snow                                                                                                                     
+07060 || Sprouse                                                                                                                  
+11214 || Tabs                                                                                                                     
+07012 || Tangaribuan                                                                                                              
+06798 || Thares                                                                                                                   
+07036 || Thomas                                                                                                                   
+11220 || Thompson                                                                                                                 
+07111 || Thorton                                                                                                                  
+11213 || Torres                                                                                                                   
+11215 || Torres                                                                                                                   
+11355 || Torres                                                                                                                   
+07070 || Towle                                                                                                                    
+11372 || Tripp                                                                                                                    
+07010 || Tucker                                                                                                                   
+06877 || Tucker                                                                                                                   
+11432 || Valamas                                                                                                                  
+11050 || Valentine                                                                                                                
+11372 || Valentine                                                                                                                
+11561 || Vargas                                                                                                                   
+07010 || Velasco                                                                                                                  
+07016 || Velasco                                                                                                                  
+11422 || Velie                                                                                                                    
+
+ZIP   || LAST_NAME                                                                                                                
+----- || -------------------------                                                                                                
+11230 || Viotty                                                                                                                   
+11766 || Waldman                                                                                                                  
+07024 || Walston                                                                                                                  
+11214 || Walter                                                                                                                   
+11225 || Ward                                                                                                                     
+11434 || Wetcel                                                                                                                   
+07003 || Wicelinski                                                                                                               
+11209 || Williams                                                                                                                 
+      || Willig                                                                                                                   
+11209 || Wilson                                                                                                                   
+11209 || Winnicki                                                                                                                 
+10025 || Wojick                                                                                                                   
+11224 || Yeroushalmi                                                                                                              
+11238 || Yourish                                                                                                                  
+07450 || Zapulla                                                                                                                  
+11372 || Zopf                                                                                                                     
+11204 || Zuckerberg                                                                                                               
+
+278 filas seleccionadas.
+
+SQL> 
+SQL> spool off

@@ -1,0 +1,28 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        8_2_2_a.sql
+SQL> REM  Description: Use the INTERSECT set operator to list all zip codes that are
+SQL> REM               in both the STUDENT and INSTRUCTOR tables.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 05, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> select zip
+  2  FROM student
+  3  INTERSECT
+  4  select zip
+  5  FROM instructor;
+
+ZIP                                                                                                                               
+-----                                                                                                                             
+10025                                                                                                                             
+
+SQL> 
+SQL> spool off

@@ -1,0 +1,51 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        8_2_1_b.sql
+SQL> REM  Description:Use the MINUS set operator to create a list of courses and
+SQL> REM              sections with no students enrolled. Add a column to the result
+SQL> REM              set with the title Status and display the text No Enrollments
+SQL> REM              in each row. Order the results by the COURSE_NO and SECTION_NO
+SQL> REM              columns.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 05, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT course_no, section_id, 'No Enrrolments' AS "status"
+  2  FROM section
+  3  MINUS
+  4  SELECT course_no, section_id, 'No Enrrolments' AS "status"
+  5  FROM section s
+  6  WHERE EXISTS(
+  7    SELECT section_id
+  8    FROM enrollment e
+  9    WHERE e.section_id = s.section_id
+ 10  )
+ 11  ORDER BY 1, 2;
+
+ COURSE_NO || SECTION_ID || status                                                                                                
+---------- || ---------- || --------------                                                                                        
+        25 ||         93 || No Enrrolments                                                                                        
+       124 ||        129 || No Enrrolments                                                                                        
+       125 ||        134 || No Enrrolments                                                                                        
+       130 ||        136 || No Enrrolments                                                                                        
+       132 ||        139 || No Enrrolments                                                                                        
+       134 ||        110 || No Enrrolments                                                                                        
+       135 ||        114 || No Enrrolments                                                                                        
+       140 ||        118 || No Enrrolments                                                                                        
+       142 ||        121 || No Enrrolments                                                                                        
+       144 ||        122 || No Enrrolments                                                                                        
+       145 ||        124 || No Enrrolments                                                                                        
+       210 ||         97 || No Enrrolments                                                                                        
+       220 ||         98 || No Enrrolments                                                                                        
+       350 ||         79 || No Enrrolments                                                                                        
+
+14 filas seleccionadas.
+
+SQL> spool off
