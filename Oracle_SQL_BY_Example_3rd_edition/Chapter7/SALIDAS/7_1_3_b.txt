@@ -1,0 +1,29 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        7_1_3_b.sql
+SQL> REM  Description: Select the sections and their capacity where the capacity
+SQL> REM               equals the number of students enrolled.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 04, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT section_id, capacity
+  2  FROM section
+  3  WHERE (section_id, capacity) IN
+  4  (SELECT section_id, COUNT(*)
+  5    FROM enrollment
+  6    GROUP BY section_id);
+
+SECTION_ID ||   CAPACITY                                                                                                          
+---------- || ----------                                                                                                          
+        99 ||         12                                                                                                          
+
+SQL> 
+SQL> spool off

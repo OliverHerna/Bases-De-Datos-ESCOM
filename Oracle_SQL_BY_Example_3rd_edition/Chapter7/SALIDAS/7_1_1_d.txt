@@ -1,0 +1,38 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        7_1_1_d.sql
+SQL> REM  Description: Choose the most ambitious students: Display the STUDENT_ID
+SQL> REM               for students enrolled in the most sections.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 04, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> /*
+SQL> SELECT MAX(COUNT(*))
+SQL> FROM enrollment
+SQL> GROUP BY student_id;
+SQL> */
+SQL> 
+SQL> SELECT student_id
+  2  FROM enrollment
+  3  GROUP BY student_id
+  4  HAVING COUNT(*) IN (
+  5    SELECT MAX(COUNT(*))
+  6    FROM enrollment
+  7    GROUP BY student_id
+  8  );
+
+STUDENT_ID                                                                                                                        
+----------                                                                                                                        
+       124                                                                                                                        
+       214                                                                                                                        
+
+SQL> 
+SQL> spool off

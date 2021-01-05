@@ -1,0 +1,136 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        7_1_2_c.sql
+SQL> REM  Description: Select the last name and first name of students not enrolled
+SQL> REM               in any class.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     December 04, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT last_name, first_name
+  2  FROM student
+  3  WHERE student_id NOT IN (
+  4    SELECT student_id
+  5    FROM enrollment
+  6  );
+
+LAST_NAME                 || FIRST_NAME                                                                                           
+------------------------- || -------------------------                                                                            
+Lindeman                  || Salewa                                                                                               
+Sikinger                  || Paul                                                                                                 
+Kelly                     || Robin                                                                                                
+Ellman                    || Rosemary                                                                                             
+Murray                    || Shirley                                                                                              
+Robles                    || Brian                                                                                                
+Dewitt                    || D.                                                                                                   
+Cadet                     || Austin V.                                                                                            
+M. Orent                  || Frank                                                                                                
+Winnicki                  || Yvonne                                                                                               
+Madej                     || Mike                                                                                                 
+Valentine                 || Paula                                                                                                
+Saluja                    || Brian                                                                                                
+Lawson                    || Frances                                                                                              
+Dunkon                    || Barry                                                                                                
+Archor                    || Rita                                                                                                 
+Milano                    || George                                                                                               
+Guarino                   || Kardik                                                                                               
+Larcia                    || Preston                                                                                              
+Callender                 || Norman                                                                                               
+Galik                     || Salondra                                                                                             
+Airall                    || Carlos                                                                                               
+Jimenes                   || Joseph                                                                                               
+Masser                    || Henry                                                                                                
+Allende                   || Maria                                                                                                
+Velie                     || John                                                                                                 
+Dermody                   || Bernice                                                                                              
+McHowell                  || Daniel                                                                                               
+Austin                    || Cathy                                                                                                
+Eakheit                   || George                                                                                               
+Miller                    || Mark                                                                                                 
+Smagler                   || Jeannette                                                                                            
+Archer                    || Oscar                                                                                                
+Ginestra                  || Gilbert                                                                                              
+Marten                    || Price                                                                                                
+Puetrino                  || Pat                                                                                                  
+Padel                     || Piotr                                                                                                
+Thorton                   || Lynwood A.                                                                                           
+Tabs                      || John                                                                                                 
+Zopf                      || Mei-Wah                                                                                              
+Mwangi                    || Paula                                                                                                
+Ward                      || Artie                                                                                                
+Annina                    || Sarah                                                                                                
+Jackson                   || Jane                                                                                                 
+Gallagher                 || Steven                                                                                               
+Cross                     || Preston                                                                                              
+Towle                     || Helga                                                                                                
+Nyziak                    || Piang                                                                                                
+Eng                       || David                                                                                                
+Porch                     || Kevin                                                                                                
+De Armas                  || Marianne                                                                                             
+Schafer                   || Ray                                                                                                  
+Sprouse                   || R.                                                                                                   
+Carey                     || Peter                                                                                                
+Buckberg                  || Joane                                                                                                
+Daly                      || Edith                                                                                                
+Miller                    || Morty                                                                                                
+Mandel                    || Margaret                                                                                             
+Galik                     || Alan                                                                                                 
+Shah                      || Debra                                                                                                
+Intal                     || Paul                                                                                                 
+Ittoop                    || Romeo                                                                                                
+Ancean                    || John                                                                                                 
+Vargas                    || Tom                                                                                                  
+Avia                      || Valerie                                                                                              
+Galik                     || Fermin                                                                                               
+Kiraly                    || Calvin                                                                                               
+Rosenberg                 || Rawan                                                                                                
+Sentell                   || Yu                                                                                                   
+Hagel                     || Bridget                                                                                              
+Leopta                    || Howard                                                                                               
+Mastandora                || Kathleen                                                                                             
+Smith                     || Gabriel                                                                                              
+Cheevens                  || Raymond                                                                                              
+Lin                       || Kevin                                                                                                
+Tucker                    || Lorraine                                                                                             
+Mithane                   || John                                                                                                 
+Anglin                    || Craig                                                                                                
+Draquez                   || Zalman                                                                                               
+Yeroushalmi               || Reeva                                                                                                
+Millstein                 || Leonard                                                                                              
+Kasperovich               || Jack                                                                                                 
+McNeal                    || Lorelei                                                                                              
+Gallo                     || William                                                                                              
+Padron                    || Craig                                                                                                
+Krot                      || Joel                                                                                                 
+Simmons                   || Allan                                                                                                
+
+LAST_NAME                 || FIRST_NAME                                                                                           
+------------------------- || -------------------------                                                                            
+Miroff                    || Michael                                                                                              
+Cowie                     || Roger                                                                                                
+Chirichella               || Asian                                                                                                
+Allende                   || Yvonne                                                                                               
+MacDonald, Jr.            || Sengita                                                                                              
+Braun                     || Paul                                                                                                 
+Bathmanapan               || Anna                                                                                                 
+Leung                     || Shirley                                                                                              
+Greenberg                 || V.                                                                                                   
+Torres                    || Rafael A.                                                                                            
+Saliternan                || V.                                                                                                   
+Martin                    || Melvin                                                                                               
+Wetcel                    || Vera                                                                                                 
+Norman                    || James E.                                                                                             
+Lloyd                     || Margaret                                                                                             
+Abdou                     || Jerry                                                                                                
+
+103 filas seleccionadas.
+
+SQL> 
+SQL> spool off
