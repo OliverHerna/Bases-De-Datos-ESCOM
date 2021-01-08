@@ -1,0 +1,31 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        9_1_1_b.sql
+SQL> REM  Description: Show the description of all courses with the prerequisite
+SQL> REM               course number 350. Include the location where the sections
+SQL> REM               meet in the result. Return course rows even if no
+SQL> REM               corresponding row in the SECTION table is found.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 06, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT c.description AS "Description", s.location AS "Location"
+  2  FROM course c LEFT JOIN section s
+  3  USING (course_no)
+  4  WHERE prerequisite = 350;
+
+Description                                        || Location                                                                    
+-------------------------------------------------- || --------------------------------------------------                          
+JDeveloper Techniques                              ||                                                                             
+DB Programming in Java                             || L507                                                                        
+
+SQL> 
+SQL> 
+SQL> spool off

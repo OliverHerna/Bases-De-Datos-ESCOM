@@ -1,0 +1,60 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        9_1_1_b.sql
+SQL> REM  Description: Show all the cities, state, and zip codes for Connecticut.
+SQL> REM               Display a count of how many students live in each zip code.
+SQL> REM               Order the result alphabetically by city. The result should
+SQL> REM               look similar to the following output. Note, the column
+SQL> REM               STUDENT_COUNT displays a zero when no student lives in a
+SQL> REM               particular zip code.
+SQL> REM               CITY ST ZIP STUDENT_COUNT
+SQL> REM               ------------------------- -- ----- -------------
+> REM               Ansonia CT 06401 0
+SQL> REM               Bridgeport CT 06605 1
+SQL> REM               ...
+SQL> REM               Wilton CT 06897 0
+SQL> REM               Woodbury CT 06798 1
+SQL> REM               19 rows selected.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 06, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT z.city, z.state, z.zip, COUNT(s.zip)
+  2  FROM zipcode z LEFT JOIN student s
+  3  ON (z.zip = s.zip)
+  4  WHERE z.state = 'CT'
+  5  GROUP BY z.city, z.state, z.zip;
+
+CITY                      || ST || ZIP   || COUNT(S.ZIP)                                                                          
+------------------------- || -- || ----- || ------------                                                                          
+Middlefield               || CT || 06455 ||            0                                                                          
+New Haven                 || CT || 06520 ||            0                                                                          
+Norwalk                   || CT || 06850 ||            1                                                                          
+Westport                  || CT || 06880 ||            2                                                                          
+Woodbury                  || CT || 06798 ||            1                                                                          
+Ridgefield                || CT || 06877 ||            1                                                                          
+Greenwich                 || CT || 06830 ||            3                                                                          
+Stamford                  || CT || 06905 ||            1                                                                          
+Wilton                    || CT || 06897 ||            0                                                                          
+Bridgeport                || CT || 06605 ||            1                                                                          
+Rowayton                  || CT || 06853 ||            1                                                                          
+Old Greenwich             || CT || 06870 ||            1                                                                          
+Ansonia                   || CT || 06401 ||            0                                                                          
+Oxford                    || CT || 06483 ||            1                                                                          
+Norwalk                   || CT || 06851 ||            1                                                                          
+Weston                    || CT || 06883 ||            0                                                                          
+Stamford                  || CT || 06903 ||            2                                                                          
+Stamford                  || CT || 06902 ||            1                                                                          
+Stamford                  || CT || 06907 ||            1                                                                          
+
+19 filas seleccionadas.
+
+SQL> 
+SQL> spool off
