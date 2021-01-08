@@ -1,0 +1,33 @@
+SQL> DECLARE
+  2  CURSOR c_student IS
+  3  SELECT student_id, last_name, first_name
+  4  FROM student
+  5  WHERE student_id < 110;
+  6  BEGIN
+  7  FOR r_student IN c_student
+  8  LOOP
+  9  INSERT INTO table_log
+ 10  VALUES(r_student.last_name);
+ 11  END LOOP;
+ 12  END;
+ 13  /
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> REM acciones previas crear la tabla log
+SQL> drop table table_log;
+
+Tabla borrada.
+
+SQL> create table table_log
+  2  (description VARCHAR2(250));
+
+Tabla creada.
+
+SQL> 
+SQL> col description format a40
+SQL> select description from table_log;
+
+ninguna fila seleccionada
+
+SQL> spool off

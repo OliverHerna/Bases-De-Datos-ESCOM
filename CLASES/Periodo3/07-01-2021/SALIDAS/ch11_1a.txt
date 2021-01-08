@@ -1,0 +1,71 @@
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  vr_student student%ROWTYPE;
+  3  BEGIN
+  4  SELECT *
+  5  INTO vr_student
+  6  FROM student
+  7  WHERE student_id = 156;
+  8  -- WHERE student_id = 101;
+  9  --WHERE student_id = 115;
+ 10  DBMS_OUTPUT.PUT_LINE (vr_student.first_name||' '
+ 11  ||vr_student.last_name||' has an ID of Tiene un ID de : 156');
+ 12  EXCEPTION
+ 13  WHEN no_data_found
+ 14  THEN
+ 15  DBMS_OUTPUT.PUT_LINE ('estudiante 101'||CHR(09)||'NO EXISTE  ');
+ 16  RAISE_APPLICATION_ERROR(-20001,'The Student '||'is not in the database NO ESTA EN LA BASE');
+ 17  END;
+ 18  /
+Scott Grant has an ID of Tiene un ID de : 156                                                                                     
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> REM CONSULTA PREVIA
+SQL> select student_id, last_name from student
+  2  WHERE student_id between 100 and 125;
+
+STUDENT_ID || LAST_NAME                                                                                                           
+---------- || -------------------------                                                                                           
+       102 || Crocitto                                                                                                            
+       103 || Landry                                                                                                              
+       104 || Enison                                                                                                              
+       105 || Moskowitz                                                                                                           
+       106 || Olvsade                                                                                                             
+       107 || Mierzwa                                                                                                             
+       108 || Sethi                                                                                                               
+       109 || Walter                                                                                                              
+       110 || Martin                                                                                                              
+       111 || Noviello                                                                                                            
+       112 || Thomas                                                                                                              
+       113 || Kulina                                                                                                              
+       114 || Laporte                                                                                                             
+       117 || Kuehn                                                                                                               
+       118 || Lopez                                                                                                               
+       119 || Abdou                                                                                                               
+       120 || Alexander                                                                                                           
+       121 || Pineda                                                                                                              
+       122 || Lippen                                                                                                              
+       123 || Radicola                                                                                                            
+       124 || Wicelinski                                                                                                          
+
+21 filas seleccionadas.
+
+SQL> 
+SQL> select student_id, last_name from student
+  2  WHERE student_id = 156;
+
+STUDENT_ID || LAST_NAME                                                                                                           
+---------- || -------------------------                                                                                           
+       156 || Grant                                                                                                               
+
+SQL> 
+SQL> rem no existen en la base el 101, 115 & 116
+SQL> 
+SQL> spool off

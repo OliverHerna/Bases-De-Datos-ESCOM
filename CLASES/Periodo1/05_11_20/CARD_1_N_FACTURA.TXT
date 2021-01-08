@@ -1,0 +1,560 @@
+SQL>DROP TABLE FACTURA cascade constraints;
+
+Table dropped.
+
+SQL> create table factura(
+  2  factura_ID number(3) constraint tot_fact_NN   NOT NULL,
+  3  fecha_emision date   constraint fech_emis_NN  NOT NULL,
+  4  total_factura number (6,2),
+  5  constraint factura_pk primary key (factura_ID)
+  6  );
+
+Table created.
+
+SQL> DROP TABLE NOTA_VENTA cascade constraints;
+
+Table dropped.
+
+SQL> CREATE TABLE NOTA_VENTA(
+  2  NOTA_ID NUMBER(3),
+  3  FECHA_VENTA DATE             constraint fecha_venta_NN not null,
+  4  TOTAL_NOTA_VENTA NUMBER(6,2) constraint tot_venta_NN   not null,
+  5  constraint nota_pk primary key (nota_ID)
+  6  );
+
+Table created.
+
+SQL> DROP TABLE fact_nota cascade constraints;
+
+Table dropped.
+
+SQL> create table fact_nota (
+  2  nota_id number(3)            constraint nota_id_NN NOT NULL,
+  3  factura_id  number (3)       constraint fact_id_NN NOT NULL,
+  4  descuento number (3,2),
+  5  constraint nota_id_pk primary key (nota_id),
+  6  constraint factura_ID_fk foreign key(factura_id)
+  7  references factura(factura_ID)
+  8  );
+
+Table created.
+
+SQL>
+SQL> INSERT INTO FACTURA VALUES (100,TO_DATE('10/02/2020','DD/MM/RR'),250.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (200,TO_DATE('10/02/2020','DD/MM/RR'),25.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (300,TO_DATE('10/02/2020','DD/MM/RR'),50.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (400,TO_DATE('10/02/2020','DD/MM/RR'),2500.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (500,TO_DATE('10/02/2020','DD/MM/RR'),100.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (600,TO_DATE('10/02/2020','DD/MM/RR'),75.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (700,TO_DATE('10/02/2020','DD/MM/RR'),99.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (710,TO_DATE('10/02/2020','DD/MM/RR'),9.30);
+
+1 row created.
+
+SQL> INSERT INTO FACTURA VALUES (720,TO_DATE('10/02/2020','DD/MM/RR'),999.30);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO nota_venta values (10,TO_DATE('10/02/2020','DD/MM/RR'),150.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (20,TO_DATE('10/02/2020','DD/MM/RR'),80.00);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (30,TO_DATE('10/02/2020','DD/MM/RR'),20.00);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (40,TO_DATE('10/02/2020','DD/MM/RR'),7.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (50,TO_DATE('10/02/2020','DD/MM/RR'),75.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (60,TO_DATE('10/02/2020','DD/MM/RR'),25.00);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (70,TO_DATE('10/02/2020','DD/MM/RR'),3.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (80,TO_DATE('10/02/2020','DD/MM/RR'),75.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (85,TO_DATE('10/02/2020','DD/MM/RR'),75.30);
+
+1 row created.
+
+SQL> INSERT INTO nota_venta values (86,TO_DATE('10/02/2020','DD/MM/RR'),75.30);
+
+1 row created.
+
+SQL>
+SQL>
+SQL> INSERT INTO fact_nota values (10,100,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (20,100,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (30,100,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (40,200,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (40,200,.05);
+INSERT INTO fact_nota values (40,200,.05)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SERGIONAVA.NOTA_ID_PK) violated
+
+
+SQL> INSERT INTO fact_nota values (50,500,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (60,500,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (70,700,.05);
+
+1 row created.
+
+SQL> INSERT INTO fact_nota values (80,600,.05);
+
+1 row created.
+
+SQL>
+SQL> select * from factura;
+
+FACTURA_ID ||FECHA_EM ||TOTAL_FACTURA
+---------- ||-------- ||-------------
+       100 ||10/02/20 ||        250.3
+       200 ||10/02/20 ||         25.3
+       300 ||10/02/20 ||         50.3
+       400 ||10/02/20 ||       2500.3
+       500 ||10/02/20 ||        100.3
+       600 ||10/02/20 ||         75.3
+       700 ||10/02/20 ||         99.3
+       710 ||10/02/20 ||          9.3
+       720 ||10/02/20 ||        999.3
+
+9 rows selected.
+
+SQL> col total_nota_venta format 999.99
+SQL> select * from nota_venta;
+
+NOTA_ID ||FECHA_VE ||TOTAL_NOTA_VENTA
+------- ||-------- ||----------------
+     10 ||10/02/20 ||          150.30
+     20 ||10/02/20 ||           80.00
+     30 ||10/02/20 ||           20.00
+     40 ||10/02/20 ||            7.30
+     50 ||10/02/20 ||           75.30
+     60 ||10/02/20 ||           25.00
+     70 ||10/02/20 ||            3.30
+     80 ||10/02/20 ||           75.30
+     85 ||10/02/20 ||           75.30
+     86 ||10/02/20 ||           75.30
+
+10 rows selected.
+
+SQL> select * from factura natural join nota_venta;
+
+FACTURA_ID ||FECHA_EM ||TOTAL_FACTURA ||NOTA_ID ||FECHA_VE ||TOTAL_NOTA_VENTA
+---------- ||-------- ||------------- ||------- ||-------- ||----------------
+       100 ||10/02/20 ||        250.3 ||     10 ||10/02/20 ||          150.30
+       100 ||10/02/20 ||        250.3 ||     20 ||10/02/20 ||           80.00
+       100 ||10/02/20 ||        250.3 ||     30 ||10/02/20 ||           20.00
+       100 ||10/02/20 ||        250.3 ||     40 ||10/02/20 ||            7.30
+       100 ||10/02/20 ||        250.3 ||     50 ||10/02/20 ||           75.30
+       100 ||10/02/20 ||        250.3 ||     60 ||10/02/20 ||           25.00
+       100 ||10/02/20 ||        250.3 ||     70 ||10/02/20 ||            3.30
+       100 ||10/02/20 ||        250.3 ||     80 ||10/02/20 ||           75.30
+       100 ||10/02/20 ||        250.3 ||     85 ||10/02/20 ||           75.30
+       100 ||10/02/20 ||        250.3 ||     86 ||10/02/20 ||           75.30
+       200 ||10/02/20 ||         25.3 ||     10 ||10/02/20 ||          150.30
+       200 ||10/02/20 ||         25.3 ||     20 ||10/02/20 ||           80.00
+       200 ||10/02/20 ||         25.3 ||     30 ||10/02/20 ||           20.00
+       200 ||10/02/20 ||         25.3 ||     40 ||10/02/20 ||            7.30
+       200 ||10/02/20 ||         25.3 ||     50 ||10/02/20 ||           75.30
+       200 ||10/02/20 ||         25.3 ||     60 ||10/02/20 ||           25.00
+       200 ||10/02/20 ||         25.3 ||     70 ||10/02/20 ||            3.30
+       200 ||10/02/20 ||         25.3 ||     80 ||10/02/20 ||           75.30
+       200 ||10/02/20 ||         25.3 ||     85 ||10/02/20 ||           75.30
+       200 ||10/02/20 ||         25.3 ||     86 ||10/02/20 ||           75.30
+       300 ||10/02/20 ||         50.3 ||     10 ||10/02/20 ||          150.30
+       300 ||10/02/20 ||         50.3 ||     20 ||10/02/20 ||           80.00
+       300 ||10/02/20 ||         50.3 ||     30 ||10/02/20 ||           20.00
+       300 ||10/02/20 ||         50.3 ||     40 ||10/02/20 ||            7.30
+       300 ||10/02/20 ||         50.3 ||     50 ||10/02/20 ||           75.30
+       300 ||10/02/20 ||         50.3 ||     60 ||10/02/20 ||           25.00
+       300 ||10/02/20 ||         50.3 ||     70 ||10/02/20 ||            3.30
+       300 ||10/02/20 ||         50.3 ||     80 ||10/02/20 ||           75.30
+       300 ||10/02/20 ||         50.3 ||     85 ||10/02/20 ||           75.30
+       300 ||10/02/20 ||         50.3 ||     86 ||10/02/20 ||           75.30
+       400 ||10/02/20 ||       2500.3 ||     10 ||10/02/20 ||          150.30
+       400 ||10/02/20 ||       2500.3 ||     20 ||10/02/20 ||           80.00
+       400 ||10/02/20 ||       2500.3 ||     30 ||10/02/20 ||           20.00
+       400 ||10/02/20 ||       2500.3 ||     40 ||10/02/20 ||            7.30
+       400 ||10/02/20 ||       2500.3 ||     50 ||10/02/20 ||           75.30
+       400 ||10/02/20 ||       2500.3 ||     60 ||10/02/20 ||           25.00
+       400 ||10/02/20 ||       2500.3 ||     70 ||10/02/20 ||            3.30
+       400 ||10/02/20 ||       2500.3 ||     80 ||10/02/20 ||           75.30
+       400 ||10/02/20 ||       2500.3 ||     85 ||10/02/20 ||           75.30
+       400 ||10/02/20 ||       2500.3 ||     86 ||10/02/20 ||           75.30
+       500 ||10/02/20 ||        100.3 ||     10 ||10/02/20 ||          150.30
+       500 ||10/02/20 ||        100.3 ||     20 ||10/02/20 ||           80.00
+       500 ||10/02/20 ||        100.3 ||     30 ||10/02/20 ||           20.00
+       500 ||10/02/20 ||        100.3 ||     40 ||10/02/20 ||            7.30
+       500 ||10/02/20 ||        100.3 ||     50 ||10/02/20 ||           75.30
+       500 ||10/02/20 ||        100.3 ||     60 ||10/02/20 ||           25.00
+       500 ||10/02/20 ||        100.3 ||     70 ||10/02/20 ||            3.30
+       500 ||10/02/20 ||        100.3 ||     80 ||10/02/20 ||           75.30
+       500 ||10/02/20 ||        100.3 ||     85 ||10/02/20 ||           75.30
+       500 ||10/02/20 ||        100.3 ||     86 ||10/02/20 ||           75.30
+       600 ||10/02/20 ||         75.3 ||     10 ||10/02/20 ||          150.30
+       600 ||10/02/20 ||         75.3 ||     20 ||10/02/20 ||           80.00
+       600 ||10/02/20 ||         75.3 ||     30 ||10/02/20 ||           20.00
+       600 ||10/02/20 ||         75.3 ||     40 ||10/02/20 ||            7.30
+       600 ||10/02/20 ||         75.3 ||     50 ||10/02/20 ||           75.30
+       600 ||10/02/20 ||         75.3 ||     60 ||10/02/20 ||           25.00
+       600 ||10/02/20 ||         75.3 ||     70 ||10/02/20 ||            3.30
+       600 ||10/02/20 ||         75.3 ||     80 ||10/02/20 ||           75.30
+       600 ||10/02/20 ||         75.3 ||     85 ||10/02/20 ||           75.30
+       600 ||10/02/20 ||         75.3 ||     86 ||10/02/20 ||           75.30
+       700 ||10/02/20 ||         99.3 ||     10 ||10/02/20 ||          150.30
+       700 ||10/02/20 ||         99.3 ||     20 ||10/02/20 ||           80.00
+       700 ||10/02/20 ||         99.3 ||     30 ||10/02/20 ||           20.00
+       700 ||10/02/20 ||         99.3 ||     40 ||10/02/20 ||            7.30
+       700 ||10/02/20 ||         99.3 ||     50 ||10/02/20 ||           75.30
+       700 ||10/02/20 ||         99.3 ||     60 ||10/02/20 ||           25.00
+       700 ||10/02/20 ||         99.3 ||     70 ||10/02/20 ||            3.30
+       700 ||10/02/20 ||         99.3 ||     80 ||10/02/20 ||           75.30
+       700 ||10/02/20 ||         99.3 ||     85 ||10/02/20 ||           75.30
+       700 ||10/02/20 ||         99.3 ||     86 ||10/02/20 ||           75.30
+       710 ||10/02/20 ||          9.3 ||     10 ||10/02/20 ||          150.30
+       710 ||10/02/20 ||          9.3 ||     20 ||10/02/20 ||           80.00
+       710 ||10/02/20 ||          9.3 ||     30 ||10/02/20 ||           20.00
+       710 ||10/02/20 ||          9.3 ||     40 ||10/02/20 ||            7.30
+       710 ||10/02/20 ||          9.3 ||     50 ||10/02/20 ||           75.30
+       710 ||10/02/20 ||          9.3 ||     60 ||10/02/20 ||           25.00
+       710 ||10/02/20 ||          9.3 ||     70 ||10/02/20 ||            3.30
+       710 ||10/02/20 ||          9.3 ||     80 ||10/02/20 ||           75.30
+       710 ||10/02/20 ||          9.3 ||     85 ||10/02/20 ||           75.30
+       710 ||10/02/20 ||          9.3 ||     86 ||10/02/20 ||           75.30
+       720 ||10/02/20 ||        999.3 ||     10 ||10/02/20 ||          150.30
+       720 ||10/02/20 ||        999.3 ||     20 ||10/02/20 ||           80.00
+       720 ||10/02/20 ||        999.3 ||     30 ||10/02/20 ||           20.00
+       720 ||10/02/20 ||        999.3 ||     40 ||10/02/20 ||            7.30
+       720 ||10/02/20 ||        999.3 ||     50 ||10/02/20 ||           75.30
+       720 ||10/02/20 ||        999.3 ||     60 ||10/02/20 ||           25.00
+       720 ||10/02/20 ||        999.3 ||     70 ||10/02/20 ||            3.30
+       720 ||10/02/20 ||        999.3 ||     80 ||10/02/20 ||           75.30
+       720 ||10/02/20 ||        999.3 ||     85 ||10/02/20 ||           75.30
+       720 ||10/02/20 ||        999.3 ||     86 ||10/02/20 ||           75.30
+
+90 rows selected.
+
+SQL> select * from factura f,nota_venta n , fact_nota fn
+  2  where f.factura_ID = fn.factura_ID and n.nota_ID = fn.nota_ID;
+
+FACTURA_ID ||FECHA_EM ||TOTAL_FACTURA ||NOTA_ID ||FECHA_VE ||TOTAL_NOTA_VENTA ||NOTA_ID ||FACTURA_ID ||DESCUENTO
+---------- ||-------- ||------------- ||------- ||-------- ||---------------- ||------- ||---------- ||---------
+       100 ||10/02/20 ||        250.3 ||     10 ||10/02/20 ||          150.30 ||     10 ||       100 ||      .05
+       100 ||10/02/20 ||        250.3 ||     20 ||10/02/20 ||           80.00 ||     20 ||       100 ||      .05
+       100 ||10/02/20 ||        250.3 ||     30 ||10/02/20 ||           20.00 ||     30 ||       100 ||      .05
+       200 ||10/02/20 ||         25.3 ||     40 ||10/02/20 ||            7.30 ||     40 ||       200 ||      .05
+       500 ||10/02/20 ||        100.3 ||     50 ||10/02/20 ||           75.30 ||     50 ||       500 ||      .05
+       500 ||10/02/20 ||        100.3 ||     60 ||10/02/20 ||           25.00 ||     60 ||       500 ||      .05
+       700 ||10/02/20 ||         99.3 ||     70 ||10/02/20 ||            3.30 ||     70 ||       700 ||      .05
+       600 ||10/02/20 ||         75.3 ||     80 ||10/02/20 ||           75.30 ||     80 ||       600 ||      .05
+
+8 rows selected.
+
+SQL> rem solo unos atributos
+SQL> rem
+SQL> select f.factura_ID,n.nota_ID,f.total_factura,
+  2     n.total_nota_venta,fn.descuento,n.fecha_venta
+  3  from factura f,nota_venta n , fact_nota fn
+  4  where f.factura_ID = fn.factura_ID and n.nota_ID = fn.nota_ID;
+
+FACTURA_ID ||NOTA_ID ||TOTAL_FACTURA ||TOTAL_NOTA_VENTA ||DESCUENTO ||FECHA_VE
+---------- ||------- ||------------- ||---------------- ||--------- ||--------
+       100 ||     10 ||        250.3 ||          150.30 ||      .05 ||10/02/20
+       100 ||     20 ||        250.3 ||           80.00 ||      .05 ||10/02/20
+       100 ||     30 ||        250.3 ||           20.00 ||      .05 ||10/02/20
+       200 ||     40 ||         25.3 ||            7.30 ||      .05 ||10/02/20
+       500 ||     50 ||        100.3 ||           75.30 ||      .05 ||10/02/20
+       500 ||     60 ||        100.3 ||           25.00 ||      .05 ||10/02/20
+       700 ||     70 ||         99.3 ||            3.30 ||      .05 ||10/02/20
+       600 ||     80 ||         75.3 ||           75.30 ||      .05 ||10/02/20
+
+8 rows selected.
+
+SQL> /*
+SQL> select f.factura_ID,n.nota_ID,f.total_factura,
+SQL>    n.total_nota_venta,fn.descuento,n.fecha_venta
+SQL> from factura f,nota_venta n , fact_nota fn
+SQL> where f.factura_ID = fn.factura_ID (+) and n.nota_ID = fn.nota_ID;
+SQL>
+SQL> select f.factura_ID,n.nota_ID,f.total_factura,
+SQL>    n.total_nota_venta,fn.descuento,n.fecha_venta
+SQL> from factura f,nota_venta n , fact_nota fn
+SQL> where f.factura_ID = fn.factura_ID  and n.nota_ID = fn.nota_ID (+);
+SQL> */
+SQL>
+SQL> select f.factura_ID,fn.factura_ID,f.total_factura,
+  2     fn.descuento
+  3  from factura f, fact_nota fn
+  4  where f.factura_id = fn.factura_id;
+
+FACTURA_ID ||FACTURA_ID ||TOTAL_FACTURA ||DESCUENTO
+---------- ||---------- ||------------- ||---------
+       100 ||       100 ||        250.3 ||      .05
+       100 ||       100 ||        250.3 ||      .05
+       100 ||       100 ||        250.3 ||      .05
+       200 ||       200 ||         25.3 ||      .05
+       500 ||       500 ||        100.3 ||      .05
+       500 ||       500 ||        100.3 ||      .05
+       600 ||       600 ||         75.3 ||      .05
+       700 ||       700 ||         99.3 ||      .05
+
+8 rows selected.
+
+SQL>
+SQL> rem  natual join & left & rigth entre factura y factura_nota
+SQL> rem
+SQL>
+SQL> select nota_ID,factura_ID,total_factura,
+  2     fn.descuento
+  3  from factura f natural join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_FACTURA ||DESCUENTO
+------- ||---------- ||------------- ||---------
+     30 ||       100 ||        250.3 ||      .05
+     20 ||       100 ||        250.3 ||      .05
+     10 ||       100 ||        250.3 ||      .05
+     40 ||       200 ||         25.3 ||      .05
+     60 ||       500 ||        100.3 ||      .05
+     50 ||       500 ||        100.3 ||      .05
+     80 ||       600 ||         75.3 ||      .05
+     70 ||       700 ||         99.3 ||      .05
+
+8 rows selected.
+
+SQL>
+SQL> select nota_ID,factura_ID,total_factura,
+  2     fn.descuento
+  3  from factura f natural left join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_FACTURA ||DESCUENTO
+------- ||---------- ||------------- ||---------
+     10 ||       100 ||        250.3 ||      .05
+     20 ||       100 ||        250.3 ||      .05
+     30 ||       100 ||        250.3 ||      .05
+     40 ||       200 ||         25.3 ||      .05
+     50 ||       500 ||        100.3 ||      .05
+     60 ||       500 ||        100.3 ||      .05
+     70 ||       700 ||         99.3 ||      .05
+     80 ||       600 ||         75.3 ||      .05
+        ||       400 ||       2500.3 ||
+        ||       720 ||        999.3 ||
+        ||       300 ||         50.3 ||
+        ||       710 ||          9.3 ||
+
+12 rows selected.
+
+SQL>
+SQL> select nota_ID,factura_ID,total_factura,
+  2     fn.descuento
+  3  from factura f natural right join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_FACTURA ||DESCUENTO
+------- ||---------- ||------------- ||---------
+     30 ||       100 ||        250.3 ||      .05
+     20 ||       100 ||        250.3 ||      .05
+     10 ||       100 ||        250.3 ||      .05
+     40 ||       200 ||         25.3 ||      .05
+     60 ||       500 ||        100.3 ||      .05
+     50 ||       500 ||        100.3 ||      .05
+     80 ||       600 ||         75.3 ||      .05
+     70 ||       700 ||         99.3 ||      .05
+
+8 rows selected.
+
+SQL> rem
+SQL> rem
+SQL> rem
+SQL> rem  natual join & left & rigth entre nota_venta y factura_nota
+SQL> rem
+SQL>
+SQL> select nota_ID,factura_ID,total_nota_venta,
+  2     fn.descuento
+  3  from nota_venta n natural join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_NOTA_VENTA ||DESCUENTO
+------- ||---------- ||---------------- ||---------
+     10 ||       100 ||          150.30 ||      .05
+     20 ||       100 ||           80.00 ||      .05
+     30 ||       100 ||           20.00 ||      .05
+     40 ||       200 ||            7.30 ||      .05
+     50 ||       500 ||           75.30 ||      .05
+     60 ||       500 ||           25.00 ||      .05
+     70 ||       700 ||            3.30 ||      .05
+     80 ||       600 ||           75.30 ||      .05
+
+8 rows selected.
+
+SQL>
+SQL> select nota_ID,factura_ID,total_nota_venta,
+  2     fn.descuento
+  3  from nota_venta n natural left join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_NOTA_VENTA ||DESCUENTO
+------- ||---------- ||---------------- ||---------
+     10 ||       100 ||          150.30 ||      .05
+     20 ||       100 ||           80.00 ||      .05
+     30 ||       100 ||           20.00 ||      .05
+     40 ||       200 ||            7.30 ||      .05
+     50 ||       500 ||           75.30 ||      .05
+     60 ||       500 ||           25.00 ||      .05
+     70 ||       700 ||            3.30 ||      .05
+     80 ||       600 ||           75.30 ||      .05
+     85 ||           ||           75.30 ||
+     86 ||           ||           75.30 ||
+
+10 rows selected.
+
+SQL>
+SQL> select nota_ID,factura_ID,total_nota_venta,
+  2     fn.descuento
+  3  from nota_venta n natural right join fact_nota fn;
+
+NOTA_ID ||FACTURA_ID ||TOTAL_NOTA_VENTA ||DESCUENTO
+------- ||---------- ||---------------- ||---------
+     10 ||       100 ||          150.30 ||      .05
+     20 ||       100 ||           80.00 ||      .05
+     30 ||       100 ||           20.00 ||      .05
+     40 ||       200 ||            7.30 ||      .05
+     50 ||       500 ||           75.30 ||      .05
+     60 ||       500 ||           25.00 ||      .05
+     70 ||       700 ||            3.30 ||      .05
+     80 ||       600 ||           75.30 ||      .05
+
+8 rows selected.
+
+SQL> rem
+SQL> rem
+SQL> rem
+SQL>
+SQL> select n.nota_ID,fn.factura_ID,
+  2     fn.descuento
+  3  from nota_venta n, fact_nota fn
+  4  where n.nota_id = fn.nota_id;
+
+NOTA_ID ||FACTURA_ID ||DESCUENTO
+------- ||---------- ||---------
+     10 ||       100 ||      .05
+     20 ||       100 ||      .05
+     30 ||       100 ||      .05
+     40 ||       200 ||      .05
+     50 ||       500 ||      .05
+     60 ||       500 ||      .05
+     70 ||       700 ||      .05
+     80 ||       600 ||      .05
+
+8 rows selected.
+
+SQL>
+SQL>
+SQL> REM SEGUNDA PARTE
+SQL> REM DESPLEAGAR LAS RESTRICCIONES DEL DICCIONARIO DE DATOS
+SQL> REM Y LAS COLUMNAS ASOCIADAS A LAS RESTRICCIONES.
+SQL> COL OWNER FORMAT A10
+SQL> COL NOMBRE FORMAT A19
+SQL> COL TABLE_NAME      FORMAT A15
+SQL> COL TIPO            FORMAT A4
+SQL> COL STATUS          FORMAT A8
+SQL> COL DEFERRABLE      FORMAT A15
+SQL> COL DEFERRED        FORMAT A10
+SQL>
+SQL> select owner
+  2  , constraint_name NOMBRE
+  3  , constraint_type TIPO
+  4  , table_name
+  5  , status
+  6  , deferrable
+  7  , deferred
+  8  from user_constraints
+  9  where owner = 'SERGIONAVA'
+ 10  and table_name in ('FACTURA','NOTA_VENTA','FAC_NOTA')
+ 11  ORDER BY 3,2;
+
+OWNER      ||NOMBRE              ||TIPO ||TABLE_NAME      ||STATUS   ||DEFERRABLE      ||DEFERRED
+---------- ||------------------- ||---- ||--------------- ||-------- ||--------------- ||----------
+SERGIONAVA ||FECHA_VENTA_NN      ||C    ||NOTA_VENTA      ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+SERGIONAVA ||FECH_EMIS_NN        ||C    ||FACTURA         ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+SERGIONAVA ||TOT_FACT_NN         ||C    ||FACTURA         ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+SERGIONAVA ||TOT_VENTA_NN        ||C    ||NOTA_VENTA      ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+SERGIONAVA ||FACTURA_PK          ||P    ||FACTURA         ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+SERGIONAVA ||NOTA_PK             ||P    ||NOTA_VENTA      ||ENABLED  ||NOT DEFERRABLE  ||IMMEDIATE
+
+6 rows selected.
+
+SQL>
+SQL> COL COLUMN_NAME FORMAT A19
+SQL> SELECT OWNER
+  2  , CONSTRAINT_NAME
+  3  , TABLE_NAME
+  4  , COLUMN_NAME
+  5  FROM USER_CONS_COLUMNS
+  6  where table_name in ('FACTURA','NOTA_VENTA','FAC_NOTA');
+
+OWNER      ||CONSTRAINT_NAME                ||TABLE_NAME      ||COLUMN_NAME
+---------- ||------------------------------ ||--------------- ||-------------------
+SERGIONAVA ||FECH_EMIS_NN                   ||FACTURA         ||FECHA_EMISION
+SERGIONAVA ||FACTURA_PK                     ||FACTURA         ||FACTURA_ID
+SERGIONAVA ||TOT_VENTA_NN                   ||NOTA_VENTA      ||TOTAL_NOTA_VENTA
+SERGIONAVA ||NOTA_PK                        ||NOTA_VENTA      ||NOTA_ID
+SERGIONAVA ||TOT_FACT_NN                    ||FACTURA         ||FACTURA_ID
+SERGIONAVA ||FECHA_VENTA_NN                 ||NOTA_VENTA      ||FECHA_VENTA
+
+6 rows selected.
+
+SQL>
+SQL> SPOOL OFF

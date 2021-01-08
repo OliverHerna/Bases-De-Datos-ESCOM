@@ -1,0 +1,26 @@
+/*
+- C+
+  Cierre Transitivo: Conjunto de dependecias posibles, diferentes dependecias formadas por transitividad
+- F+ = C+
+  Dos conjuntos de dependencias funcionales son equivalentes si tinen el miso cierre Transitivo
+
+01) A -> BC
+02) B -> E
+03) CD -> EF
+
+  Cierre de A          Cierre de B      Cierre de CD
+    A+ = A             B+ = B           CD+ = CD
+    A+ = A BC          B+ = B E         CD+ = CD EF
+    A+ = A BC E
+
+Clave Candidata
+  Conjunto X de atributos de una relación
+  - Podemos tener varias llaves candidatas
+  -
+  Atributos R(A, B, C, D, E, F)
+
+
+Toda relacion R tiene al menos una descomposicion en 3FN, es decir sin perdida
+
+
+*/
