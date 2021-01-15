@@ -1,0 +1,176 @@
+SQL> REM Select only students who have a student_id of less than 110.
+SQL> REM STUDENT_ID,LAST_NAME, FIRST_NAME, and a count of
+SQL> REM the number of classes they are enrolled in
+SQL> REM  (using the enrollment table).
+SQL> REM
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  CURSOR c_student_enroll IS
+  3  SELECT s.student_id, first_name, last_name,
+  4  COUNT(*) enroll,
+  5  (CASE
+  6  WHEN count(*) = 1 Then ' class.'
+  7  WHEN count(*) is null then
+  8  ' no classes.'
+  9  ELSE ' classes.'
+ 10  END) class
+ 11  FROM student s, enrollment e
+ 12  WHERE s.student_id = e.student_id
+ 13  AND s.student_id <110
+ 14  GROUP BY s.student_id, first_name, last_name;
+ 15  r_student_enroll c_student_enroll%ROWTYPE;
+ 16  BEGIN
+ 17  OPEN c_student_enroll;
+ 18  LOOP
+ 19  FETCH c_student_enroll INTO r_student_enroll;
+ 20  EXIT WHEN c_student_enroll%NOTFOUND;
+ 21  DBMS_OUTPUT.PUT_LINE('Student INFO: ID '||
+ 22  r_student_enroll.student_id||' is '||
+ 23  r_student_enroll.first_name|| ' ' ||
+ 24  r_student_enroll.last_name||
+ 25  ' is enrolled in '||r_student_enroll.enroll||
+ 26  r_student_enroll.class);
+ 27  END LOOP;
+ 28  CLOSE c_student_enroll;
+ 29  EXCEPTION
+ 30  WHEN OTHERS
+ 31  THEN
+ 32  IF c_student_enroll %ISOPEN
+ 33  THEN
+ 34  CLOSE c_student_enroll;
+ 35  END IF;
+ 36  END;
+ 37  /
+Student INFO: ID 109 is Larry Walter is enrolled in 2 classes.                  
+Student INFO: ID 104 is Laetia Enison is enrolled in 1 class.                   
+Student INFO: ID 107 is Catherine Mierzwa is enrolled in 1 class.               
+Student INFO: ID 108 is Judy Sethi is enrolled in 1 class.                      
+Student INFO: ID 103 is J. Landry is enrolled in 1 class.                       
+Student INFO: ID 106 is Judith Olvsade is enrolled in 2 classes.                
+Student INFO: ID 102 is Fred Crocitto is enrolled in 2 classes.                 
+Student INFO: ID 105 is Angel Moskowitz is enrolled in 1 class.                 
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> REM CONSULTAS PREVIAS
+SQL> rem desplegar en cuantas asignaturas estan
+SQL> rem insxritos los alumnos con matriculas
+SQL> rem menores a 110 ordenados por student_id
+SQL> rem
+SQL> SELECT s.student_id, first_name, last_name,
+  2  COUNT(*) INSCRITOS_EN,
+  3  (CASE
+  4  WHEN count(*) = 1 Then ' Asignatura'
+  5  WHEN count(*) is null then
+  6  ' ninguna.'
+  7  ELSE ' Asignaturas.'
+  8  END) class
+  9  FROM student s, enrollment e
+ 10  WHERE s.student_id = e.student_id
+ 11  AND s.student_id <110
+ 12  GROUP BY s.student_id, first_name, last_name
+ 13  order by 1;
+
+STUDENT_ID FIRST_NAME                LAST_NAME                 INSCRITOS_EN     
+---------- ------------------------- ------------------------- ------------     
+CLASS                                                                           
+-------------                                                                   
+       102 Fred                      Crocitto                             2     
+ Asignaturas.                                                                   
+                                                                                
+       103 J.                        Landry                               1     
+ Asignatura                                                                     
+                                                                                
+       104 Laetia                    Enison                               1     
+ Asignatura                                                                     
+                                                                                
+
+STUDENT_ID FIRST_NAME                LAST_NAME                 INSCRITOS_EN     
+---------- ------------------------- ------------------------- ------------     
+CLASS                                                                           
+-------------                                                                   
+       105 Angel                     Moskowitz                            1     
+ Asignatura                                                                     
+                                                                                
+       106 Judith                    Olvsade                              2     
+ Asignaturas.                                                                   
+                                                                                
+       107 Catherine                 Mierzwa                              1     
+ Asignatura                                                                     
+                                                                                
+
+STUDENT_ID FIRST_NAME                LAST_NAME                 INSCRITOS_EN     
+---------- ------------------------- ------------------------- ------------     
+CLASS                                                                           
+-------------                                                                   
+       108 Judy                      Sethi                                1     
+ Asignatura                                                                     
+                                                                                
+       109 Larry                     Walter                               2     
+ Asignaturas.                                                                   
+                                                                                
+
+8 filas seleccionadas.
+
+SQL> 
+SQL> 
+SQL> rem escenario dos
+SQL> rem  ordenar los estudiantes por student_id
+SQL> rem al generar el CURSOR
+SQL> REM
+SQL> DECLARE
+  2  CURSOR c_student_enroll IS
+  3  SELECT s.student_id, first_name, last_name,
+  4  COUNT(*) enroll,
+  5  (CASE
+  6  WHEN count(*) = 1 Then ' class.'
+  7  WHEN count(*) is null then
+  8  ' no classes.'
+  9  ELSE ' classes.'
+ 10  END) class
+ 11  FROM student s, enrollment e
+ 12  WHERE s.student_id = e.student_id
+ 13  AND s.student_id <110
+ 14  GROUP BY s.student_id, first_name, last_name
+ 15  ORDER BY 1;
+ 16  r_student_enroll c_student_enroll%ROWTYPE;
+ 17  BEGIN
+ 18  OPEN c_student_enroll;
+ 19  LOOP
+ 20  FETCH c_student_enroll INTO r_student_enroll;
+ 21  EXIT WHEN c_student_enroll%NOTFOUND;
+ 22  DBMS_OUTPUT.PUT_LINE('Student INFO: ID '||
+ 23  r_student_enroll.student_id||' is '||
+ 24  r_student_enroll.first_name|| ' ' ||
+ 25  r_student_enroll.last_name||
+ 26  ' is enrolled in '||r_student_enroll.enroll||
+ 27  r_student_enroll.class);
+ 28  END LOOP;
+ 29  CLOSE c_student_enroll;
+ 30  DBMS_OUTPUT.PUT_LINE ('Final'||chr(13)||chr(10)||chr(10)||
+ 31  ' Termine'||chr(07)||chr(07)||chr(07));
+ 32  EXCEPTION
+ 33  WHEN OTHERS
+ 34  THEN
+ 35  IF c_student_enroll %ISOPEN
+ 36  THEN
+ 37  CLOSE c_student_enroll;
+ 38  END IF;
+ 39  END;
+ 40  /
+Student INFO: ID 102 is Fred Crocitto is enrolled in 2 classes.                 
+Student INFO: ID 103 is J. Landry is enrolled in 1 class.                       
+Student INFO: ID 104 is Laetia Enison is enrolled in 1 class.                   
+Student INFO: ID 105 is Angel Moskowitz is enrolled in 1 class.                 
+Student INFO: ID 106 is Judith Olvsade is enrolled in 2 classes.                
+Student INFO: ID 107 is Catherine Mierzwa is enrolled in 1 class.               
+Student INFO: ID 108 is Judy Sethi is enrolled in 1 class.                      
+Student INFO: ID 109 is Larry Walter is enrolled in 2 classes.                  
+Final
+
+ Termine                                                             
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> spool off

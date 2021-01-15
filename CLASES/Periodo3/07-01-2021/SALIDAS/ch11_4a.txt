@@ -1,0 +1,57 @@
+SQL> DECLARE
+  2  v_sid student.student_id%TYPE;
+  3  CURSOR c_student IS
+  4  SELECT student_id
+  5  FROM student
+  6  WHERE student_id < 110;
+  7  BEGIN
+  8  OPEN c_student;
+  9  LOOP
+ 10  FETCH c_student INTO v_sid;
+ 11  EXIT WHEN c_student%NOTFOUND;
+ 12  DBMS_OUTPUT.PUT_LINE(' ID ESTUDIANTE: '||v_sid);
+ 13  END LOOP;
+ 14  CLOSE c_student;
+ 15  EXCEPTION
+ 16  WHEN OTHERS
+ 17  THEN
+ 18  IF c_student%ISOPEN
+ 19  THEN
+ 20  CLOSE c_student;
+ 21  END IF;
+ 22  END;
+ 23  
+ 24  REM ESCENARIO DOS
+ 25  DECLARE
+ 26  v_sid student.student_id%TYPE;
+ 27  CURSOR c_student IS
+ 28  SELECT student_id
+ 29  FROM student
+ 30  WHERE student_id < 110;
+ 31  BEGIN
+ 32  OPEN c_student;
+ 33  LOOP
+ 34  FETCH c_student INTO v_sid;
+ 35  EXIT WHEN c_student%NOTFOUND;
+ 36  DBMS_OUTPUT.PUT_LINE(' ID ESTUDIANTE: '||v_sid);
+ 37  END LOOP;
+ 38  CLOSE c_student;
+ 39  DBMS_OUTPUT.PUT_LINE ('Final'||chr(13)||chr(10)||chr(10)||
+ 40  ' Termine'||chr(07)||chr(07)||chr(07));
+ 41  EXCEPTION
+ 42  WHEN OTHERS
+ 43  THEN
+ 44  IF c_student%ISOPEN
+ 45  THEN
+ 46  CLOSE c_student;
+ 47  END IF;
+ 48  END;
+ 49  /
+REM ESCENARIO DOS
+*
+ERROR en línea 24:
+ORA-06550: línea 24, columna 1: 
+PLS-00103: Se ha encontrado el símbolo "REM"  
+
+
+SQL> spool off

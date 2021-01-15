@@ -1,0 +1,19 @@
+DROP TABLE FACTURA cascade constraints;
+
+DROP TABLE FACTURA cascade constraints;
+
+create table factura(
+  factura_ID number(3) constraint tot_fact_NN   NOT NULL,
+  fecha_emision date   constraint fech_emis_NN  NOT NULL,
+  total_factura number (6,2),
+  constraint factura_pk primary key (factura_ID)
+);
+
+DROP TABLE NOTA_VENTA cascade constraints;
+
+CREATE TABLE NOTA_VENTA(
+  NOTA_ID NUMBER(3),
+  FECHA_VENTA DATE             constraint fecha_venta_NN not null,
+  TOTAL_NOTA_VENTA NUMBER(6,2) constraint tot_venta_NN   not null,
+  constraint nota_pk primary key (nota_ID)
+);

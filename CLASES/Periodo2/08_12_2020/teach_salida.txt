@@ -1,0 +1,476 @@
+SQL> 
+SQL> rem fig 15.4 pag 530
+SQL> rem como ejemplo considere la figura 15.4 la cual muestra
+SQL> rem la relaci¢n TEACH con las siguientes dependencias funcionales
+SQL> rem    FD1: {STUDENT,CURSO}  -> INSTRUCTOR
+SQL> REM    FD2: INSTRUCTOR  ->  COURSE
+SQL> REM NOTE QUE {STUDENT,CURSO}  ES LLAVE CANDIDATA
+SQL> REM    LA DESCOMPOSICIàN DE ESTA RELACIàN EN DOS ESQUEMAS
+SQL> REM    PODEMOS TENER TRES ESCENARIOS
+SQL> rem   una relaci¢n TEACH que esta en
+SQL> rem  3FN   pero no esta en BCNF
+SQL> rem descompongamos en uno de los tres diferentes escenarios
+SQL> rem  escenario 1.- {student,instructor} & {student,curso}
+SQL> rem  escenario 2.- {curso,instructor} & {curso,student}
+SQL> rem  escenario 3.- {instructor,curso} & {instructor,student}
+SQL> 
+SQL> drop table teach;
+
+Tabla borrada.
+
+SQL> create table teach(
+  2  Student varchar2(12),
+  3  curso   varchar2(18),
+  4  instructor varchar2(10));
+
+Tabla creada.
+
+SQL> insert into teach values ('Narayan','Database', 'Mark');
+
+1 fila creada.
+
+SQL> insert into teach values ('Smith', 'Database','Navathe');
+
+1 fila creada.
+
+SQL> insert into teach values ('Smith','Operating Systems', 'Ammar');
+
+1 fila creada.
+
+SQL> insert into teach values ('Smith','Theory', 'Schulman');
+
+1 fila creada.
+
+SQL> insert into teach values ('Wallace','Database', 'Mark');
+
+1 fila creada.
+
+SQL> insert into teach values ('Wallace', 'Operating Systems','Ahamad');
+
+1 fila creada.
+
+SQL> insert into teach values ('Wong', 'Database', 'Omiecinski');
+
+1 fila creada.
+
+SQL> insert into teach values ('Zelaya', 'Database','Navathe');
+
+1 fila creada.
+
+SQL> insert into teach values ('Narayan','Operating Systems', 'Ammar');
+
+1 fila creada.
+
+SQL> 
+SQL> rem   dependencia FD: {student,curso}  ->  instructor
+SQL> select  student,curso,' -> ',instructor from teach order by 1,2,3,4;
+
+STUDENT     |=|CURSO             |=|'->'|=|INSTRUCTOR                           
+------------|=|------------------|=|----|=|----------                           
+Narayan     |=|Database          |=| -> |=|Mark                                 
+Narayan     |=|Operating Systems |=| -> |=|Ammar                                
+Smith       |=|Database          |=| -> |=|Navathe                              
+Smith       |=|Operating Systems |=| -> |=|Ammar                                
+Smith       |=|Theory            |=| -> |=|Schulman                             
+Wallace     |=|Database          |=| -> |=|Mark                                 
+Wallace     |=|Operating Systems |=| -> |=|Ahamad                               
+Wong        |=|Database          |=| -> |=|Omiecinski                           
+Zelaya      |=|Database          |=| -> |=|Navathe                              
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> select  distinct student,curso,' -> ',instructor from teach order by 1,2,3,4;
+
+STUDENT     |=|CURSO             |=|'->'|=|INSTRUCTOR                           
+------------|=|------------------|=|----|=|----------                           
+Narayan     |=|Database          |=| -> |=|Mark                                 
+Narayan     |=|Operating Systems |=| -> |=|Ammar                                
+Smith       |=|Database          |=| -> |=|Navathe                              
+Smith       |=|Operating Systems |=| -> |=|Ammar                                
+Smith       |=|Theory            |=| -> |=|Schulman                             
+Wallace     |=|Database          |=| -> |=|Mark                                 
+Wallace     |=|Operating Systems |=| -> |=|Ahamad                               
+Wong        |=|Database          |=| -> |=|Omiecinski                           
+Zelaya      |=|Database          |=| -> |=|Navathe                              
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> select  distinct student,curso from teach;
+
+STUDENT     |=|CURSO                                                            
+------------|=|------------------                                               
+Smith       |=|Theory                                                           
+Zelaya      |=|Database                                                         
+Wallace     |=|Database                                                         
+Smith       |=|Operating Systems                                                
+Wong        |=|Database                                                         
+Narayan     |=|Operating Systems                                                
+Wallace     |=|Operating Systems                                                
+Narayan     |=|Database                                                         
+Smith       |=|Database                                                         
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> 
+SQL> rem  los tres atributos
+SQL> rem   student, instructor, curso
+SQL> rem  combinemos de dos en dos
+SQL> rem        student, instructor (teach_1)  =   student,curso      (teach_3)
+SQL> rem        curso,   instructor (teach_2) =    curso, student     (teach_3)
+SQL> rem        instructor,curso    (teach_3)  =   curso, instructor  (teach_1)
+SQL> rem
+SQL> rem  determinemos el natural join de cada escenario
+SQL> rem      teach_1_JN_13  teach_1 natural join teach_3
+SQL> rem      teach_1_JN_23  teach_2 natural join teach_3
+SQL> rem      teach_1_JN_21  teach_2 natural join teach_1
+SQL> rem
+SQL> rem generemos las tablas teach1, teach2 & teach3
+SQL> rem generemos las tablas del JOIN teach_1_JN_13, teach_1_JN_23, teach_1_JN_21
+SQL> rem
+SQL> 
+SQL> drop table teach_1;
+
+Tabla borrada.
+
+SQL> create table teach_1 as
+  2  select  distinct student,instructor from teach;
+
+Tabla creada.
+
+SQL> select student,instructor from teach_1 order by 1,2;
+
+STUDENT     |=|INSTRUCTOR                                                       
+------------|=|----------                                                       
+Narayan     |=|Ammar                                                            
+Narayan     |=|Mark                                                             
+Smith       |=|Ammar                                                            
+Smith       |=|Navathe                                                          
+Smith       |=|Schulman                                                         
+Wallace     |=|Ahamad                                                           
+Wallace     |=|Mark                                                             
+Wong        |=|Omiecinski                                                       
+Zelaya      |=|Navathe                                                          
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> drop table teach_2;
+
+Tabla borrada.
+
+SQL> create table teach_2 as
+  2  select  distinct curso,instructor  from teach;
+
+Tabla creada.
+
+SQL> select curso,instructor from teach_2 order by 1,2;
+
+CURSO             |=|INSTRUCTOR                                                 
+------------------|=|----------                                                 
+Database          |=|Mark                                                       
+Database          |=|Navathe                                                    
+Database          |=|Omiecinski                                                 
+Operating Systems |=|Ahamad                                                     
+Operating Systems |=|Ammar                                                      
+Theory            |=|Schulman                                                   
+
+6 filas seleccionadas.
+
+SQL> 
+SQL> drop table teach_3;
+
+Tabla borrada.
+
+SQL> create table teach_3 as
+  2  select  distinct student,curso from teach;
+
+Tabla creada.
+
+SQL> select student, curso from teach_3;
+
+STUDENT     |=|CURSO                                                            
+------------|=|------------------                                               
+Smith       |=|Theory                                                           
+Zelaya      |=|Database                                                         
+Wallace     |=|Database                                                         
+Smith       |=|Operating Systems                                                
+Wong        |=|Database                                                         
+Narayan     |=|Operating Systems                                                
+Wallace     |=|Operating Systems                                                
+Narayan     |=|Database                                                         
+Smith       |=|Database                                                         
+
+9 filas seleccionadas.
+
+SQL> rem
+SQL> rem generemos las tablas de joins
+SQL> 
+SQL> drop table teach_1_JN_13;
+
+Tabla borrada.
+
+SQL> create table teach_1_JN_13 as
+  2  select student,curso,instructor
+  3  from teach_1 natural join teach_3 order by 1,2,3;
+
+Tabla creada.
+
+SQL> select student,curso,instructor from teach_1_JN_13 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Database          |=|Ammar                                       
+Narayan     |=|Operating Systems |=|Ammar                                       
+Narayan     |=|Operating Systems |=|Mark                                        
+Smith       |=|Database          |=|Ammar                                       
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Database          |=|Schulman                                    
+Smith       |=|Operating Systems |=|Navathe                                     
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Operating Systems |=|Schulman                                    
+Smith       |=|Theory            |=|Ammar                                       
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Smith       |=|Theory            |=|Navathe                                     
+Smith       |=|Theory            |=|Schulman                                    
+Wallace     |=|Database          |=|Ahamad                                      
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wallace     |=|Operating Systems |=|Mark                                        
+Wong        |=|Database          |=|Omiecinski                                  
+Zelaya      |=|Database          |=|Navathe                                     
+
+19 filas seleccionadas.
+
+SQL> 
+SQL> drop table   teach_1_JN_23;
+
+Tabla borrada.
+
+SQL> create table teach_1_JN_23 as
+  2  select student,curso,instructor
+  3  from teach_2 natural join teach_3 order by 1,2,3;
+
+Tabla creada.
+
+SQL> select student,curso,instructor from teach_1_JN_23 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Database          |=|Navathe                                     
+Narayan     |=|Database          |=|Omiecinski                                  
+Narayan     |=|Operating Systems |=|Ahamad                                      
+Narayan     |=|Operating Systems |=|Ammar                                       
+Smith       |=|Database          |=|Mark                                        
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Database          |=|Omiecinski                                  
+Smith       |=|Operating Systems |=|Ahamad                                      
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Theory            |=|Schulman                                    
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Database          |=|Navathe                                     
+Wallace     |=|Database          |=|Omiecinski                                  
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wallace     |=|Operating Systems |=|Ammar                                       
+Wong        |=|Database          |=|Mark                                        
+Wong        |=|Database          |=|Omiecinski                                  
+Wong        |=|Database          |=|Navathe                                     
+Zelaya      |=|Database          |=|Navathe                                     
+Zelaya      |=|Database          |=|Mark                                        
+Zelaya      |=|Database          |=|Omiecinski                                  
+
+22 filas seleccionadas.
+
+SQL> 
+SQL> drop table teach_1_JN_21;
+
+Tabla borrada.
+
+SQL> create table teach_1_JN_21 as
+  2  select student,curso,instructor
+  3  from teach_2 natural join teach_1 order by 1,2,3;
+
+Tabla creada.
+
+SQL> select student,curso,instructor from teach_1_JN_21 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Operating Systems |=|Ammar                                       
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Theory            |=|Schulman                                    
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wong        |=|Database          |=|Omiecinski                                  
+Zelaya      |=|Database          |=|Navathe                                     
+
+9 filas seleccionadas.
+
+SQL> 
+SQL> select student,curso,instructor from teach_1_JN_13 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Database          |=|Ammar                                       
+Narayan     |=|Operating Systems |=|Ammar                                       
+Narayan     |=|Operating Systems |=|Mark                                        
+Smith       |=|Database          |=|Ammar                                       
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Database          |=|Schulman                                    
+Smith       |=|Operating Systems |=|Navathe                                     
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Operating Systems |=|Schulman                                    
+Smith       |=|Theory            |=|Ammar                                       
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Smith       |=|Theory            |=|Navathe                                     
+Smith       |=|Theory            |=|Schulman                                    
+Wallace     |=|Database          |=|Ahamad                                      
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wallace     |=|Operating Systems |=|Mark                                        
+Wong        |=|Database          |=|Omiecinski                                  
+Zelaya      |=|Database          |=|Navathe                                     
+
+19 filas seleccionadas.
+
+SQL> select student,curso,instructor from teach_1_JN_23 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Database          |=|Navathe                                     
+Narayan     |=|Database          |=|Omiecinski                                  
+Narayan     |=|Operating Systems |=|Ahamad                                      
+Narayan     |=|Operating Systems |=|Ammar                                       
+Smith       |=|Database          |=|Mark                                        
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Database          |=|Omiecinski                                  
+Smith       |=|Operating Systems |=|Ahamad                                      
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Theory            |=|Schulman                                    
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Database          |=|Navathe                                     
+Wallace     |=|Database          |=|Omiecinski                                  
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wallace     |=|Operating Systems |=|Ammar                                       
+Wong        |=|Database          |=|Mark                                        
+Wong        |=|Database          |=|Omiecinski                                  
+Wong        |=|Database          |=|Navathe                                     
+Zelaya      |=|Database          |=|Navathe                                     
+Zelaya      |=|Database          |=|Mark                                        
+Zelaya      |=|Database          |=|Omiecinski                                  
+
+22 filas seleccionadas.
+
+SQL> select student,curso,instructor from teach_1_JN_21 order by 1,2;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Mark                                        
+Narayan     |=|Operating Systems |=|Ammar                                       
+Smith       |=|Database          |=|Navathe                                     
+Smith       |=|Operating Systems |=|Ammar                                       
+Smith       |=|Theory            |=|Schulman                                    
+Wallace     |=|Database          |=|Mark                                        
+Wallace     |=|Operating Systems |=|Ahamad                                      
+Wong        |=|Database          |=|Omiecinski                                  
+Zelaya      |=|Database          |=|Navathe                                     
+
+9 filas seleccionadas.
+
+SQL> rem
+SQL> rem         cifras de control
+SQL> rem
+SQL> 
+SQL> select count(*) from teach_1_JN_13 ;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        19                                                                      
+
+SQL> select count(*) from teach_1_JN_23 ;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        22                                                                      
+
+SQL> select count(*) from teach_1_JN_21 ;
+
+  COUNT(*)                                                                      
+----------                                                                      
+         9                                                                      
+
+SQL> 
+SQL> select student,curso,instructor from teach_1_JN_13
+  2  WHERE  (student,curso,instructor) not in
+  3  ( select student,curso,instructor from teach)
+  4  order by 1,2,3;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Ammar                                       
+Narayan     |=|Operating Systems |=|Mark                                        
+Smith       |=|Database          |=|Ammar                                       
+Smith       |=|Database          |=|Schulman                                    
+Smith       |=|Operating Systems |=|Navathe                                     
+Smith       |=|Operating Systems |=|Schulman                                    
+Smith       |=|Theory            |=|Ammar                                       
+Smith       |=|Theory            |=|Navathe                                     
+Wallace     |=|Database          |=|Ahamad                                      
+Wallace     |=|Operating Systems |=|Mark                                        
+
+10 filas seleccionadas.
+
+SQL> 
+SQL> select student,curso,instructor from teach_1_JN_23
+  2  WHERE  (student,curso,instructor) not in
+  3  ( select student,curso,instructor from teach)
+  4  order by 1,2,3;
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Narayan     |=|Database          |=|Navathe                                     
+Narayan     |=|Database          |=|Omiecinski                                  
+Narayan     |=|Operating Systems |=|Ahamad                                      
+Smith       |=|Database          |=|Mark                                        
+Smith       |=|Database          |=|Omiecinski                                  
+Smith       |=|Operating Systems |=|Ahamad                                      
+Wallace     |=|Database          |=|Navathe                                     
+Wallace     |=|Database          |=|Omiecinski                                  
+Wallace     |=|Operating Systems |=|Ammar                                       
+Wong        |=|Database          |=|Mark                                        
+Wong        |=|Database          |=|Navathe                                     
+
+STUDENT     |=|CURSO             |=|INSTRUCTOR                                  
+------------|=|------------------|=|----------                                  
+Zelaya      |=|Database          |=|Mark                                        
+Zelaya      |=|Database          |=|Omiecinski                                  
+
+13 filas seleccionadas.
+
+SQL> 
+SQL> select student,curso,instructor from teach_1_JN_21
+  2  WHERE  (student,curso,instructor) not in
+  3  ( select student,curso,instructor from teach)
+  4  order by 1,2,3;
+
+ninguna fila seleccionada
+
+SQL> spool off

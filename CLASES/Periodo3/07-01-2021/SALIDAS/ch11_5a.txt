@@ -1,0 +1,47 @@
+SQL> REM
+SQL> REM INCLUYE CURSOR EXPLICITO, OPEN & CLOSE FETCH & UN LOOP
+SQL> REM  Modify the example to make use of the cursor attributes %FOUND and %ROWCOUNT.
+SQL> REM
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  v_sid student.student_id%TYPE;
+  3  CURSOR c_student IS
+  4  SELECT student_id
+  5  FROM student
+  6  WHERE student_id < 110;
+  7  BEGIN
+  8  OPEN c_student;
+  9  LOOP
+ 10  FETCH c_student INTO v_sid;
+ 11  IF c_student%FOUND THEN
+ 12  DBMS_OUTPUT.PUT_LINE
+ 13  ('Just FETCHED row '||CHR(9)||'LECTURA DESDE EL CURSOR ( FETCH)'||CHR(9)
+ 14  ||TO_CHAR(c_student%ROWCOUNT)||
+ 15  '    Student ID: '||v_sid);
+ 16  ELSE
+ 17  EXIT;
+ 18  END IF;
+ 19  END LOOP;
+ 20  CLOSE c_student;
+ 21  EXCEPTION
+ 22  WHEN OTHERS
+ 23  THEN
+ 24  IF c_student%ISOPEN
+ 25  THEN
+ 26  CLOSE c_student;
+ 27  END IF;
+ 28  END;
+ 29  /
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	1    Student ID: 102         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	2    Student ID: 103         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	3    Student ID: 104         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	4    Student ID: 105         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	5    Student ID: 106         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	6    Student ID: 107         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	7    Student ID: 108         
+Just FETCHED row 	LECTURA DESDE EL CURSOR ( FETCH)	8    Student ID: 109         
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> spool off

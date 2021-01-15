@@ -1,0 +1,677 @@
+SQL> SET SERVEROUTPUT ON
+SQL> --Seccion de declaracion
+SQL> DECLARE
+  2  CURSOR c_zip IS
+  3  SELECT *
+  4  FROM zipcode;
+  5  vr_zip c_zip%ROWTYPE;
+  6  BEGIN
+  7  OPEN c_zip;
+  8  LOOP
+  9  FETCH c_zip INTO vr_zip;
+ 10  EXIT WHEN c_zip%NOTFOUND;
+ 11  DBMS_OUTPUT.PUT_LINE(vr_zip.zip||
+ 12  ' '||vr_zip.city||' '||vr_zip.state);
+ 13  END LOOP;
+ 14  END;
+ 15  /
+11101 Long Island City NY                                                       
+11102 Astoria NY                                                                
+11103 Astoria NY                                                                
+11104 Sunnyside NY                                                              
+11105 Astoria NY                                                                
+11106 Long Island City NY                                                       
+11201 Brooklyn NY                                                               
+11203 Brooklyn NY                                                               
+11204 Brooklyn NY                                                               
+11205 Brooklyn NY                                                               
+11206 Brooklyn NY                                                               
+11207 Brooklyn NY                                                               
+11208 Brooklyn NY                                                               
+11209 Brooklyn NY                                                               
+11210 Brooklyn NY                                                               
+11211 Brooklyn NY                                                               
+11212 Brooklyn NY                                                               
+11213 Brooklyn NY                                                               
+11214 Brooklyn NY                                                               
+11215 Brooklyn NY                                                               
+11216 Brooklyn NY                                                               
+11217 Brooklyn NY                                                               
+11218 Brooklyn NY                                                               
+11219 Brooklyn NY                                                               
+11220 Brooklyn NY                                                               
+11221 Brooklyn NY                                                               
+11222 Brooklyn NY                                                               
+11223 Brooklyn NY                                                               
+11224 Brooklyn NY                                                               
+11225 Brooklyn NY                                                               
+11226 Brooklyn NY                                                               
+11228 Brooklyn NY                                                               
+11229 Brooklyn NY                                                               
+11230 Brooklyn NY                                                               
+11231 Brooklyn NY                                                               
+11232 Brooklyn NY                                                               
+11233 Brooklyn NY                                                               
+11234 Brooklyn NY                                                               
+11235 Brooklyn NY                                                               
+11236 Brooklyn NY                                                               
+11238 Brooklyn NY                                                               
+11295 West Islip NY                                                             
+11303 Monbasset NY                                                              
+11322 Jackson Hts. NY                                                           
+11354 Flushing NY                                                               
+11355 Flushing NY                                                               
+11357 Whitestone NY                                                             
+11358 Flushing NY                                                               
+11360 Bayside NY                                                                
+11361 Bayside NY                                                                
+11362 Douglaston NY                                                             
+11365 Fresh Meadows NY                                                          
+11366 Flushing NY                                                               
+11368 Corona NY                                                                 
+11369 Elmhurst NY                                                               
+11370 Jackson Heights NY                                                        
+11372 Jackson Heights NY                                                        
+11373 Amherst NY                                                                
+11374 Rego Park NY                                                              
+11375 Forest Hills NY                                                           
+11377 Woodside NY                                                               
+11385 Ridgewood Queens NY                                                       
+11403 Holliswood NY                                                             
+11412 Hollis NY                                                                 
+11413 Laurelton NY                                                              
+11414 Howard Bank NY                                                            
+11415 Kew Gardens NY                                                            
+11418 Richmond Hills NY                                                         
+11419 Richmond Hill NY                                                          
+11420 Jamaica NY                                                                
+11422 Laurelton NY                                                              
+11426 Bellrose NY                                                               
+11428 Queens Village NY                                                         
+11432 Jamaica NY                                                                
+11433 Jamaica NY                                                                
+11434 Jamaica NY                                                                
+11435 Jamaica NY                                                                
+11510 Baldwin NY                                                                
+11530 Garden City NY                                                            
+11550 Hempstead NY                                                              
+11552 West Hempstead NY                                                         
+11561 Long Beach NY                                                             
+11565 Malverne NY                                                               
+11572 Jackson Heights NY                                                        
+11576 Roslyn NY                                                                 
+11598 Woodmere NY                                                               
+11694 Far Rockaway NY                                                           
+11717 Brentwood NJ                                                              
+11720 Centerach NY                                                              
+11722 Central Islip NY                                                          
+11743 Huntington NY                                                             
+11746 Dix Hills NY                                                              
+11758 Massapequa NY                                                             
+11766 Huntington NY                                                             
+11776 Port Jefferson NY                                                         
+11787 Smithtown NY                                                              
+11802 Hicksville NY                                                             
+13760 Endicott NY                                                               
+30342 Atlanta GA                                                                
+33431 Boca Raton FL                                                             
+43224 Columbus OH                                                               
+48104 Ann Arbor MI                                                              
+00914 Santurce PR                                                               
+01247 North Adams MA                                                            
+02124 Dorchester MA                                                             
+02155 Tufts Univ. Bedford MA                                                    
+02189 Weymouth MA                                                               
+02563 Sandwich MA                                                               
+06401 Ansonia CT                                                                
+06455 Middlefield CT                                                            
+06483 Oxford CT                                                                 
+06520 New Haven CT                                                              
+06605 Bridgeport CT                                                             
+06798 Woodbury CT                                                               
+06820 Georgetown WV                                                             
+06830 Greenwich CT                                                              
+06850 Norwalk CT                                                                
+06851 Norwalk CT                                                                
+06853 Rowayton CT                                                               
+06870 Old Greenwich CT                                                          
+06877 Ridgefield CT                                                             
+06880 Westport CT                                                               
+06883 Weston CT                                                                 
+06897 Wilton CT                                                                 
+06902 Stamford CT                                                               
+06903 Stamford CT                                                               
+06905 Stamford CT                                                               
+06907 Stamford CT                                                               
+07002 Bayonne NJ                                                                
+07003 Bloomfiel NJ                                                              
+07006 North Caldwell NJ                                                         
+07008 Carteret NJ                                                               
+07009 Cedar Grove NJ                                                            
+07010 Cliffside Park NJ                                                         
+07011 Clifton NJ                                                                
+07012 Clifton NJ                                                                
+07014 Clifton NJ                                                                
+07016 Cranford NJ                                                               
+07021 Essex Fells NJ                                                            
+07023 Fanwood NJ                                                                
+07024 Ft. Lee NJ                                                                
+07029 Harrison NJ                                                               
+07030 Hoboken NJ                                                                
+07034 Lake Hiawatha NJ                                                          
+07035 Lincoln Pk. NJ                                                            
+07036 Lyndon NJ                                                                 
+07040 Maplewood NJ                                                              
+07042 Montclair NJ                                                              
+07043 Upper Montclair NJ                                                        
+07044 Verona NJ                                                                 
+07047 North Bergen NJ                                                           
+07054 Parsippany NJ                                                             
+07055 Passaic NJ                                                                
+07057 Wallington NJ                                                             
+07060 Plainfield NJ                                                             
+07065 Rahway NJ                                                                 
+07066 Clark NJ                                                                  
+07070 Rutherford NJ                                                             
+07078 Short Hills NJ                                                            
+07079 S. Orange NJ                                                              
+07087 Weehawken NJ                                                              
+07090 Westfield NJ                                                              
+07093 Guttenberg NJ                                                             
+07094 Secaucus NJ                                                               
+07096 Secaucus NJ                                                               
+07102 Newark NJ                                                                 
+07104 Newark NJ                                                                 
+07107 Newark NJ                                                                 
+07109 Belleville NJ                                                             
+07111 Irvington NY                                                              
+07112 Newark NJ                                                                 
+07302 Jersey City NJ                                                            
+07304 Jersey City NJ                                                            
+07306 Jersey City NJ                                                            
+07307 Jersey City NJ                                                            
+07401 Allendale NJ                                                              
+07410 Fair Lawn NJ                                                              
+07417 Franklin Lakes NY                                                         
+07421 Hewitt NJ                                                                 
+07430 Mahwah NJ                                                                 
+07444 Pompton Plains NJ                                                         
+07450 Ridgewood NJ                                                              
+07452 Glen Rock NJ                                                              
+07458 Upper Saddle River NJ                                                     
+07465 Wahnaque NJ                                                               
+07470 Wayne NJ                                                                  
+07480 W. Milford NJ                                                             
+07503 Paterson NJ                                                               
+07509 Patterson NJ                                                              
+07601 Hackensack NJ                                                             
+07603 Bogota NJ                                                                 
+07607 Maywood NJ                                                                
+07620 Alpine NY                                                                 
+07621 Bergenfield NJ                                                            
+07624 Closter NJ                                                                
+07628 Dumont NJ                                                                 
+07631 Englewood NJ                                                              
+07632 E. Cliffs NJ                                                              
+07640 Harrington Park NJ                                                        
+07645 Montvale NJ                                                               
+07646 New Milford NJ                                                            
+07648 Norwood NJ                                                                
+07649 Oradell NY                                                                
+07652 Paramus NJ                                                                
+07656 Park Ridge NJ                                                             
+10004 New York NY                                                               
+10005 New York NY                                                               
+10014 New York NY                                                               
+10015 New York NY                                                               
+10017 New York NY                                                               
+10019 New York NY                                                               
+10025 New York NY                                                               
+10027 New York NY                                                               
+10035 New York NY                                                               
+10036 New York NY                                                               
+10048 New York NY                                                               
+10954 Nannet NY                                                                 
+10956 New City NY                                                               
+10960 Central Nyack NY                                                          
+10965 Pearl River NY                                                            
+10983 Tappan NY                                                                 
+11021 Great Neck NY                                                             
+11029 Brooklyn NY                                                               
+11030 Manhasset NY                                                              
+11040 New Hyde Park NY                                                          
+11042 Long Beach NY                                                             
+11050 Fort Washington NY                                                        
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> REM CONSULTA PREVIA
+SQL> SELECT ROWNUM,ZIP,CITY,STATE
+  2  FROM zipcode;
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+         1 11101 Long Island City          NY                                   
+         2 11102 Astoria                   NY                                   
+         3 11103 Astoria                   NY                                   
+         4 11104 Sunnyside                 NY                                   
+         5 11105 Astoria                   NY                                   
+         6 11106 Long Island City          NY                                   
+         7 11201 Brooklyn                  NY                                   
+         8 11203 Brooklyn                  NY                                   
+         9 11204 Brooklyn                  NY                                   
+        10 11205 Brooklyn                  NY                                   
+        11 11206 Brooklyn                  NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        12 11207 Brooklyn                  NY                                   
+        13 11208 Brooklyn                  NY                                   
+        14 11209 Brooklyn                  NY                                   
+        15 11210 Brooklyn                  NY                                   
+        16 11211 Brooklyn                  NY                                   
+        17 11212 Brooklyn                  NY                                   
+        18 11213 Brooklyn                  NY                                   
+        19 11214 Brooklyn                  NY                                   
+        20 11215 Brooklyn                  NY                                   
+        21 11216 Brooklyn                  NY                                   
+        22 11217 Brooklyn                  NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        23 11218 Brooklyn                  NY                                   
+        24 11219 Brooklyn                  NY                                   
+        25 11220 Brooklyn                  NY                                   
+        26 11221 Brooklyn                  NY                                   
+        27 11222 Brooklyn                  NY                                   
+        28 11223 Brooklyn                  NY                                   
+        29 11224 Brooklyn                  NY                                   
+        30 11225 Brooklyn                  NY                                   
+        31 11226 Brooklyn                  NY                                   
+        32 11228 Brooklyn                  NY                                   
+        33 11229 Brooklyn                  NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        34 11230 Brooklyn                  NY                                   
+        35 11231 Brooklyn                  NY                                   
+        36 11232 Brooklyn                  NY                                   
+        37 11233 Brooklyn                  NY                                   
+        38 11234 Brooklyn                  NY                                   
+        39 11235 Brooklyn                  NY                                   
+        40 11236 Brooklyn                  NY                                   
+        41 11238 Brooklyn                  NY                                   
+        42 11295 West Islip                NY                                   
+        43 11303 Monbasset                 NY                                   
+        44 11322 Jackson Hts.              NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        45 11354 Flushing                  NY                                   
+        46 11355 Flushing                  NY                                   
+        47 11357 Whitestone                NY                                   
+        48 11358 Flushing                  NY                                   
+        49 11360 Bayside                   NY                                   
+        50 11361 Bayside                   NY                                   
+        51 11362 Douglaston                NY                                   
+        52 11365 Fresh Meadows             NY                                   
+        53 11366 Flushing                  NY                                   
+        54 11368 Corona                    NY                                   
+        55 11369 Elmhurst                  NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        56 11370 Jackson Heights           NY                                   
+        57 11372 Jackson Heights           NY                                   
+        58 11373 Amherst                   NY                                   
+        59 11374 Rego Park                 NY                                   
+        60 11375 Forest Hills              NY                                   
+        61 11377 Woodside                  NY                                   
+        62 11385 Ridgewood Queens          NY                                   
+        63 11403 Holliswood                NY                                   
+        64 11412 Hollis                    NY                                   
+        65 11413 Laurelton                 NY                                   
+        66 11414 Howard Bank               NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        67 11415 Kew Gardens               NY                                   
+        68 11418 Richmond Hills            NY                                   
+        69 11419 Richmond Hill             NY                                   
+        70 11420 Jamaica                   NY                                   
+        71 11422 Laurelton                 NY                                   
+        72 11426 Bellrose                  NY                                   
+        73 11428 Queens Village            NY                                   
+        74 11432 Jamaica                   NY                                   
+        75 11433 Jamaica                   NY                                   
+        76 11434 Jamaica                   NY                                   
+        77 11435 Jamaica                   NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        78 11510 Baldwin                   NY                                   
+        79 11530 Garden City               NY                                   
+        80 11550 Hempstead                 NY                                   
+        81 11552 West Hempstead            NY                                   
+        82 11561 Long Beach                NY                                   
+        83 11565 Malverne                  NY                                   
+        84 11572 Jackson Heights           NY                                   
+        85 11576 Roslyn                    NY                                   
+        86 11598 Woodmere                  NY                                   
+        87 11694 Far Rockaway              NY                                   
+        88 11717 Brentwood                 NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+        89 11720 Centerach                 NY                                   
+        90 11722 Central Islip             NY                                   
+        91 11743 Huntington                NY                                   
+        92 11746 Dix Hills                 NY                                   
+        93 11758 Massapequa                NY                                   
+        94 11766 Huntington                NY                                   
+        95 11776 Port Jefferson            NY                                   
+        96 11787 Smithtown                 NY                                   
+        97 11802 Hicksville                NY                                   
+        98 13760 Endicott                  NY                                   
+        99 30342 Atlanta                   GA                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       100 33431 Boca Raton                FL                                   
+       101 43224 Columbus                  OH                                   
+       102 48104 Ann Arbor                 MI                                   
+       103 00914 Santurce                  PR                                   
+       104 01247 North Adams               MA                                   
+       105 02124 Dorchester                MA                                   
+       106 02155 Tufts Univ. Bedford       MA                                   
+       107 02189 Weymouth                  MA                                   
+       108 02563 Sandwich                  MA                                   
+       109 06401 Ansonia                   CT                                   
+       110 06455 Middlefield               CT                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       111 06483 Oxford                    CT                                   
+       112 06520 New Haven                 CT                                   
+       113 06605 Bridgeport                CT                                   
+       114 06798 Woodbury                  CT                                   
+       115 06820 Georgetown                WV                                   
+       116 06830 Greenwich                 CT                                   
+       117 06850 Norwalk                   CT                                   
+       118 06851 Norwalk                   CT                                   
+       119 06853 Rowayton                  CT                                   
+       120 06870 Old Greenwich             CT                                   
+       121 06877 Ridgefield                CT                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       122 06880 Westport                  CT                                   
+       123 06883 Weston                    CT                                   
+       124 06897 Wilton                    CT                                   
+       125 06902 Stamford                  CT                                   
+       126 06903 Stamford                  CT                                   
+       127 06905 Stamford                  CT                                   
+       128 06907 Stamford                  CT                                   
+       129 07002 Bayonne                   NJ                                   
+       130 07003 Bloomfiel                 NJ                                   
+       131 07006 North Caldwell            NJ                                   
+       132 07008 Carteret                  NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       133 07009 Cedar Grove               NJ                                   
+       134 07010 Cliffside Park            NJ                                   
+       135 07011 Clifton                   NJ                                   
+       136 07012 Clifton                   NJ                                   
+       137 07014 Clifton                   NJ                                   
+       138 07016 Cranford                  NJ                                   
+       139 07021 Essex Fells               NJ                                   
+       140 07023 Fanwood                   NJ                                   
+       141 07024 Ft. Lee                   NJ                                   
+       142 07029 Harrison                  NJ                                   
+       143 07030 Hoboken                   NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       144 07034 Lake Hiawatha             NJ                                   
+       145 07035 Lincoln Pk.               NJ                                   
+       146 07036 Lyndon                    NJ                                   
+       147 07040 Maplewood                 NJ                                   
+       148 07042 Montclair                 NJ                                   
+       149 07043 Upper Montclair           NJ                                   
+       150 07044 Verona                    NJ                                   
+       151 07047 North Bergen              NJ                                   
+       152 07054 Parsippany                NJ                                   
+       153 07055 Passaic                   NJ                                   
+       154 07057 Wallington                NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       155 07060 Plainfield                NJ                                   
+       156 07065 Rahway                    NJ                                   
+       157 07066 Clark                     NJ                                   
+       158 07070 Rutherford                NJ                                   
+       159 07078 Short Hills               NJ                                   
+       160 07079 S. Orange                 NJ                                   
+       161 07087 Weehawken                 NJ                                   
+       162 07090 Westfield                 NJ                                   
+       163 07093 Guttenberg                NJ                                   
+       164 07094 Secaucus                  NJ                                   
+       165 07096 Secaucus                  NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       166 07102 Newark                    NJ                                   
+       167 07104 Newark                    NJ                                   
+       168 07107 Newark                    NJ                                   
+       169 07109 Belleville                NJ                                   
+       170 07111 Irvington                 NY                                   
+       171 07112 Newark                    NJ                                   
+       172 07302 Jersey City               NJ                                   
+       173 07304 Jersey City               NJ                                   
+       174 07306 Jersey City               NJ                                   
+       175 07307 Jersey City               NJ                                   
+       176 07401 Allendale                 NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       177 07410 Fair Lawn                 NJ                                   
+       178 07417 Franklin Lakes            NY                                   
+       179 07421 Hewitt                    NJ                                   
+       180 07430 Mahwah                    NJ                                   
+       181 07444 Pompton Plains            NJ                                   
+       182 07450 Ridgewood                 NJ                                   
+       183 07452 Glen Rock                 NJ                                   
+       184 07458 Upper Saddle River        NJ                                   
+       185 07465 Wahnaque                  NJ                                   
+       186 07470 Wayne                     NJ                                   
+       187 07480 W. Milford                NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       188 07503 Paterson                  NJ                                   
+       189 07509 Patterson                 NJ                                   
+       190 07601 Hackensack                NJ                                   
+       191 07603 Bogota                    NJ                                   
+       192 07607 Maywood                   NJ                                   
+       193 07620 Alpine                    NY                                   
+       194 07621 Bergenfield               NJ                                   
+       195 07624 Closter                   NJ                                   
+       196 07628 Dumont                    NJ                                   
+       197 07631 Englewood                 NJ                                   
+       198 07632 E. Cliffs                 NJ                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       199 07640 Harrington Park           NJ                                   
+       200 07645 Montvale                  NJ                                   
+       201 07646 New Milford               NJ                                   
+       202 07648 Norwood                   NJ                                   
+       203 07649 Oradell                   NY                                   
+       204 07652 Paramus                   NJ                                   
+       205 07656 Park Ridge                NJ                                   
+       206 10004 New York                  NY                                   
+       207 10005 New York                  NY                                   
+       208 10014 New York                  NY                                   
+       209 10015 New York                  NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       210 10017 New York                  NY                                   
+       211 10019 New York                  NY                                   
+       212 10025 New York                  NY                                   
+       213 10027 New York                  NY                                   
+       214 10035 New York                  NY                                   
+       215 10036 New York                  NY                                   
+       216 10048 New York                  NY                                   
+       217 10954 Nannet                    NY                                   
+       218 10956 New City                  NY                                   
+       219 10960 Central Nyack             NY                                   
+       220 10965 Pearl River               NY                                   
+
+    ROWNUM ZIP   CITY                      ST                                   
+---------- ----- ------------------------- --                                   
+       221 10983 Tappan                    NY                                   
+       222 11021 Great Neck                NY                                   
+       223 11029 Brooklyn                  NY                                   
+       224 11030 Manhasset                 NY                                   
+       225 11040 New Hyde Park             NY                                   
+       226 11042 Long Beach                NY                                   
+       227 11050 Fort Washington           NY                                   
+
+227 filas seleccionadas.
+
+SQL> 
+SQL> SELECT COUNT(*) FROM ZIPCODE;
+
+  COUNT(*)                                                                      
+----------                                                                      
+       227                                                                      
+
+SQL> 
+SQL> SELECT ZIP FROM ZIPCODE
+  2  WHERE ROWNUM <= 20;
+
+ZIP                                                                             
+-----                                                                           
+00914                                                                           
+01247                                                                           
+02124                                                                           
+02155                                                                           
+02189                                                                           
+02563                                                                           
+06401                                                                           
+06455                                                                           
+06483                                                                           
+06520                                                                           
+06605                                                                           
+
+ZIP                                                                             
+-----                                                                           
+06798                                                                           
+06820                                                                           
+06830                                                                           
+06850                                                                           
+06851                                                                           
+06853                                                                           
+06870                                                                           
+06877                                                                           
+06880                                                                           
+
+20 filas seleccionadas.
+
+SQL> 
+SQL> REM ESCENARIO DOS
+SQL> DECLARE
+  2  CURSOR c_zip_2 IS
+  3  SELECT *
+  4  FROM zipcode
+  5  WHERE ROWNUM <= 20;
+  6  vr_zip c_zip_2%ROWTYPE;
+  7  BEGIN
+  8  OPEN c_zip_2;
+  9  LOOP
+ 10  --Lectura de los registros del cursor
+ 11  FETCH c_ziP_2 INTO vr_zip;
+ 12  EXIT WHEN c_zip_2%NOTFOUND;
+ 13  DBMS_OUTPUT.PUT_LINE(CHR(9)||vr_zip.zip||
+ 14  '  =>'||CHR(9)||vr_zip.city||' '||vr_zip.state);
+ 15  END LOOP;
+ 16  END;
+ 17  /
+	11101  =>	Long Island City NY                                                  
+	11102  =>	Astoria NY                                                           
+	11103  =>	Astoria NY                                                           
+	11104  =>	Sunnyside NY                                                         
+	11105  =>	Astoria NY                                                           
+	11106  =>	Long Island City NY                                                  
+	11201  =>	Brooklyn NY                                                          
+	11203  =>	Brooklyn NY                                                          
+	11204  =>	Brooklyn NY                                                          
+	11205  =>	Brooklyn NY                                                          
+	11206  =>	Brooklyn NY                                                          
+	11207  =>	Brooklyn NY                                                          
+	11208  =>	Brooklyn NY                                                          
+	11209  =>	Brooklyn NY                                                          
+	11210  =>	Brooklyn NY                                                          
+	11211  =>	Brooklyn NY                                                          
+	11212  =>	Brooklyn NY                                                          
+	11213  =>	Brooklyn NY                                                          
+	11214  =>	Brooklyn NY                                                          
+	11215  =>	Brooklyn NY                                                          
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> rem escenario 3
+SQL> rem odernar las columnas antes de llevarlas al cursor
+SQL> rem agregarle al final un sonido de bell chr(7)
+SQL> rem agregar un tablulador vertical chr(9)
+SQL> rem agregar el carrige return chr(13)
+SQL> rem agregar el salto de linea chr (10)
+SQL> DECLARE
+  2  CURSOR c_zip_2 IS
+  3  SELECT *
+  4  FROM zipcode
+  5  WHERE ROWNUM <= 20 order by 2;
+  6  vr_zip c_zip_2%ROWTYPE;
+  7  BEGIN
+  8  OPEN c_zip_2;
+  9  LOOP
+ 10  FETCH c_ziP_2 INTO vr_zip;
+ 11  EXIT WHEN c_zip_2%NOTFOUND;
+ 12  DBMS_OUTPUT.PUT_LINE(CHR(9)||vr_zip.zip||
+ 13  '  =>'||CHR(9)||vr_zip.city||' '||CHR(9)||vr_zip.state);
+ 14  END LOOP;
+ 15   DBMS_OUTPUT.PUT_LINE ('Final'||chr(13)||chr(10)||chr(10)||
+ 16   ' Termine'||chr(07)||chr(07)||chr(07));
+ 17  END;
+ 18  /
+	11105  =>	Astoria 	NY                                                          
+	11102  =>	Astoria 	NY                                                          
+	11103  =>	Astoria 	NY                                                          
+	11205  =>	Brooklyn 	NY                                                         
+	11214  =>	Brooklyn 	NY                                                         
+	11213  =>	Brooklyn 	NY                                                         
+	11201  =>	Brooklyn 	NY                                                         
+	11203  =>	Brooklyn 	NY                                                         
+	11204  =>	Brooklyn 	NY                                                         
+	11215  =>	Brooklyn 	NY                                                         
+	11206  =>	Brooklyn 	NY                                                         
+	11207  =>	Brooklyn 	NY                                                         
+	11208  =>	Brooklyn 	NY                                                         
+	11209  =>	Brooklyn 	NY                                                         
+	11210  =>	Brooklyn 	NY                                                         
+	11211  =>	Brooklyn 	NY                                                         
+	11212  =>	Brooklyn 	NY                                                         
+	11106  =>	Long Island City 	NY                                                 
+	11101  =>	Long Island City 	NY                                                 
+	11104  =>	Sunnyside 	NY                                                        
+Final
+
+ Termine                                                             
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> spool off

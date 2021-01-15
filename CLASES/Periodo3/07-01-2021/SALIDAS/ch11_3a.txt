@@ -1,0 +1,37 @@
+SQL> SET SERVEROUTPUT ON
+SQL> DECLARE
+  2  v_city zipcode.city%type;
+  3  BEGIN
+  4  SELECT city
+  5  INTO v_city
+  6  FROM zipcode
+  7  WHERE zip = 07002;
+  8  IF SQL%ROWCOUNT = 1
+  9  THEN
+ 10  DBMS_OUTPUT.PUT_LINE(v_city ||' has a '||
+ 11  'zipcode of 07002');
+ 12  ELSIF SQL%ROWCOUNT = 0
+ 13  THEN
+ 14  DBMS_OUTPUT.PUT_LINE('The zipcode 07002 is '||
+ 15  ' not in the database');
+ 16  ELSE
+ 17  DBMS_OUTPUT.PUT_LINE('Stop harassing me');
+ 18  END IF;
+ 19  END;
+ 20  /
+Bayonne has a zipcode of 07002                                                  
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> 
+SQL> REM CONSULTAS PREVIAS
+SQL> REM SOLO HAY UN CODIGO POSTAL 07002
+SQL> SELECT ZIP,city,STATE
+  2  FROM zipcode
+  3  WHERE zip = 07002;
+
+ZIP   CITY                      ST                                              
+----- ------------------------- --                                              
+07002 Bayonne                   NJ                                              
+
+SQL> spool off
