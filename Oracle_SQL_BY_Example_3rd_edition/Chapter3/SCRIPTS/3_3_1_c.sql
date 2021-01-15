@@ -14,7 +14,7 @@ REM  Modified:    -
 REM  Version:     1.0
 REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
 REM ******************************************************************
-
+/*Pendiente*/
 set linesize 130
 set pagesize 90
 set colsep ' ||'

@@ -21,3 +21,6 @@ SELECT TO_CHAR(TO_DATE('31-DEC-1899 ', 'DD-MON-YYYY'), 'Day') AS "31-DEC-1899"
   FROM dual;
 
 spool off
+
+
+grant create any view to ej_cap_4;

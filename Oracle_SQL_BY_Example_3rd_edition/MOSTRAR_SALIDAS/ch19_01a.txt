@@ -1,0 +1,175 @@
+SQL> CREATE OR REPLACE PROCEDURE Discount
+  2  AS
+  3  CURSOR c_group_discount
+  4  IS
+  5  SELECT distinct s.course_no, c.description
+  6  FROM section s, enrollment e, course c
+  7  WHERE s.section_id = e.section_id
+  8  AND c.course_no = s.course_no
+  9  GROUP BY s.course_no, c.description,
+ 10  e.section_id, s.section_id
+ 11  HAVING COUNT(*) >=8;
+ 12  BEGIN
+ 13  FOR r_group_discount IN c_group_discount
+ 14  LOOP
+ 15  UPDATE course
+ 16  SET cost = cost * .95
+ 17  WHERE course_no = r_group_discount.course_no;
+ 18  DBMS_OUTPUT.PUT_LINE
+ 19  ('A 5% discount has been given to '||
+ 20  r_group_discount.course_no||' '||
+ 21  r_group_discount.description
+ 22  );
+ 23  END LOOP;
+ 24  END;
+ 25  /
+
+Procedimiento creado.
+
+SQL> SET SERVEROUTPUT ON
+SQL> EXEC Discount
+A 5% discount has been given to 140 Structured Analysis                         
+A 5% discount has been given to 25 Intro to Programming                         
+A 5% discount has been given to 240 Intro to the Basic Language                 
+A 5% discount has been given to 230 Intro to Internet                           
+A 5% discount has been given to 120 Intro to Java Programming                   
+A 5% discount has been given to 122 Intermediate Java Programming               
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> select course_no, description, cost, prerequisite
+  2  from course;
+
+ COURSE_NO DESCRIPTION                                              COST        
+---------- -------------------------------------------------- ----------        
+PREREQUISITE                                                                    
+------------                                                                    
+        10 DP Overview                                              1195        
+                                                                                
+                                                                                
+        20 Intro to Computers                                       1195        
+                                                                                
+                                                                                
+        25 Intro to Programming                                  1135.25        
+         140                                                                    
+                                                                                
+        80 Structured Programming Techniques                        1595        
+         204                                                                    
+                                                                                
+       100 Hands-On Windows                                         1195        
+          20                                                                    
+                                                                                
+       120 Intro to Java Programming                             1135.25        
+          80                                                                    
+                                                                                
+       122 Intermediate Java Programming                         1135.25        
+
+ COURSE_NO DESCRIPTION                                              COST        
+---------- -------------------------------------------------- ----------        
+PREREQUISITE                                                                    
+------------                                                                    
+         120                                                                    
+                                                                                
+       124 Advanced Java Programming                                1195        
+         122                                                                    
+                                                                                
+       125 JDeveloper                                               1195        
+         122                                                                    
+                                                                                
+       130 Intro to Unix                                            1195        
+         310                                                                    
+                                                                                
+       132 Basics of Unix Admin                                     1195        
+         130                                                                    
+                                                                                
+       134 Advanced Unix Admin                                      1195        
+         132                                                                    
+                                                                                
+       135 Unix Tips and Techniques                                 1095        
+         134                                                                    
+
+ COURSE_NO DESCRIPTION                                              COST        
+---------- -------------------------------------------------- ----------        
+PREREQUISITE                                                                    
+------------                                                                    
+                                                                                
+       140 Structured Analysis                                   1135.25        
+          20                                                                    
+                                                                                
+       142 Project Management                                       1195        
+          20                                                                    
+                                                                                
+       144 Database Design                                          1195        
+         420                                                                    
+                                                                                
+       145 Internet Protocols                                       1195        
+         310                                                                    
+                                                                                
+       146 Java for C/C++ Programmers                               1195        
+                                                                                
+                                                                                
+       147 GUI Programming                                          1195        
+          20                                                                    
+                                                                                
+
+ COURSE_NO DESCRIPTION                                              COST        
+---------- -------------------------------------------------- ----------        
+PREREQUISITE                                                                    
+------------                                                                    
+       204 Intro to SQL                                             1195        
+          20                                                                    
+                                                                                
+       210 Oracle Tools                                             1195        
+         220                                                                    
+                                                                                
+       220 PL/SQL Programming                                       1195        
+          80                                                                    
+                                                                                
+       230 Intro to Internet                                     1040.25        
+          10                                                                    
+                                                                                
+       240 Intro to the Basic Language                           1040.25        
+          25                                                                    
+                                                                                
+       310 Operating Systems                                        1195        
+                                                                                
+                                                                                
+       330 Network Administration                                   1195        
+
+ COURSE_NO DESCRIPTION                                              COST        
+---------- -------------------------------------------------- ----------        
+PREREQUISITE                                                                    
+------------                                                                    
+         130                                                                    
+                                                                                
+       350 JDeveloper Lab                                           1195        
+         125                                                                    
+                                                                                
+       420 Database System Principles                               1195        
+          25                                                                    
+                                                                                
+       430 JDeveloper Techniques                                    1195        
+         350                                                                    
+                                                                                
+       450 DB Programming in Java                                               
+         350                                                                    
+                                                                                
+
+30 filas seleccionadas.
+
+SQL> col object_name format a20
+SQL> col object_type format a20
+SQL> col status   format a15
+SQL> SELECT object_name, object_type, status
+  2  FROM user_objects
+  3  WHERE object_name = 'DISCOUNT';
+
+OBJECT_NAME          OBJECT_TYPE          STATUS                                
+-------------------- -------------------- ---------------                       
+DISCOUNT             PROCEDURE            VALID                                 
+
+SQL> alter procedure discount compile;
+
+Procedimiento modificado.
+
+SQL> spool off

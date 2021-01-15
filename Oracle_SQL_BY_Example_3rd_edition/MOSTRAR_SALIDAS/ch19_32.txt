@@ -1,0 +1,83 @@
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE insert_zip
+  2  (I_ZIPCODE IN zipcode.zip%TYPE,
+  3  I_CITY IN zipcode.city%TYPE,
+  4  I_STATE IN zipcode.state%TYPE)
+  5  AS
+  6  v_zipcode zipcode.zip%TYPE;
+  7  v_city zipcode.city%TYPE;
+  8  v_state zipcode.state%TYPE;
+  9  v_dummy zipcode.zip%TYPE;
+ 10  BEGIN
+ 11  v_zipcode := i_zipcode;
+ 12  v_city := i_city;
+ 13  v_state := i_state;
+ 14  --
+ 15  SELECT zip
+ 16  INTO v_dummy
+ 17  FROM zipcode
+ 18  WHERE zip = v_zipcode;
+ 19  --
+ 20  DBMS_OUTPUT.PUT_LINE('The zipcode '||v_zipcode||
+ 21  ' is already in the database and cannot be'||
+ 22  ' reinserted.');
+ 23  DBMS_OUTPUT.PUT_LINE('El c¢digo postal '||v_zipcode||
+ 24  ' ya existe y no puede ser insertado'||
+ 25  chr(10));
+ 26  --
+ 27  EXCEPTION
+ 28  WHEN NO_DATA_FOUND THEN
+ 29  INSERT INTO ZIPCODE
+ 30  VALUES (v_zipcode, v_city, v_state, user, sysdate,
+ 31  user, sysdate);
+ 32  WHEN OTHERS THEN
+ 33  DBMS_OUTPUT.PUT_LINE ('There was an unknown error '||
+ 34  'in insert_zip.');
+ 35  DBMS_OUTPUT.PUT_LINE ('Existe un error desconocido'||
+ 36  'al insertar el c¢digo postal ');
+ 37  END;
+ 38  /
+
+Procedimiento creado.
+
+SQL> SET SERVEROUTPUT ON
+SQL> BEGIN
+  2  insert_zip (10039, 'No Where', 'ZZ');
+  3  END;
+  4  
+  5  BEGIN
+  6  insert_zip (10049, 'Lugar desconocido', 'ZZ');
+  7  END;
+  8  /
+BEGIN
+*
+ERROR en línea 5:
+ORA-06550: línea 5, columna 1: 
+PLS-00103: Se ha encontrado el símbolo "BEGIN"  
+
+
+SQL> SET SERVEROUTPUT ON
+SQL> BEGIN
+  2  insert_zip (10039, 'No Where', 'ZZ');
+  3  END;
+  4  /
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> BEGIN
+  2  insert_zip (10049, 'Lugar desconocido', 'ZZ');
+  3  END;
+  4  /
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> select zip,city,state
+  2  from zipcode
+  3  where zip in (10039,10049);
+
+ZIP   CITY                      ST                                              
+----- ------------------------- --                                              
+10039 No Where                  ZZ                                              
+10049 Lugar desconocido         ZZ                                              
+
+SQL> spool off

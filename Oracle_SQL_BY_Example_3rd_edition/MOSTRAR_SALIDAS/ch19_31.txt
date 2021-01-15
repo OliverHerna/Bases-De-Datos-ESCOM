@@ -1,0 +1,121 @@
+SQL> 
+SQL> CREATE OR REPLACE PROCEDURE current_status
+  2  AS
+  3  v_day_type CHAR(1);
+  4  v_user VARCHAR2(30);
+  5  v_valid NUMBER;
+  6  v_invalid NUMBER;
+  7  BEGIN
+  8  SELECT SUBSTR(TO_CHAR(sysdate, 'DAY'), 0, 1)
+  9  INTO v_day_type
+ 10  FROM dual;
+ 11  IF v_day_type = 'S' THEN
+ 12  DBMS_OUTPUT.PUT_LINE ('Today is a weekend.');
+ 13  ELSE
+ 14  DBMS_OUTPUT.PUT_LINE ('Today is a weekday.');
+ 15  END IF;
+ 16  --
+ 17  DBMS_OUTPUT.PUT_LINE('The time is: '||
+ 18  TO_CHAR(sysdate, 'HH:MI AM'));
+ 19  --
+ 20  SELECT user
+ 21  INTO v_user
+ 22  FROM dual;
+ 23  DBMS_OUTPUT.PUT_LINE ('The current user is '||v_user);
+ 24  --
+ 25  SELECT NVL(COUNT(*), 0)
+ 26  INTO v_valid
+ 27  FROM user_objects
+ 28  WHERE status = 'VALID'
+ 29  AND object_type = 'PROCEDURE';
+ 30  DBMS_OUTPUT.PUT_LINE
+ 31  ('There are '||v_valid||' valid procedures.');
+ 32  --
+ 33  SELECT NVL(COUNT(*), 0)
+ 34  INTO v_invalid
+ 35  FROM user_objects
+ 36  WHERE status = 'INVALID'
+ 37  AND object_type = 'PROCEDURE';
+ 38  DBMS_OUTPUT.PUT_LINE
+ 39  ('There are '||v_invalid||' invalid procedures.');
+ 40  END;
+ 41  /
+
+Procedimiento creado.
+
+SQL> SET SERVEROUTPUT ON
+SQL> EXEC current_status;
+Today is a weekday.                                                             
+The time is: 11:14 AM                                                           
+The current user is PROCEDURES1                                                 
+There are 2 valid procedures.                                                   
+There are 0 invalid procedures.                                                 
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> CREATE OR REPLACE PROCEDURE current_status
+  2  AS
+  3  v_day_type CHAR(1);
+  4  v_user VARCHAR2(30);
+  5  v_valid NUMBER;
+  6  v_invalid NUMBER;
+  7  BEGIN
+  8  SELECT SUBSTR(TO_CHAR(sysdate, 'DAY'), 0, 1)
+  9  INTO v_day_type
+ 10  FROM dual;
+ 11  IF v_day_type = 'S' THEN
+ 12  DBMS_OUTPUT.PUT_LINE ('Today is a weekend.');
+ 13  DBMS_OUTPUT.PUT_LINE (chr(09)||chr(9)||'Hoy es fin de semana');
+ 14  ELSE
+ 15  DBMS_OUTPUT.PUT_LINE ('Today is a weekday.');
+ 16  DBMS_OUTPUT.PUT_LINE (chr(09)||chr(9)||'Hoy es d¡a habil.');
+ 17  END IF;
+ 18  --
+ 19  DBMS_OUTPUT.PUT_LINE('The time is: '||chr(09)||chr(9)||'La  hora es:'||
+ 20  TO_CHAR(sysdate, 'HH:MI AM')||chr(10));
+ 21  --
+ 22  SELECT user
+ 23  INTO v_user
+ 24  FROM dual;
+ 25  DBMS_OUTPUT.PUT_LINE ('The current user is=> El usuario actual '||v_user||chr(10));
+ 26  --
+ 27  SELECT NVL(COUNT(*), 0)
+ 28  INTO v_valid
+ 29  FROM user_objects
+ 30  WHERE status = 'VALID'
+ 31  AND object_type = 'PROCEDURE';
+ 32  DBMS_OUTPUT.PUT_LINE
+ 33  ('There are '||v_valid||' valid procedures.');
+ 34  DBMS_OUTPUT.PUT_LINE
+ 35  ('Existen '||v_valid||' procedimientos v lidos.'||chr(10));
+ 36  --
+ 37  SELECT NVL(COUNT(*), 0)
+ 38  INTO v_invalid
+ 39  FROM user_objects
+ 40  WHERE status = 'INVALID'
+ 41  AND object_type = 'PROCEDURE';
+ 42  DBMS_OUTPUT.PUT_LINE
+ 43  ('There are '||v_invalid||' invalid procedures.');
+ 44  DBMS_OUTPUT.PUT_LINE
+ 45  ('Existen  '||v_invalid||' procedimientos invalidos.');
+ 46  END;
+ 47  /
+
+Procedimiento creado.
+
+SQL> EXEC current_status;
+Today is a weekday.                                                             
+		Hoy es d¡a habil.                                                             
+The time is: 		La  hora es:11:15 AM
+                                            
+The current user is=> El usuario actual PROCEDURES1
+                            
+There are 2 valid procedures.                                                   
+Existen 2 procedimientos v lidos.
+                                              
+There are 0 invalid procedures.                                                 
+Existen  0 procedimientos invalidos.                                            
+
+Procedimiento PL/SQL terminado correctamente.
+
+SQL> spool off

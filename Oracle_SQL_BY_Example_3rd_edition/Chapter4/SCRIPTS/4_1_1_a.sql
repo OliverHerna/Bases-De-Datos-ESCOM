@@ -4,7 +4,7 @@ REM  File:        4_1_1_a.sql
 REM  Description: ) Display the course number, section ID, and starting date and
 REM                 time for sections that were taught on May 4, 2003.
 REM
-REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4
+REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
 REM  Created:     December 01, 2020
 REM  Modified:    -
 REM  Version:     1.0
@@ -22,5 +22,17 @@ SELECT course_no, section_id, start_date_time
 FROM section
 WHERE start_date_time >= TO_DATE('04-MAY-2003 00:00:00', 'DD-MON-YYYY HH24:MI:SS')
 AND start_date_time < TO_DATE('05-MAY-2003 00:00:00', 'DD-MON-YYYY HH24:MI:SS');
+
+SELECT course_no, section_id, TO_CHAR(start_date_time, 'DD-MONTH-YYYY HH24:MI:SS')
+FROM section
+WHERE start_date_time >= TO_DATE('04-MAY-2003 00:00:00', 'DD-MON-YYYY HH24:MI:SS')
+AND start_date_time < TO_DATE('05-MAY-2003 00:00:00', 'DD-MON-YYYY HH24:MI:SS');
+
+SELECT course_no, section_id, TO_CHAR(start_date_time, 'DD-fmMONTH-YYYY HH24:MI:SS day DDD')
+FROM section
+WHERE start_date_time >= TO_DATE('04-05-2003 00:00:00', 'DD-MM-YYYY HH24:MI:SS')
+AND start_date_time < TO_DATE('05-05-2003 00:00:00', 'DD-MM-YYYY HH24:MI:SS');
+
+ALTER SESSION SET NLS_DATE_LANGUAGE = 'FRENCH';
 
 spool off
