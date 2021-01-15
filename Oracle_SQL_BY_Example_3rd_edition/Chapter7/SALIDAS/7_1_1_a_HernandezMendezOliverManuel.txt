@@ -1,0 +1,38 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        7_1_1_c.sql
+SQL> REM  Description: Write a SQL statement that displays the first and last names
+SQL> REM               of students who registered first.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 04, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> 
+SQL> SELECT first_name, last_name
+  2    FROM student
+  3    WHERE registration_date =
+  4      (SELECT MIN(registration_date)
+  5        FROM student);
+
+FIRST_NAME                || LAST_NAME                                                                                            
+------------------------- || -------------------------                                                                            
+Fred                      || Crocitto                                                                                             
+J.                        || Landry                                                                                               
+Laetia                    || Enison                                                                                               
+Angel                     || Moskowitz                                                                                            
+Judith                    || Olvsade                                                                                              
+Catherine                 || Mierzwa                                                                                              
+Judy                      || Sethi                                                                                                
+Larry                     || Walter                                                                                               
+
+8 filas seleccionadas.
+
+SQL> 
+SQL> spool off

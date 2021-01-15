@@ -1,0 +1,28 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        9_1_1_c.sql
+SQL> REM  Description: Rewrite the following SQL statement using an outer join.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 06, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT course_no, description
+  2      FROM course LEFT OUTER JOIN section
+  3      USING (course_no)
+  4      WHERE section_id IS NULL;
+
+ COURSE_NO || DESCRIPTION                                                                                                         
+---------- || --------------------------------------------------                                                                  
+        80 || Structured Programming Techniques                                                                                   
+       430 || JDeveloper Techniques                                                                                               
+
+SQL> 
+SQL> 
+SQL> spool off

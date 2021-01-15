@@ -1,0 +1,31 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        7_1_1_c.sql
+SQL> REM  Description: Select the course number and total capacity for each course.
+SQL> REM               Show only the courses with a total capacity less than the
+SQL> REM               average capacity of all the sections.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 04, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT course_no, SUM(capacity)
+  2      FROM section
+  3    GROUP BY course_no
+  4  HAVING SUM(capacity) <
+  5        (SELECT AVG(capacity)
+  6            FROM section);
+
+ COURSE_NO || SUM(CAPACITY)                                                                                                       
+---------- || -------------                                                                                                       
+        10 ||            15                                                                                                       
+       144 ||            15                                                                                                       
+
+SQL> 
+SQL> spool off

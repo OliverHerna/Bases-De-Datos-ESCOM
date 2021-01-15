@@ -1,0 +1,117 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        9_1_1_a.sql
+SQL> REM  Description: Explain why Oracle returns an error message when you execute
+SQL> REM               the following SELECT statement.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
+SQL> REM  Created:     December 06, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT c.course_no, s.course_no, s.section_id,
+  2   c.description, s.start_date_time
+  3   FROM course c, section s
+  4   WHERE c.course_no(+) = s.course_no(+)
+  5  
+SQL> 
+SQL> 
+SQL> SELECT c.course_no, s.course_no, s.section_id,
+  2   c.description, s.start_date_time
+  3   FROM course c FULL OUTER JOIN section s
+  4   ON c.course_no = s.course_no;
+
+ COURSE_NO ||  COURSE_NO || SECTION_ID || DESCRIPTION                                        || START_DA                          
+---------- || ---------- || ---------- || -------------------------------------------------- || --------                          
+       350 ||        350 ||         79 || JDeveloper Lab                                     || 14/04/03                          
+        10 ||         10 ||         80 || DP Overview                                        || 24/04/03                          
+        20 ||         20 ||         81 || Intro to Computers                                 || 24/07/03                          
+        20 ||         20 ||         82 || Intro to Computers                                 || 03/05/03                          
+        20 ||         20 ||         83 || Intro to Computers                                 || 11/06/03                          
+        20 ||         20 ||         84 || Intro to Computers                                 || 11/06/03                          
+        25 ||         25 ||         85 || Intro to Programming                               || 14/07/03                          
+        25 ||         25 ||         86 || Intro to Programming                               || 10/06/03                          
+        25 ||         25 ||         87 || Intro to Programming                               || 14/04/03                          
+        25 ||         25 ||         88 || Intro to Programming                               || 04/05/03                          
+        25 ||         25 ||         89 || Intro to Programming                               || 15/05/03                          
+        25 ||         25 ||         90 || Intro to Programming                               || 12/06/03                          
+        25 ||         25 ||         91 || Intro to Programming                               || 12/06/03                          
+        25 ||         25 ||         92 || Intro to Programming                               || 13/06/03                          
+        25 ||         25 ||         93 || Intro to Programming                               || 13/06/03                          
+       146 ||        146 ||         94 || Java for C/C++ Programmers                         || 24/07/03                          
+       147 ||        147 ||         95 || GUI Programming                                    || 14/04/03                          
+       204 ||        204 ||         96 || Intro to SQL                                       || 14/04/03                          
+       210 ||        210 ||         97 || Oracle Tools                                       || 07/05/03                          
+       220 ||        220 ||         98 || PL/SQL Programming                                 || 15/04/03                          
+       230 ||        230 ||         99 || Intro to Internet                                  || 07/05/03                          
+       230 ||        230 ||        100 || Intro to Internet                                  || 09/06/03                          
+       240 ||        240 ||        101 || Intro to the Basic Language                        || 16/04/03                          
+       240 ||        240 ||        102 || Intro to the Basic Language                        || 24/05/03                          
+       310 ||        310 ||        103 || Operating Systems                                  || 29/04/03                          
+       330 ||        330 ||        104 || Network Administration                             || 14/07/03                          
+       350 ||        350 ||        105 || JDeveloper Lab                                     || 09/05/03                          
+       350 ||        350 ||        106 || JDeveloper Lab                                     || 03/06/03                          
+       130 ||        130 ||        107 || Intro to Unix                                      || 14/07/03                          
+       420 ||        420 ||        108 || Database System Principles                         || 07/05/03                          
+       450 ||        450 ||        109 || DB Programming in Java                             || 14/04/03                          
+       134 ||        134 ||        110 || Advanced Unix Admin                                || 10/06/03                          
+       134 ||        134 ||        111 || Advanced Unix Admin                                || 08/04/04                          
+       135 ||        135 ||        112 || Unix Tips and Techniques                           || 16/05/03                          
+       135 ||        135 ||        113 || Unix Tips and Techniques                           || 02/06/03                          
+       135 ||        135 ||        114 || Unix Tips and Techniques                           || 15/04/03                          
+       135 ||        135 ||        115 || Unix Tips and Techniques                           || 07/05/03                          
+       140 ||        140 ||        116 || Structured Analysis                                || 14/07/03                          
+       140 ||        140 ||        117 || Structured Analysis                                || 02/06/03                          
+       140 ||        140 ||        118 || Structured Analysis                                || 09/05/03                          
+       142 ||        142 ||        119 || Project Management                                 || 14/07/03                          
+       142 ||        142 ||        120 || Project Management                                 || 10/06/03                          
+       142 ||        142 ||        121 || Project Management                                 || 09/04/03                          
+       144 ||        144 ||        122 || Database Design                                    || 15/04/03                          
+       145 ||        145 ||        123 || Internet Protocols                                 || 14/07/03                          
+       145 ||        145 ||        124 || Internet Protocols                                 || 09/05/03                          
+       146 ||        146 ||        125 || Java for C/C++ Programmers                         || 29/04/03                          
+       124 ||        124 ||        126 || Advanced Java Programming                          || 14/07/03                          
+       124 ||        124 ||        127 || Advanced Java Programming                          || 24/07/03                          
+       124 ||        124 ||        128 || Advanced Java Programming                          || 09/04/03                          
+       124 ||        124 ||        129 || Advanced Java Programming                          || 07/05/03                          
+       125 ||        125 ||        130 || JDeveloper                                         || 22/05/03                          
+       125 ||        125 ||        131 || JDeveloper                                         || 24/07/03                          
+       125 ||        125 ||        132 || JDeveloper                                         || 09/04/03                          
+       125 ||        125 ||        133 || JDeveloper                                         || 03/05/03                          
+       125 ||        125 ||        134 || JDeveloper                                         || 11/06/03                          
+       130 ||        130 ||        135 || Intro to Unix                                      || 15/04/03                          
+       130 ||        130 ||        136 || Intro to Unix                                      || 24/04/03                          
+       130 ||        130 ||        137 || Intro to Unix                                      || 03/05/03                          
+       132 ||        132 ||        138 || Basics of Unix Admin                               || 21/05/03                          
+       132 ||        132 ||        139 || Basics of Unix Admin                               || 09/06/03                          
+       134 ||        134 ||        140 || Advanced Unix Admin                                || 16/04/03                          
+       100 ||        100 ||        141 || Hands-On Windows                                   || 14/04/03                          
+       100 ||        100 ||        142 || Hands-On Windows                                   || 24/07/03                          
+       100 ||        100 ||        143 || Hands-On Windows                                   || 03/06/03                          
+       100 ||        100 ||        144 || Hands-On Windows                                   || 04/05/03                          
+       100 ||        100 ||        145 || Hands-On Windows                                   || 15/05/03                          
+       120 ||        120 ||        146 || Intro to Java Programming                          || 16/05/03                          
+       120 ||        120 ||        147 || Intro to Java Programming                          || 24/07/03                          
+       120 ||        120 ||        148 || Intro to Java Programming                          || 24/05/03                          
+       120 ||        120 ||        149 || Intro to Java Programming                          || 04/05/03                          
+       120 ||        120 ||        150 || Intro to Java Programming                          || 15/05/03                          
+       120 ||        120 ||        151 || Intro to Java Programming                          || 12/06/03                          
+       122 ||        122 ||        152 || Intermediate Java Programming                      || 29/04/03                          
+       122 ||        122 ||        153 || Intermediate Java Programming                      || 24/07/03                          
+       122 ||        122 ||        154 || Intermediate Java Programming                      || 21/05/03                          
+       122 ||        122 ||        155 || Intermediate Java Programming                      || 04/05/03                          
+       122 ||        122 ||        156 || Intermediate Java Programming                      || 15/05/03                          
+       430 ||            ||            || JDeveloper Techniques                              ||                                   
+        80 ||            ||            || Structured Programming Techniques                  ||                                   
+
+80 filas seleccionadas.
+
+SQL> 
+SQL> 
+SQL> 
+SQL> spool off

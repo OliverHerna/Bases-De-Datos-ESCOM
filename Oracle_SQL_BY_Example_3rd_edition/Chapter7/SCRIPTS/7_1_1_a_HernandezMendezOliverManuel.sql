@@ -1,9 +1,8 @@
-spool  %ORA_OUT%\7_1_1_c.txt
+spool  %ORA_OUT%\7_1_1_a.txt
 REM ******************************************************************
 REM  File:        7_1_1_c.sql
-REM  Description: Select the course number and total capacity for each course.
-REM               Show only the courses with a total capacity less than the
-REM               average capacity of all the sections.
+REM  Description: Write a SQL statement that displays the first and last names
+REM               of students who registered first.
 REM
 REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_7
 REM  Created:     December 04, 2020
@@ -17,5 +16,10 @@ set pagesize 90
 set colsep ' || '
 
 
+SELECT first_name, last_name
+  FROM student
+  WHERE registration_date =
+    (SELECT MIN(registration_date)
+      FROM student);
 
 spool off

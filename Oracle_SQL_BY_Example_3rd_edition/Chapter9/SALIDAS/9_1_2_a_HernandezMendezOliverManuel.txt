@@ -1,0 +1,285 @@
+SQL> REM ******************************************************************
+SQL> REM  File:        9_1_2_a.sql
+SQL> REM  Description: Display the course number, description, cost, class location,
+SQL> REM               and instructors last name for all the courses. Also include
+SQL> REM               courses where no sections or instructors have been
+SQL> REM               assigned.
+SQL> REM
+SQL> REM  Alumn:       Hernandez Mendez Oliver Manuel | 2CM4 | ej_cap_9
+SQL> REM  Created:     December 06, 2020
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Oracle SQL by Example, Third Edition By Alice Rischert
+SQL> REM ******************************************************************
+SQL> 
+SQL> set linesize 130
+SQL> set pagesize 90
+SQL> set colsep ' || '
+SQL> 
+SQL> SELECT course_no cou, description, cost,
+  2        location, last_name
+  3      FROM course LEFT OUTER JOIN section
+  4      USING (course_no)
+  5        LEFT OUTER JOIN instructor
+  6      USING (instructor_id)
+  7      ORDER BY course_no;
+
+       COU || DESCRIPTION                                        ||       COST                                                    
+---------- || -------------------------------------------------- || ----------                                                    
+LOCATION                                           || LAST_NAME                                                                   
+-------------------------------------------------- || -------------------------                                                   
+        10 || DP Overview                                        ||       1195                                                    
+L214                                               || Wojick                                                                      
+                                                                                                                                  
+        20 || Intro to Computers                                 ||       1195                                                    
+L210                                               || Smythe                                                                      
+                                                                                                                                  
+        20 || Intro to Computers                                 ||       1195                                                    
+L509                                               || Morris                                                                      
+                                                                                                                                  
+        20 || Intro to Computers                                 ||       1195                                                    
+L210                                               || Schorin                                                                     
+                                                                                                                                  
+        20 || Intro to Computers                                 ||       1195                                                    
+L214                                               || Pertez                                                                      
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L507                                               || Hanks                                                                       
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L214                                               || Wojick                                                                      
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L509                                               || Schorin                                                                     
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L509                                               || Pertez                                                                      
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L210                                               || Morris                                                                      
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L509                                               || Smythe                                                                      
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+M311                                               || Frantzen                                                                    
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L507                                               || Frantzen                                                                    
+                                                                                                                                  
+        25 || Intro to Programming                               ||       1195                                                    
+L210                                               || Lowry                                                                       
+                                                                                                                                  
+        80 || Structured Programming Techniques                  ||       1595                                                    
+                                                   ||                                                                             
+                                                                                                                                  
+       100 || Hands-On Windows                                   ||       1195                                                    
+L214                                               || Smythe                                                                      
+                                                                                                                                  
+       100 || Hands-On Windows                                   ||       1195                                                    
+L509                                               || Pertez                                                                      
+                                                                                                                                  
+       100 || Hands-On Windows                                   ||       1195                                                    
+L214                                               || Wojick                                                                      
+                                                                                                                                  
+       100 || Hands-On Windows                                   ||       1195                                                    
+L500                                               || Schorin                                                                     
+                                                                                                                                  
+       100 || Hands-On Windows                                   ||       1195                                                    
+L507                                               || Morris                                                                      
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L509                                               || Wojick                                                                      
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L206                                               || Lowry                                                                       
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L210                                               || Schorin                                                                     
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L507                                               || Pertez                                                                      
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L509                                               || Hanks                                                                       
+                                                                                                                                  
+       120 || Intro to Java Programming                          ||       1195                                                    
+L507                                               || Frantzen                                                                    
+                                                                                                                                  
+       122 || Intermediate Java Programming                      ||       1195                                                    
+L211                                               || Smythe                                                                      
+                                                                                                                                  
+       122 || Intermediate Java Programming                      ||       1195                                                    
+L507                                               || Hanks                                                                       
+                                                                                                                                  
+       122 || Intermediate Java Programming                      ||       1195                                                    
+
+       COU || DESCRIPTION                                        ||       COST                                                    
+---------- || -------------------------------------------------- || ----------                                                    
+LOCATION                                           || LAST_NAME                                                                   
+-------------------------------------------------- || -------------------------                                                   
+M311                                               || Morris                                                                      
+                                                                                                                                  
+       122 || Intermediate Java Programming                      ||       1195                                                    
+L507                                               || Frantzen                                                                    
+                                                                                                                                  
+       122 || Intermediate Java Programming                      ||       1195                                                    
+L210                                               || Lowry                                                                       
+                                                                                                                                  
+       124 || Advanced Java Programming                          ||       1195                                                    
+M500                                               || Wojick                                                                      
+                                                                                                                                  
+       124 || Advanced Java Programming                          ||       1195                                                    
+H310                                               || Schorin                                                                     
+                                                                                                                                  
+       124 || Advanced Java Programming                          ||       1195                                                    
+L210                                               || Morris                                                                      
+                                                                                                                                  
+       124 || Advanced Java Programming                          ||       1195                                                    
+L214                                               || Pertez                                                                      
+                                                                                                                                  
+       125 || JDeveloper                                         ||       1195                                                    
+L509                                               || Smythe                                                                      
+                                                                                                                                  
+       125 || JDeveloper                                         ||       1195                                                    
+L214                                               || Lowry                                                                       
+                                                                                                                                  
+       125 || JDeveloper                                         ||       1195                                                    
+L509                                               || Frantzen                                                                    
+                                                                                                                                  
+       125 || JDeveloper                                         ||       1195                                                    
+L507                                               || Wojick                                                                      
+                                                                                                                                  
+       125 || JDeveloper                                         ||       1195                                                    
+L211                                               || Hanks                                                                       
+                                                                                                                                  
+       130 || Intro to Unix                                      ||       1195                                                    
+L214                                               || Pertez                                                                      
+                                                                                                                                  
+       130 || Intro to Unix                                      ||       1195                                                    
+L509                                               || Smythe                                                                      
+                                                                                                                                  
+       130 || Intro to Unix                                      ||       1195                                                    
+L507                                               || Schorin                                                                     
+                                                                                                                                  
+       130 || Intro to Unix                                      ||       1195                                                    
+L509                                               || Morris                                                                      
+                                                                                                                                  
+       132 || Basics of Unix Admin                               ||       1195                                                    
+L509                                               || Frantzen                                                                    
+                                                                                                                                  
+       132 || Basics of Unix Admin                               ||       1195                                                    
+L509                                               || Lowry                                                                       
+                                                                                                                                  
+       134 || Advanced Unix Admin                                ||       1195                                                    
+L509                                               || Wojick                                                                      
+                                                                                                                                  
+       134 || Advanced Unix Admin                                ||       1195                                                    
+L509                                               || Schorin                                                                     
+                                                                                                                                  
+       134 || Advanced Unix Admin                                ||       1195                                                    
+L509                                               || Hanks                                                                       
+                                                                                                                                  
+       135 || Unix Tips and Techniques                           ||       1095                                                    
+L214                                               || Morris                                                                      
+                                                                                                                                  
+       135 || Unix Tips and Techniques                           ||       1095                                                    
+L509                                               || Pertez                                                                      
+                                                                                                                                  
+       135 || Unix Tips and Techniques                           ||       1095                                                    
+M200                                               || Frantzen                                                                    
+                                                                                                                                  
+       135 || Unix Tips and Techniques                           ||       1095                                                    
+L509                                               || Smythe                                                                      
+                                                                                                                                  
+       140 || Structured Analysis                                ||       1195                                                    
+L507                                               || Wojick                                                                      
+                                                                                                                                  
+       140 || Structured Analysis                                ||       1195                                                    
+L509                                               || Lowry                                                                       
+                                                                                                                                  
+       140 || Structured Analysis                                ||       1195                                                    
+L210                                               || Hanks                                                                       
+                                                                                                                                  
+       142 || Project Management                                 ||       1195                                                    
+L211                                               || Schorin                                                                     
+
+       COU || DESCRIPTION                                        ||       COST                                                    
+---------- || -------------------------------------------------- || ----------                                                    
+LOCATION                                           || LAST_NAME                                                                   
+-------------------------------------------------- || -------------------------                                                   
+                                                                                                                                  
+       142 || Project Management                                 ||       1195                                                    
+L214                                               || Pertez                                                                      
+                                                                                                                                  
+       142 || Project Management                                 ||       1195                                                    
+L507                                               || Morris                                                                      
+                                                                                                                                  
+       144 || Database Design                                    ||       1195                                                    
+L214                                               || Smythe                                                                      
+                                                                                                                                  
+       145 || Internet Protocols                                 ||       1195                                                    
+L210                                               || Lowry                                                                       
+                                                                                                                                  
+       145 || Internet Protocols                                 ||       1195                                                    
+L214                                               || Frantzen                                                                    
+                                                                                                                                  
+       146 || Java for C/C++ Programmers                         ||       1195                                                    
+L509                                               || Hanks                                                                       
+                                                                                                                                  
+       146 || Java for C/C++ Programmers                         ||       1195                                                    
+L507                                               || Wojick                                                                      
+                                                                                                                                  
+       147 || GUI Programming                                    ||       1195                                                    
+L509                                               || Schorin                                                                     
+                                                                                                                                  
+       204 || Intro to SQL                                       ||       1195                                                    
+L210                                               || Pertez                                                                      
+                                                                                                                                  
+       210 || Oracle Tools                                       ||       1195                                                    
+L507                                               || Morris                                                                      
+                                                                                                                                  
+       220 || PL/SQL Programming                                 ||       1195                                                    
+L509                                               || Smythe                                                                      
+                                                                                                                                  
+       230 || Intro to Internet                                  ||       1095                                                    
+L500                                               || Frantzen                                                                    
+                                                                                                                                  
+       230 || Intro to Internet                                  ||       1095                                                    
+L214                                               || Lowry                                                                       
+                                                                                                                                  
+       240 || Intro to the Basic Language                        ||       1095                                                    
+L214                                               || Wojick                                                                      
+                                                                                                                                  
+       240 || Intro to the Basic Language                        ||       1095                                                    
+L509                                               || Hanks                                                                       
+                                                                                                                                  
+       310 || Operating Systems                                  ||       1195                                                    
+L507                                               || Schorin                                                                     
+                                                                                                                                  
+       330 || Network Administration                             ||       1195                                                    
+L511                                               || Pertez                                                                      
+                                                                                                                                  
+       350 || JDeveloper Lab                                     ||       1195                                                    
+L214                                               || Smythe                                                                      
+                                                                                                                                  
+       350 || JDeveloper Lab                                     ||       1195                                                    
+L509                                               || Morris                                                                      
+                                                                                                                                  
+       350 || JDeveloper Lab                                     ||       1195                                                    
+L509                                               || Frantzen                                                                    
+                                                                                                                                  
+       420 || Database System Principles                         ||       1195                                                    
+M311                                               || Lowry                                                                       
+                                                                                                                                  
+       430 || JDeveloper Techniques                              ||       1195                                                    
+                                                   ||                                                                             
+                                                                                                                                  
+       450 || DB Programming in Java                             ||                                                               
+L507                                               || Hanks                                                                       
+                                                                                                                                  
+
+80 filas seleccionadas.
+
+SQL> 
+SQL> spool off
