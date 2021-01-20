@@ -1,0 +1,37 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        4_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       167
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT COUNT(DISTINCT LEVEL)
+  2  FROM EMPLOYEE
+  3  START WITH MANAGER_EMP_ID IS NULL
+  4  CONNECT BY PRIOR EMP_ID = MANAGER_EMP_ID;
+
+COUNT(DISTINCTLEVEL)                                                            
+--------------------                                                            
+                   4                                                            
+
+SQL> 
+SQL> SELECT LEVEL, COUNT(EMP_ID)
+  2  FROM EMPLOYEE
+  3  START WITH MANAGER_EMP_ID IS NULL
+  4  CONNECT BY PRIOR EMP_ID = MANAGER_EMP_ID
+  5  GROUP BY LEVEL;
+
+     LEVEL COUNT(EMP_ID)                                                        
+---------- -------------                                                        
+         1             1                                                        
+         2             3                                                        
+         4             2                                                        
+         3             8                                                        
+
+SQL> 
+SQL> spool off

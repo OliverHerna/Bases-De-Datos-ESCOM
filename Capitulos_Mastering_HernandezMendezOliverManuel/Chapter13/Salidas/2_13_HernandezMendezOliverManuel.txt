@@ -1,0 +1,105 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        2_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       291-293
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT month,
+  2   SUM(tot_sales) monthly_sales,
+  3   SUM(SUM(tot_sales)) OVER (ORDER BY month
+  4     ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) total_sales
+  5     FROM orders
+  6     WHERE year = 2001
+  7      AND region_id = 6
+  8     GROUP BY month
+  9     ORDER BY month;
+
+     MONTH MONTHLY_SALES TOTAL_SALES                                            
+---------- ------------- -----------                                            
+         1        610697     6307766                                            
+         2        428676     6307766                                            
+         3        637031     6307766                                            
+         4        541146     6307766                                            
+         5        592935     6307766                                            
+         6        501485     6307766                                            
+         7        606914     6307766                                            
+         8        460520     6307766                                            
+         9        392898     6307766                                            
+        10        510117     6307766                                            
+        11        532889     6307766                                            
+
+     MONTH MONTHLY_SALES TOTAL_SALES                                            
+---------- ------------- -----------                                            
+        12        492458     6307766                                            
+
+12 filas seleccionadas.
+
+SQL> 
+SQL>    SELECT month,
+  2      SUM(tot_sales) monthly_sales,
+  3      SUM(SUM(tot_sales)) OVER (ORDER BY month
+  4      ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) window_sales,
+  5      SUM(SUM(tot_sales)) OVER ( ) reporting_sales
+  6     FROM orders
+  7     WHERE year = 2001
+  8      AND region_id = 6
+  9     GROUP BY month
+ 10     ORDER BY month;
+
+     MONTH MONTHLY_SALES WINDOW_SALES REPORTING_SALES                           
+---------- ------------- ------------ ---------------                           
+         1        610697      6307766         6307766                           
+         2        428676      6307766         6307766                           
+         3        637031      6307766         6307766                           
+         4        541146      6307766         6307766                           
+         5        592935      6307766         6307766                           
+         6        501485      6307766         6307766                           
+         7        606914      6307766         6307766                           
+         8        460520      6307766         6307766                           
+         9        392898      6307766         6307766                           
+        10        510117      6307766         6307766                           
+        11        532889      6307766         6307766                           
+
+     MONTH MONTHLY_SALES WINDOW_SALES REPORTING_SALES                           
+---------- ------------- ------------ ---------------                           
+        12        492458      6307766         6307766                           
+
+12 filas seleccionadas.
+
+SQL> 
+SQL>    SELECT month,
+  2      SUM(tot_sales) monthly_sales,
+  3      SUM(SUM(tot_sales)) OVER ( ) yearly_sales
+  4     FROM orders
+  5     WHERE year = 2001
+  6     GROUP BY month
+  7     ORDER BY month;
+
+     MONTH MONTHLY_SALES YEARLY_SALES                                           
+---------- ------------- ------------                                           
+         1       3028325     39593192                                           
+         2       3289336     39593192                                           
+         3       3411024     39593192                                           
+         4       3436482     39593192                                           
+         5       3749264     39593192                                           
+         6       3204730     39593192                                           
+         7       3233532     39593192                                           
+         8       3081290     39593192                                           
+         9       3388292     39593192                                           
+        10       3279637     39593192                                           
+        11       3167858     39593192                                           
+
+     MONTH MONTHLY_SALES YEARLY_SALES                                           
+---------- ------------- ------------                                           
+        12       3323422     39593192                                           
+
+12 filas seleccionadas.
+
+SQL> 
+SQL> spool off

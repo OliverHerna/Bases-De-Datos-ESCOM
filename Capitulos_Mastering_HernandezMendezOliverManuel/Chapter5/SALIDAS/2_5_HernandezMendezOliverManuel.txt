@@ -1,0 +1,39 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        2_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       69-70
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT fname, lname
+  2  FROM employee
+  3  WHERE dept_id = 3 AND salary >= ALL
+  4   (SELECT salary
+  5   FROM employee
+  6   WHERE dept_id = 3);
+
+FNAME                LNAME                                                      
+-------------------- --------------------                                       
+Mark                 Russell                                                    
+
+SQL> 
+SQL>  SELECT fname, lname
+  2   FROM employee
+  3   WHERE manager_emp_id IS NOT NULL
+  4    AND salary > ANY
+  5    (SELECT salary
+  6    FROM employee
+  7    WHERE manager_emp_id IS NULL);
+
+FNAME                LNAME                                                      
+-------------------- --------------------                                       
+Mark                 Russell                                                    
+Laura                Peters                                                     
+
+SQL> 
+SQL> spool off

@@ -1,0 +1,36 @@
+SQL> REM usr: ej_mastering_4/ej_mastering_4
+SQL> REM ******************************************************************
+SQL> REM  File:        3_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       57-58
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT COUNT(CUST_NBR), COUNT(DISTINCT CUST_NBR), COUNT(ALL CUST_NBR)
+  2  FROM CUST_ORDER;
+
+COUNT(CUST_NBR) COUNT(DISTINCTCUST_NBR) COUNT(ALLCUST_NBR)                      
+--------------- ----------------------- ------------------                      
+             20                       6                 20                      
+
+SQL> 
+SQL> SELECT COUNT(ALL SALE_PRICE) FROM CUST_ORDER;
+
+COUNT(ALLSALE_PRICE)                                                            
+--------------------                                                            
+                  14                                                            
+
+SQL> 
+SQL> SELECT STDDEV_POP(ALL SALE_PRICE)
+  2  FROM CUST_ORDER;
+
+STDDEV_POP(ALLSALE_PRICE)                                                       
+-------------------------                                                       
+               29.5282639                                                       
+
+SQL> 
+SQL> spool off

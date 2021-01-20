@@ -1,0 +1,60 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        5_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       295
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> 
+SQL> SELECT region_id, salesperson_id,
+  2   SUM(tot_sales) sp_sales,
+  3   ROUND(RATIO_TO_REPORT(SUM(tot_sales))
+  4   OVER (PARTITION BY region_id), 2) sp_ratio
+  5  FROM orders
+  6  WHERE year = 2001
+  7  GROUP BY region_id, salesperson_id
+  8  ORDER BY 1,2;
+
+ REGION_ID SALESPERSON_ID   SP_SALES   SP_RATIO                                 
+---------- -------------- ---------- ----------                                 
+         5              1    1927580        .29                                 
+         5              2    1461898        .22                                 
+         5              3    1501039        .23                                 
+         5              4    1695124        .26                                 
+         6              5    1688252        .27                                 
+         6              6    1392648        .22                                 
+         6              7    1458053        .23                                 
+         6              8    1768813        .28                                 
+         7              9    1735575        .25                                 
+         7             10    1723305        .25                                 
+         7             11    1737093        .25                                 
+
+ REGION_ID SALESPERSON_ID   SP_SALES   SP_RATIO                                 
+---------- -------------- ---------- ----------                                 
+         7             12    1672522        .24                                 
+         8             13    1516776        .22                                 
+         8             14    1814327        .26                                 
+         8             15    1760098        .26                                 
+         8             16    1761814        .26                                 
+         9             17    1710831        .25                                 
+         9             18    1625456        .24                                 
+         9             19    1645204        .24                                 
+         9             20    1757883        .26                                 
+        10             21    1542152        .25                                 
+        10             22    1468316        .24                                 
+
+ REGION_ID SALESPERSON_ID   SP_SALES   SP_RATIO                                 
+---------- -------------- ---------- ----------                                 
+        10             23    1443837        .23                                 
+        10             24    1784596        .29                                 
+
+24 filas seleccionadas.
+
+SQL> 
+SQL> 
+SQL> spool off

@@ -23,4 +23,4 @@ SELECT TO_CHAR(TO_DATE('31-DEC-1899 ', 'DD-MON-YYYY'), 'Day') AS "31-DEC-1899"
 spool off
 
 
-grant create any view to ej_cap_4;
+grant create any view to ej_cap_4;  

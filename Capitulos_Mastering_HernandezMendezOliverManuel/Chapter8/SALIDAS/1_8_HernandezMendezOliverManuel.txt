@@ -1,0 +1,73 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        1_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       160-161
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT E.LNAME "Employee", M.LNAME "Manager"
+  2  FROM EMPLOYEE E, EMPLOYEE M
+  3  WHERE E.MANAGER_EMP_ID = M.EMP_ID;
+
+Employee             Manager                                                    
+-------------------- --------------------                                       
+FORD                 JONES                                                      
+SCOTT                JONES                                                      
+TURNER               BLAKE                                                      
+ALLEN                BLAKE                                                      
+WARD                 BLAKE                                                      
+JAMES                BLAKE                                                      
+MARTIN               BLAKE                                                      
+MILLER               CLARK                                                      
+ADAMS                SCOTT                                                      
+BLAKE                KING                                                       
+JONES                KING                                                       
+
+Employee             Manager                                                    
+-------------------- --------------------                                       
+CLARK                KING                                                       
+SMITH                FORD                                                       
+
+13 filas seleccionadas.
+
+SQL> 
+SQL> SELECT COUNT(*) FROM EMPLOYEE;
+
+  COUNT(*)                                                                      
+----------                                                                      
+        14                                                                      
+
+SQL> 
+SQL> SELECT E.LNAME "Employee", M.LNAME "Manager"
+  2  FROM EMPLOYEE E, EMPLOYEE M
+  3  WHERE E.MANAGER_EMP_ID = M.EMP_ID (+);
+
+Employee             Manager                                                    
+-------------------- --------------------                                       
+SCOTT                JONES                                                      
+FORD                 JONES                                                      
+ALLEN                BLAKE                                                      
+WARD                 BLAKE                                                      
+MARTIN               BLAKE                                                      
+TURNER               BLAKE                                                      
+JAMES                BLAKE                                                      
+MILLER               CLARK                                                      
+ADAMS                SCOTT                                                      
+JONES                KING                                                       
+BLAKE                KING                                                       
+
+Employee             Manager                                                    
+-------------------- --------------------                                       
+CLARK                KING                                                       
+SMITH                FORD                                                       
+KING                                                                            
+
+14 filas seleccionadas.
+
+SQL> 
+SQL> spool off

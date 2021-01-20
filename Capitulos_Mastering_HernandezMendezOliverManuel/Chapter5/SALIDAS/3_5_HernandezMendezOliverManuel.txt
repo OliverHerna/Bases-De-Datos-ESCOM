@@ -1,0 +1,28 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        3_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       78-80
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT d.dept_id, d.name, emp_cnt.tot
+  2  FROM department d,
+  3   (SELECT dept_id, COUNT(*) tot
+  4   FROM employee
+  5   GROUP BY dept_id) emp_cnt
+  6  WHERE d.dept_id = emp_cnt.dept_id;
+
+   DEPT_ID NAME                        TOT                                      
+---------- -------------------- ----------                                      
+         1 Human Resources               1                                      
+         2 Accounting                    1                                      
+         3 Domestic Sales               19                                      
+         4 International Sales           5                                      
+
+SQL> 
+SQL> spool off

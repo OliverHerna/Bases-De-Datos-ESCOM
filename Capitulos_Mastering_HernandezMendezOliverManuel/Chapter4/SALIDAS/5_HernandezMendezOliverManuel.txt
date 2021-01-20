@@ -1,0 +1,40 @@
+SQL> REM usr: ej_mastering_4/ej_mastering_4
+SQL> REM ******************************************************************
+SQL> REM  File:        5_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       63-63
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT SALE_PRICE, COUNT(ORDER_NBR)
+  2  FROM CUST_ORDER
+  3  GROUP BY SALE_PRICE;
+
+SALE_PRICE COUNT(ORDER_NBR)                                                     
+---------- ----------------                                                     
+        99                4                                                     
+        34                2                                                     
+        56                4                                                     
+                          6                                                     
+        25                4                                                     
+
+SQL> 
+SQL> SELECT SALE_PRICE, COUNT(ORDER_NBR)
+  2  FROM CUST_ORDER
+  3  GROUP BY SALE_PRICE
+  4  ORDER BY SALE_PRICE DESC;
+
+SALE_PRICE COUNT(ORDER_NBR)                                                     
+---------- ----------------                                                     
+                          6                                                     
+        99                4                                                     
+        56                4                                                     
+        34                2                                                     
+        25                4                                                     
+
+SQL> 
+SQL> spool off

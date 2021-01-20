@@ -1,0 +1,27 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        5_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       172
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT EMP_ID, LNAME, DEPT_ID, MANAGER_EMP_ID, SALARY, HIRE_DATE
+  2  FROM EMPLOYEE
+  3  WHERE LEVEL <= 2
+  4  START WITH MANAGER_EMP_ID IS NULL
+  5  CONNECT BY MANAGER_EMP_ID = PRIOR EMP_ID;
+
+    EMP_ID LNAME                   DEPT_ID MANAGER_EMP_ID     SALARY HIRE_DATE  
+---------- -------------------- ---------- -------------- ---------- ---------  
+      7839 KING                         10                      5000 17-NOV-81  
+      7566 JONES                        20           7839       2000 02-APR-81  
+      7698 BLAKE                        30           7839       2850 01-MAY-80  
+      7782 CLARK                        10           7839       2450 09-JUN-81  
+
+SQL> 
+SQL> spool off

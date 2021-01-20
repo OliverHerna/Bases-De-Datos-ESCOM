@@ -1,0 +1,34 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        4_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       81
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT sizes.name order_size, SUM(co.sale_price) tot_dollars
+  2  FROM cust_order co,
+  3   (SELECT 'SMALL' name, 0 lower_bound, 999 upper_bound from dual
+  4   UNION ALL
+  5   SELECT 'MEDIUM' name, 1000 lower_bound, 24999 upper_bound from dual
+  6   UNION ALL
+  7   SELECT 'LARGE' name, 25000 lower_bound, 9999999 upper_bound from dual
+  8   ) sizes
+  9  WHERE co.cancelled_dt IS NULL
+ 10   AND co.order_dt >= TO_DATE('01-JAN-2001','DD-MON-YYYY')
+ 11   AND co.order_dt < TO_DATE('01-JAN-2002','DD-MON-YYYY')
+ 12   AND co.sale_price BETWEEN sizes.lower_bound AND sizes.upper_bound
+ 13  GROUP BY sizes.name;
+
+ORDER_ TOT_DOLLARS                                                              
+------ -----------                                                              
+LARGE      7136214                                                              
+SMALL        63676                                                              
+MEDIUM    32395018                                                              
+
+SQL> 
+SQL> spool off

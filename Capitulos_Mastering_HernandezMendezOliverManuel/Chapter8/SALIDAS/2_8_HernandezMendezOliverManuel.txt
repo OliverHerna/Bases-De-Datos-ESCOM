@@ -1,0 +1,52 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        2_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       162
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT EMP_ID, LNAME, DEPT_ID, MANAGER_EMP_ID, SALARY, HIRE_DATE
+  2  FROM EMPLOYEE E
+  3  WHERE EMP_ID NOT IN
+  4  (SELECT MANAGER_EMP_ID FROM EMPLOYEE
+  5  WHERE MANAGER_EMP_ID IS NOT NULL);
+
+    EMP_ID LNAME                   DEPT_ID MANAGER_EMP_ID     SALARY HIRE_DATE  
+---------- -------------------- ---------- -------------- ---------- ---------  
+      7369 SMITH                        20           7902        800 17-DEC-80  
+      7499 ALLEN                        30           7698       1600 20-FEB-81  
+      7521 WARD                         30           7698       1250 22-FEB-81  
+      7654 MARTIN                       30           7698       1250 28-SEP-81  
+      7844 TURNER                       30           7698       1500 08-SEP-81  
+      7876 ADAMS                        20           7788       1100 23-MAY-87  
+      7900 JAMES                        30           7698        950 03-DEC-81  
+      7934 MILLER                       10           7782       1300 23-JAN-82  
+
+8 filas seleccionadas.
+
+SQL> 
+SQL> SELECT EMP_ID, LNAME, DEPT_ID, MANAGER_EMP_ID, SALARY, HIRE_DATE
+  2  FROM EMPLOYEE E
+  3  WHERE NOT EXISTS
+  4  (SELECT EMP_ID FROM EMPLOYEE E1 WHERE E.EMP_ID = E1.MANAGER_EMP_ID);
+
+    EMP_ID LNAME                   DEPT_ID MANAGER_EMP_ID     SALARY HIRE_DATE  
+---------- -------------------- ---------- -------------- ---------- ---------  
+      7369 SMITH                        20           7902        800 17-DEC-80  
+      7499 ALLEN                        30           7698       1600 20-FEB-81  
+      7521 WARD                         30           7698       1250 22-FEB-81  
+      7654 MARTIN                       30           7698       1250 28-SEP-81  
+      7844 TURNER                       30           7698       1500 08-SEP-81  
+      7876 ADAMS                        20           7788       1100 23-MAY-87  
+      7900 JAMES                        30           7698        950 03-DEC-81  
+      7934 MILLER                       10           7782       1300 23-JAN-82  
+
+8 filas seleccionadas.
+
+SQL> 
+SQL> spool off

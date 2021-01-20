@@ -1,0 +1,9 @@
+
+SQL*Loader: Release 18.0.0.0.0 - Production on Mar Ene 19 19:02:55 2021
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2019, Oracle and/or its affiliates.  All rights reserved.
+
+SQL*Loader-500: No se ha podido abrir el archivo (spool.ctl)
+SQL*Loader-553: archivo no encontrado
+SQL*Loader-509: Error del sistema: El sistema no puede encontrar el archivo especificado.

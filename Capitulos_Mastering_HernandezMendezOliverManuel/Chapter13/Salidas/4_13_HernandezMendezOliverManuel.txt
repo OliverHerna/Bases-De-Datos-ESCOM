@@ -1,0 +1,29 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        4_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       294
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT region_id, salesperson_id,
+  2   SUM(tot_sales) sp_sales,
+  3   ROUND(SUM(tot_sales) /
+  4   SUM(SUM(tot_sales)) OVER (PARTITION BY region_id),
+  5   2) percent_of_region
+  6   FROM orders
+  7   WHERE year = 2001
+  8   GROUP BY region_id, salesperson_id
+  9  ORDER BY region_id, salesperson_id1,2;
+ORDER BY region_id, salesperson_id1,2
+                    *
+ERROR en línea 9:
+ORA-00904: "SALESPERSON_ID1": identificador no válido 
+
+
+SQL> 
+SQL> spool off

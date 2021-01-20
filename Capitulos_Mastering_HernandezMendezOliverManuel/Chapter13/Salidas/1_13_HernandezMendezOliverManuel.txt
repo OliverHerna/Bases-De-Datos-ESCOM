@@ -1,0 +1,77 @@
+SQL> REM usr: ej_mastering_8/ej_mastering_8
+SQL> REM ******************************************************************
+SQL> REM  File:        1_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       290-291
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT month, SUM(tot_sales) monthly_sales,
+  2   LAG(SUM(tot_sales), 1) OVER (ORDER BY month) prev_month_sales
+  3  FROM orders
+  4  WHERE year = 2001
+  5   AND region_id = 6
+  6  GROUP BY month
+  7  ORDER BY month;
+
+     MONTH MONTHLY_SALES PREV_MONTH_SALES                                       
+---------- ------------- ----------------                                       
+         1        610697                                                        
+         2        428676           610697                                       
+         3        637031           428676                                       
+         4        541146           637031                                       
+         5        592935           541146                                       
+         6        501485           592935                                       
+         7        606914           501485                                       
+         8        460520           606914                                       
+         9        392898           460520                                       
+        10        510117           392898                                       
+        11        532889           510117                                       
+
+     MONTH MONTHLY_SALES PREV_MONTH_SALES                                       
+---------- ------------- ----------------                                       
+        12        492458           532889                                       
+
+12 filas seleccionadas.
+
+SQL> 
+SQL> SELECT months.month month, months.monthly_sales monthly_sales,
+  2   ROUND((months.monthly_sales - NVL(months.prev_month_sales,
+  3   months.monthly_sales)) /
+  4   NVL(months.prev_month_sales, months.monthly_sales),
+  5   3) * 100 percent_change
+  6  FROM
+  7   (SELECT month, SUM(tot_sales) monthly_sales,
+  8   LAG(SUM(tot_sales), 1) OVER (ORDER BY month) prev_month_sales
+  9   FROM orders
+ 10   WHERE year = 2001
+ 11   AND region_id = 6
+ 12   GROUP BY month) months
+ 13  ORDER BY month;
+
+     MONTH MONTHLY_SALES PERCENT_CHANGE                                         
+---------- ------------- --------------                                         
+         1        610697              0                                         
+         2        428676          -29.8                                         
+         3        637031           48.6                                         
+         4        541146          -15.1                                         
+         5        592935            9.6                                         
+         6        501485          -15.4                                         
+         7        606914             21                                         
+         8        460520          -24.1                                         
+         9        392898          -14.7                                         
+        10        510117           29.8                                         
+        11        532889            4.5                                         
+
+     MONTH MONTHLY_SALES PERCENT_CHANGE                                         
+---------- ------------- --------------                                         
+        12        492458           -7.6                                         
+
+12 filas seleccionadas.
+
+SQL> 
+SQL> spool off

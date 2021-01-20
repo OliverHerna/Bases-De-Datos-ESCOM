@@ -1,0 +1,39 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        5_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       85
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT na_regions.name region_name,
+  2   SUM(co.sale_price) total_sales
+  3   FROM cust_order co, customer c,
+  4   (SELECT region_id, name
+  5   FROM region
+  6   START WITH name = 'North America'
+  7   CONNECT BY PRIOR region_id = super_region_id) na_regions
+  8  WHERE co.cancelled_dt IS NULL
+  9   AND co.order_dt >= TO_DATE('01-JAN-2001','DD-MON-YYYY')
+ 10   AND co.order_dt < TO_DATE('01-JAN-2002','DD-MON-YYYY')
+ 11   AND co.cust_nbr = c.cust_nbr
+ 12   AND c.region_id = na_regions.region_id
+ 13  GROUP BY na_regions.name;
+
+REGION_NAME          TOTAL_SALES                                                
+-------------------- -----------                                                
+Mid-Atlantic             6307766                                                
+NorthWest US             6739374                                                
+SouthEast US             6868495                                                
+SouthWest US             6854731                                                
+Central US               6238901                                                
+New England              6585641                                                
+
+6 filas seleccionadas.
+
+SQL> 
+SQL> spool off

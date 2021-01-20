@@ -1,0 +1,60 @@
+SQL> REM usr: ej_mastering_5/ej_mastering_5
+SQL> REM ******************************************************************
+SQL> REM  File:        3_HernandezMendezOliverManuel.sql
+SQL> REM  Pages:       165-166
+SQL> REM
+SQL> REM  Alumn:       Hernendez Mendez Oliver Manuel | 2CM4
+SQL> REM  Created:     January 18, 2021
+SQL> REM  Modified:    -
+> REM  Version:     1.0
+SQL> REM  Book:        Mastering-Oracle-Sql-Oreilly
+SQL> REM ******************************************************************
+SQL> 
+SQL> SELECT LNAME, EMP_ID, MANAGER_EMP_ID
+  2  FROM EMPLOYEE
+  3  START WITH MANAGER_EMP_ID IS NULL
+  4  CONNECT BY PRIOR EMP_ID = MANAGER_EMP_ID;
+
+LNAME                    EMP_ID MANAGER_EMP_ID                                  
+-------------------- ---------- --------------                                  
+KING                       7839                                                 
+JONES                      7566           7839                                  
+SCOTT                      7788           7566                                  
+ADAMS                      7876           7788                                  
+FORD                       7902           7566                                  
+SMITH                      7369           7902                                  
+BLAKE                      7698           7839                                  
+ALLEN                      7499           7698                                  
+WARD                       7521           7698                                  
+MARTIN                     7654           7698                                  
+TURNER                     7844           7698                                  
+
+LNAME                    EMP_ID MANAGER_EMP_ID                                  
+-------------------- ---------- --------------                                  
+JAMES                      7900           7698                                  
+CLARK                      7782           7839                                  
+MILLER                     7934           7782                                  
+
+14 filas seleccionadas.
+
+SQL> 
+SQL> SELECT * FROM ASSEMBLY
+  2  START WITH PARENT_ASSEMBLY_TYPE IS NULL
+  3  AND PARENT_ASSEMBLY_ID IS NULL
+  4  CONNECT BY PARENT_ASSEMBLY_TYPE = PRIOR ASSEMBLY_TYPE
+  5  AND PARENT_ASSEMBLY_ID = PRIOR ASSEMBLY_ID;
+
+ASSE ASSEMBLY_ID DESCRIPTION          PARE PARENT_ASSEMBLY_ID                   
+---- ----------- -------------------- ---- ------------------                   
+A           1234 Assembly A#1234                                                
+A           1256 Assembly A#1256      A                  1234                   
+B           6543 Part Unit#6543       A                  1234                   
+A           1675 Part Unit#1675       B                  6543                   
+X           9943 Repair Zone 1                                                  
+X           5438 Repair Unit #5438    X                  9943                   
+X           1675 Readymade Unit #1675 X                  5438                   
+
+7 filas seleccionadas.
+
+SQL> 
+SQL> spool off
